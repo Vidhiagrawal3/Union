@@ -1,62 +1,69 @@
-<p>register works!</p>
+<br>
 <div class="col-md-3">
 
 </div>
 <div class="col-12 col-md-5 mx-auto my-5 d-flex justify-content-center" >
   <!-- Default form register -->
-  <form class="text-center border border-light p-5">
+  <form class="text-center border border-light p-5" [formGroup]="registerForm">
 
     <p class="h4 mb-4">Sign up</p>
 
     <div class="form-row mb-4">
       <div class="col">
         <!-- First name -->
-        <input type="text" id="form1" class="form-control" placeholder="First name">
+        <input formControlName="fname" type="text" id="form1" class="form-control" placeholder="First name">
       </div>
       <div class="col">
         <!-- Last name -->
-        <input type="text" id="form2" class="form-control" placeholder="Last name">
+        <input formControlName="lname" type="text" id="form2" class="form-control" placeholder="Last name">
       </div>
     </div>
 
     <div class="form-row mb-4">
       <div class="col">
         <label for="form3" class="">Course</label>
-        <select class="form-control">
+        <select formControlName="course" class="form-control" [(ngModel)] = "courseSelected">
 
-          <option value="" disabled>Select Course</option>
-          <!-- <option *ngFor="let item of courseList" [value]="item.name"> {{ item?.name }}</option> -->
+          <option value="">Select Course</option>
+          <option *ngFor="let item of courseList" [value]="item.value"> {{ item?.value }}</option>
+
+
+        </select>
+      </div>
+      <!-- Stearm -->
+      <div class="col" *ngIf = "courseSelected == 'B-Tech' ">
+        <label for="form3" class="">Stream</label>
+        <select formControlName="stream" class="form-control">
+
+          <option value="">Select Stream</option>
+          <option *ngFor="let item of StreamList" [value]="item.value"> {{ item?.value }}</option>
 
 
         </select>
       </div>
       <div class="col">
-        <label for="form4" class="">Graduation Year</label>
-        <select class="form-control">
-
-          <option value="" disabled>Select year</option>
-          <!-- <option *ngFor="let item of yearList" [value]="item.name"> {{ item?.name }}</option> -->
-        </select>
+        <label for="form3" class="">Graduation Year</label>
+        <input formControlName="gyear" type="text" id="form5" class="form-control" placeholder="">
       </div>
     </div>
 
     <div class="form-row mb-4">
   <div class="col">
-    <input type="text" id="form5" class="form-control" placeholder="Roll Number">
+    <input formControlName="roll" type="text" id="form55" class="form-control" placeholder="Roll Number">
   </div>
     </div>
 
     <!-- E-mail -->
-    <input type="email" id="form6" class="form-control mb-4" placeholder="E-mail">
+    <input formControlName="email" type="email" id="form6" class="form-control mb-4" placeholder="E-mail">
 
     <!-- Password -->
-    <input type="password" id="form7" class="form-control" placeholder="Set Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+    <input formControlName="password" type="password" id="form7" class="form-control" placeholder="Set Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
       At least 8 characters and 1 digit
     </small>
 
     <!-- Phone number -->
-    <input type="text" id="form8" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+    <input formControlName="phone" type="text" id="form8" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
     <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
       Optional - for two-step authentication
     </small>
@@ -69,7 +76,7 @@
     </div>
 
     <!-- Sign up button -->
-    <button mdbBtn color="info" block="true" class="my-4" type="submit">Sign in</button>
+    <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="register()">Sign in</button>
 
 
 
