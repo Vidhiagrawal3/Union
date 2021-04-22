@@ -9,7 +9,7 @@ export class AlumniService {
 
   constructor(private _http : HttpClient) { }
   register (body:any){
-    return this._http.post('http://127.0.0.1:3000/alumni/register',body , {
+    return this._http.post('http://127.0.0.1:3000/user/register',body , {
       observe:'response',
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     })
