@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlumniService } from 'src/assets/services/alumni.service';
+import { AlumniService } from 'src/app/services/alumni.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     email:new FormControl(null,[Validators.email,Validators.required]),
    roll: new FormControl(null , [Validators.required]),
     course:new FormControl(null,[Validators.required]),
-    stream: new FormControl(null),
+    branch: new FormControl(null),
     gyear: new FormControl(null, [Validators.required]),
     phone: new FormControl(null , [Validators.required]),
     password: new FormControl(null , [Validators.min(3),Validators.required]),

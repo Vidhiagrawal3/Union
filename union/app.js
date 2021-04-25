@@ -16,7 +16,11 @@ app.use(cors({                       //it will allow cross sink btw backend and 
 
 var mongoose = require('mongoose');
 const alumni = require('./models/alumni');
-mongoose.connect('mongodb://localhost/union')
+const uri = "mongodb+srv://Archit808:archit808@cluster0.i0iwz.mongodb.net/Union";
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

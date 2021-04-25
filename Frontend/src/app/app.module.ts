@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import{AlumniService} from '../assets/services/alumni.service'
+import{AlumniService} from './services/alumni.service'
 import { HttpClientModule } from '@angular/common/http';
 const approute : Routes = [
 {path:"login" , component: LoginComponent},
