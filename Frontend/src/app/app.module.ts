@@ -12,10 +12,12 @@ import { HomeComponent } from './home/home.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import{AlumniService} from '../assets/services/alumni.service'
 import { HttpClientModule } from '@angular/common/http';
+import { AlumniHomeComponent } from './alumni-home/alumni-home.component';
 const approute : Routes = [
 {path:"login" , component: LoginComponent},
 {path:"register" , component: RegisterComponent},
-{path:"home" , component:HomeComponent}
+{path:"home" , component:HomeComponent},
+{path:'alumni-home',component:AlumniHomeComponent}
 
 ]
 @NgModule({
@@ -23,7 +25,8 @@ const approute : Routes = [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    AlumniHomeComponent
   ],
   imports: [
     FormsModule,ReactiveFormsModule,
