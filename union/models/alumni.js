@@ -18,7 +18,7 @@ Schema.statics.hash = function hash(password)
 {
     return bcrypt.hashSync(password,10);
 }
-Schema.methods.isValid =function(hash){
+ Schema.methods.isValid =function(hash){
     return bcrypt.compareSync(hash, this.password)
 }
 module.exports = mongoose.model('Alumni' , Schema);
