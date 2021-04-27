@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
-import {AlumniService } from 'src/assets/services/alumni.service';
+import {AlumniService } from '../services/alumni.service';
 
 @Component({
   selector: 'app-login',
