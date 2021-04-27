@@ -21,7 +21,7 @@ gyear : req.body.gyear,
 email: req.body.email,
 course: req.body.course,
 branch: req.body.branch,
-password: req.body.password,
+password: Alumni.hash(req.body.password),
 creationDate: Date.now()
 });
 try{
