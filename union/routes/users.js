@@ -34,7 +34,7 @@ catch(err)
 }
 }
 
-router.post('./login', function(req,res,next){
+router.post('/login', function(req,res,next){
   passport.authenticate('local', function(err, user, info) {
     if (err) { return res.status(501).json(err); }
     if (!user) { return res.status(501).json(info); }
