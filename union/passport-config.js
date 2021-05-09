@@ -2,7 +2,7 @@ var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 
   var alumni = require('./models/alumni')
-passport.use(new LocalStrategy({
+passport.use('local', new LocalStrategy({
  usernameField: 'email',
  passwordField: 'password'
 },
@@ -25,7 +25,7 @@ passport.serializeUser(function(user, done) {
   });
   
   passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
+    alumni.findById(id, function(err, user) {
       done(err, user);
     });
   });

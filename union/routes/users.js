@@ -39,10 +39,27 @@ router.post('/login', function(req,res,next){
     if (err) { return res.status(501).json(err); }
     if (!user) { return res.status(501).json(info); }
     req.logIn(user, function(err) {
-      if (err) { return next(err); }
+      if (err) { return res.status(501).json(err); }
       return res.status(200).json({message:'Login Success'});
     });
   })(req, res, next);
 });
 
+router.get('/alumni' ,isValidAlumni, function(req,res,next)
+{
+   return res.status(200).json(req.user);
+});
+
+router.get('/logout',isValidAlumni , function(req,res,next){
+  req.logOut();
+  return res.status(200).json({message:'Logout Success'});
+});
+function isValidAlumni(req,res,next){
+  if(req.isAuthenticated()){
+    //req.isAuthenticated() will return true if user is logged in
+    return next();
+} else{
+   return res.status(401).json({message:'Unauthorise request'});
+}
+}
 module.exports = router;

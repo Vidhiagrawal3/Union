@@ -15,13 +15,16 @@ app.use(cors({                       //it will allow cross sink btw backend and 
 }))
 
 var mongoose = require('mongoose');
-
+const uri = process.env.API_KEY;
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 //passport for login
 
 var passport = require('passport');
 var session = require('express-session');
-
-app.use(session({
+app.use(session ({
   name: 'myname.sid',
   resave: false,
   saveUninitialized: false,
@@ -30,18 +33,14 @@ app.use(session({
     maxAge: 36000000,
     httpOnly: false,
     secure: false
-  }
+  },
 }));
 require('./passport-config');
 app.use(passport.initialize());
 app.use(passport.session());
 
 const alumni = require('./models/alumni');
-const uri = process.env.API_KEY;
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
