@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit {
 
   login(){
     if(!this.loginForm.valid){
-      console.log('Invalid');
+      console.log('Invalid Login Details');
       return;
     }
 
     // console.log(JSON.stringify(this.loginForm.value));
      this._alumniService.login(JSON.stringify(this.loginForm.value))
      .subscribe(
-       data=>{console.log(data);this._router.navigate(['./alumni-home']);},
+       data=>{console.log(data);this._router.navigate(['/alumni-home']);},
        error=>console.log(error)
      )
   }
