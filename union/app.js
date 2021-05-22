@@ -22,22 +22,22 @@ mongoose.connect(uri, {
 })
 //passport for login
 
-var passport = require('passport');
-var session = require('express-session');
-app.use(session ({
-  name: 'myname.sid',
-  resave: false,
-  saveUninitialized: false,
-  secret: 'secret',
-  cookie:{
-    maxAge: 36000000,
-    httpOnly: false,
-    secure: false
-  },
-}));
-require('./passport-config');
-app.use(passport.initialize());
-app.use(passport.session());
+// var passport = require('passport');
+// var session = require('express-session');
+// app.use(session ({
+//   name: 'myname.sid',
+//   resave: false,
+//   saveUninitialized: false,
+//   secret: 'secret',
+//   cookie:{
+//     maxAge: 36000000,
+//     httpOnly: false,
+//     secure: false
+//   },
+// }));
+// require('./passport-config');
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 const alumni = require('./models/alumni');
 
