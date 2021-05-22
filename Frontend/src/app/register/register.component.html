@@ -34,7 +34,7 @@
       <!-- Stearm -->
       <div class="col" *ngIf = "courseSelected == 'B-Tech' ">
         <label for="form3" class="">Stream</label>
-        <select formControlName="stream" class="form-control">
+        <select formControlName="branch" class="form-control">
 
           <option value="">Select Stream</option>
           <option *ngFor="let item of StreamList" [value]="item.value"> {{ item?.value }}</option>

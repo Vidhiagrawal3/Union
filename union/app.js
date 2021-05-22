@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+require('dotenv').config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var app = express();
@@ -15,29 +15,32 @@ app.use(cors({                       //it will allow cross sink btw backend and 
 }))
 
 var mongoose = require('mongoose');
-
+const uri = process.env.API_KEY;
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
 //passport for login
 
-var passport = require('passport');
-var session = require('express-session');
-
-app.use(session({
-  name: 'myname.sid',
-  resave: false,
-  saveUninitialized: false,
-  secret: 'secret',
-  cookie:{
-    maxAge: 36000000,
-    httpOnly: false,
-    secure: false
-  }
-}));
-require('./passport-config');
-app.use(passport.initialize());
-app.use(passport.session());
+// var passport = require('passport');
+// var session = require('express-session');
+// app.use(session ({
+//   name: 'myname.sid',
+//   resave: false,
+//   saveUninitialized: false,
+//   secret: 'secret',
+//   cookie:{
+//     maxAge: 36000000,
+//     httpOnly: false,
+//     secure: false
+//   },
+// }));
+// require('./passport-config');
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 const alumni = require('./models/alumni');
-mongoose.connect('mongodb://localhost/union')
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
