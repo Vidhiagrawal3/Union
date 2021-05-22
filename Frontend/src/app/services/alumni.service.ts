@@ -35,4 +35,12 @@ export class AlumniService {
     withCredentials: true,
     headers: new HttpHeaders().append('Content-Type', 'application/json')});
   }
+  blog(body:any , Head:HttpHeaders){
+  return this._http.post('http://127.0.0.1:3000/user/blog',body , {
+    observe:'body',
+    headers: new HttpHeaders()
+    .set('fname', 'fname')
+  });
 }
+}
+

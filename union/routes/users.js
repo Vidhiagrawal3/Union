@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Alumni = require('../models/alumni');
+var Blog = require('../models/blog')
 var passport = require('passport');
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
@@ -62,4 +63,26 @@ function isValidAlumni(req,res,next){
    return res.status(401).json({message:'Unauthorise request'});
 }
 }
+router.post('/blog' , function(req,res,next){
+  addblog(req,res)
+  })
+  
+  async function addblog(req,res){
+  var blog = new Blog({
+  id : req.header._id,
+  fname : req.header.fname,
+  btitle : req.body.btitle,
+  bblog : req.body.bblog,
+  lname : req.header.lname,
+  creationDate: Date.now()
+  });
+  try{
+    doc =await blog.save();
+    return res.status(201).json(doc);
+  }
+  catch(err)
+  {
+    return res.status(501).json(err);
+  }
+  }
 module.exports = router;
