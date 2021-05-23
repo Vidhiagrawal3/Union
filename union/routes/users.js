@@ -10,56 +10,52 @@ const router = express.Router();
 //   res.send('respond with a resource');
 // });
 
-router.post('/register' , (req,res,next) => {
-  bcrypt.hash(req.body.passpord, 10)
-  .then(hash => {
-
-     const alumni = new Alumni({
-      fname : req.body.fname,
-      lname : req.body.lname,
-      roll : req.body.roll,
-      phone : req.body.phone,
-      gyear : req.body.gyear,
-      email: req.body.email,
-      course: req.body.course,
-      branch: req.body.branch,
-      password: hash,
-      creationDate: Date.now()
-       });
-       alumni.save()
-       .then( result => {
-         res.status(201).json({
-          message: 'User Created',
-          result: result
-         });
-       })
-       .catch(err => {
-         return res.status(501).json({
-           error: err
-         });
-       });
-   });
-});
-
+router.post('/register' , function(req,res,next){
+  addtodb(req,res)
+  })
+  
+  async function addtodb(req,res){
+  var alumni = new Alumni({
+  fname : req.body.fname,
+  lname : req.body.lname,
+  roll : req.body.roll,
+  phone : req.body.phone,
+  gyear : req.body.gyear,
+  email: req.body.email,
+  course: req.body.course,
+  branch: req.body.branch,
+  password: Alumni.hash(req.body.password),
+  creationDate: Date.now()
+  });
+  try{
+    doc =await alumni.save();
+    return res.status(201).json(doc);
+  }
+  catch(err)
+  {
+    return res.status(501).json(err);
+  }
+  }
 //login route using JWT authentication
 
 router.post("/login", (req,res,next) => {
+  console.log(req.body.email)
   let fetchedUser;
-Alumni.findOne({email: req.body.email})
+Alumni.find({email: req.body.email})
   .then(alumni => {
-
-    if(!alumni){
+      console.log(alumni);
+    if(!alumni){ 
       return res.status(401).json({
-        message: 'Auth failed'
+        message: 'Auth failed1'
       });
     }
     fetchedUser= alumni;
-    return bcrypt.compare(req.body.password, alumni.passpord );
+    return bcrypt.compare(req.body.password, alumni.passpord )
   })
   .then(result => {
     if (!result) {
       return res.status(401).json({
-        message: 'Auth failed'
+        message: 'Auth failed2'
       });
     }
      const token = jwt.sign(
@@ -69,11 +65,11 @@ Alumni.findOne({email: req.body.email})
         token: token
       });
   })
-  .catch(err => {
+  .catch((err)=>{
     return res.status(401).json({
-      message: 'Auth failed'
-    });
-  });
+      message:"Auth Failed3"
+    })
+  })
 });
 
 // async function addtodb(req,res){
