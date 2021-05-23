@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Alumni = require('../models/alumni');
-var Blog = require('../models/blog')
+
 var passport = require('passport');
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
@@ -25,6 +25,7 @@ branch: req.body.branch,
 password: Alumni.hash(req.body.password),
 creationDate: Date.now()
 });
+console.log(alumni);
 try{
   doc =await alumni.save();
   return res.status(201).json(doc);

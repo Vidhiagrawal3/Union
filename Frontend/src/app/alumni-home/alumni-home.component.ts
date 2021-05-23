@@ -58,15 +58,4 @@ BlogForm : FormGroup = new FormGroup({
     error=>console.error(error) 
    )
  }
-
- BlogPost(){
-  if(!this.BlogForm.valid)
-  console.log("Invalid Entry");
- this._alumni.blog(JSON.stringify(this.BlogForm.value),{HttpHeaders:headers})
- .subscribe(
-   data => {console.log(data)},
-   error => console.error(error)
-   )
-  // console.log(JSON.stringify(  this.BlogForm.value));
-}
 }

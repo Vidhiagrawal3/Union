@@ -17,10 +17,7 @@ app.use(cors({                       //it will allow cross sink btw backend and 
 
 var mongoose = require('mongoose');
 const uri = process.env.API_KEY;
-mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(uri)
 //passport for login
 
 var passport = require('passport');

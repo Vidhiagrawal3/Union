@@ -5,8 +5,8 @@ var Schema = new schema({
 id :{type:String , require:true},
 fname : {type:String , require:true},
 lname : {type:String , require:true},
-btitle : {type:string , require:true},
-bblog : {type:string , require:true},
+btitle : {type:String , require:true},
+bblog : {type:String , require:true},
 creationDate:{type:Date}
 });
 Schema.statics.hash = function hash(password)
