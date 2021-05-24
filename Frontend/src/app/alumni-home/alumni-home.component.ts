@@ -7,7 +7,10 @@ import{ AlumniService} from '../services/alumni.service'
   styleUrls: ['./alumni-home.component.css']
 })
 export class AlumniHomeComponent implements OnInit {
-Username:String="";
+fname:String="";
+lname:String="";
+course:String="";
+branch:String="";
   constructor(private _alumni :AlumniService, private _router:Router) {
     this._alumni.alumni()
     .subscribe(
@@ -19,7 +22,11 @@ Username:String="";
    
 addName(data)
 {
-this.Username = data.fname;
+this.fname = data.fname;
+this.lname = data.lname;
+this.course = data.course;
+this.branch = data.branch;
+
 }
 
 

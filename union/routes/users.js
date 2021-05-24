@@ -64,7 +64,7 @@ router.post('/register' , function(req,res,next){
 //       });
 //     }
 router.post("/login", (req,res,next) => {
-  console.log(req.body);
+  // console.log(req.body);
   let fetchedUser
   Alumni.findOne({email: req.body.email})
 
@@ -76,9 +76,9 @@ router.post("/login", (req,res,next) => {
       });
     }
     fetchedUser= alumni;
-    console.log(alumni)
+    // console.log(alumni)
     const result =await bcrypt.compareSync(req.body.password,alumni.password)
-    console.log(result)
+    // console.log(result)
     // console.log("jagfg")
     return result
   })
@@ -89,8 +89,11 @@ router.post("/login", (req,res,next) => {
       });
     }
      const token = jwt.sign(
-       {email: fetchedUser.email, userId: fetchedUser._id}, "secret_this_should_be_longer", {expiresIn: "2h" }
+       {fetchedUser}, "secret_this_should_be_longer", {expiresIn: "2h" }
       );
+      // const decoded = jwt.verify(token, "secret_this_should_be_longer");  
+      // var userId = decoded.fetchedUser._id  
+      // console.log(userId)  
       res.status(200).json({
         token: token
       });
@@ -141,7 +144,12 @@ router.post("/login", (req,res,next) => {
 
 router.get('/alumni',checkAuth, function(req,res,next)
 {
-   return res.status(200).json(req.user);
+  const token = req.headers.authorization.split(" ")[1];
+  console.log(token);
+  const decoded = jwt.verify(token, "secret_this_should_be_longer");  
+      var userId = decoded.fetchedUser 
+      console.log(userId) 
+   return res.status(200).json(userId);
 });
 
 // router.get('/logout',isValidAlumni , function(req,res,next){
