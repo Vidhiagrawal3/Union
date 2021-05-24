@@ -2,6 +2,7 @@ const express = require('express');
 var bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Alumni = require('../models/alumni');
+const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 // var passport = require('passport');
@@ -37,25 +38,54 @@ router.post('/register' , function(req,res,next){
   }
   }
 //login route using JWT authentication
-
+// router.post("/login", function (req,res,next) {
+//   UserCheck(req,res);
+//   })
+  
+//   async function UserCheck(req,res){
+//     let fetched = Alumni.findOne(req.body.email)
+//     const result =await bcrypt.compare(req.body.password,fetched.password)
+//       console.log(result)
+  
+//   try{
+//     const token = jwt.sign(
+//       {email: fetchedUser.email, userId: fetchedUser._id}, "secret_this_should_be_longer", {expiresIn: "2h" }
+//      );
+//      return res.status(200).json({
+//        token: token
+//      });
+//   }
+//   catch(err){
+//      res.status(501).json(err);
+//       }
+//       process.on('unhandledRejection', (reason, promise) => {
+//         console.log(reason);
+//         console.log(promise);
+//       });
+//     }
 router.post("/login", (req,res,next) => {
-  console.log(req.body.email)
-  let fetchedUser;
-Alumni.find({email: req.body.email})
-  .then(alumni => {
-      console.log(alumni);
+  console.log(req.body);
+  let fetchedUser
+  Alumni.findOne({email: req.body.email})
+
+  .then(async alumni => {
+     
     if(!alumni){ 
       return res.status(401).json({
-        message: 'Auth failed1'
+        message: 'User not present'
       });
     }
     fetchedUser= alumni;
-    return bcrypt.compare(req.body.password, alumni.passpord )
+    console.log(alumni)
+    const result =await bcrypt.compareSync(req.body.password,alumni.password)
+    console.log(result)
+    // console.log("jagfg")
+    return result
   })
   .then(result => {
     if (!result) {
       return res.status(401).json({
-        message: 'Auth failed2'
+        message: 'Wrong Password'
       });
     }
      const token = jwt.sign(
@@ -66,11 +96,13 @@ Alumni.find({email: req.body.email})
       });
   })
   .catch((err)=>{
+    console.log(err)
     return res.status(401).json({
       message:"Auth Failed3"
     })
   })
 });
+
 
 // async function addtodb(req,res){
 // var alumni = new Alumni({
@@ -107,10 +139,10 @@ Alumni.find({email: req.body.email})
 //   })(req, res, next);
 // });
 
-// router.get('/alumni' ,isValidAlumni, function(req,res,next)
-// {
-//    return res.status(200).json(req.user);
-// });
+router.get('/alumni',checkAuth, function(req,res,next)
+{
+   return res.status(200).json(req.user);
+});
 
 // router.get('/logout',isValidAlumni , function(req,res,next){
 //   req.logOut();

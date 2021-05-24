@@ -9,10 +9,11 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import{AlumniService} from './services/alumni.service'
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AlumniHomeComponent } from './alumni-home/alumni-home.component';
 import { HeaderComponent } from './header/header.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { AuthInterceptor } from './services/auth-interceptor';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     MDBBootstrapModule.forRoot(),
 
   ],
-  providers: [AlumniService],
+  providers: [AlumniService ,{provide:HTTP_INTERCEPTORS , useClass:AuthInterceptor , multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

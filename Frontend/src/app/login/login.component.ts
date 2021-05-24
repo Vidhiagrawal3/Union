@@ -28,10 +28,10 @@ export class LoginComponent implements OnInit {
 
     // console.log(JSON.stringify(this.loginForm.value));
      this._alumniService.login(JSON.stringify(this.loginForm.value))
-    //  .subscribe(
-    //    data=>{console.log(data);this._router.navigate(['/alumni-home']);},
-    //    error=>console.log(error)
-    //  )
+     .subscribe(
+       token=>{console.log(token) , this._router.navigate(['/alumni-home'])},
+       error=>console.log(error)
+     )
   }
 
 }
