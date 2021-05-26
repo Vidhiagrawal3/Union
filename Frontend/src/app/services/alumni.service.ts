@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlumniService {
 private token:string;
-getToken(){
+private authStatusListener = new Subject<boolean>();
+
+constructor(private _http : HttpClient) { }
+
+  getToken(){
   return this.token;
-}
-  constructor(private _http : HttpClient) { }
-   
+  }
+  
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
+  }
+
   register (body:any){
     return this._http.post('http://127.0.0.1:3000/user/register',body , {
       observe:'body',
@@ -28,6 +35,7 @@ getToken(){
     })
     res.subscribe(res=>{
       this.token=res.token;
+      this.authStatusListener.next(true);
     })
     return res
   }
@@ -38,12 +46,20 @@ getToken(){
     headers: new HttpHeaders().append('Content-Type', 'application/json')
   });
   } 
+
   logout(){
-    return this._http.get('http://127.0.0.1:3000/user/logout',{
-    observe:'body',
-    withCredentials: true,
-    headers: new HttpHeaders().append('Content-Type', 'application/json')});
+   this.token = null;
+   this.authStatusListener.next(false);
+
   }
+
+  // logout(){
+  //   return this._http.get('http://127.0.0.1:3000/user/logout',{
+  //   observe:'body',
+  //   withCredentials: true,
+  //   headers: new HttpHeaders().append('Content-Type', 'application/json')});
+  // } 
+
   blog (body:any){
     console.log(body)
     return this._http.post('http://127.0.0.1:3000/user/blog',body , {

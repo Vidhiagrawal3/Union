@@ -10,6 +10,8 @@ import { AlumniService } from 'src/app/services/alumni.service';
 })
 export class RegisterComponent implements OnInit {
 
+  isLoading = false;
+
   courseSelected ="";
   registerForm : FormGroup = new FormGroup({
      fname:new FormControl(null,[Validators.min(3),Validators.required]),
@@ -43,13 +45,14 @@ export class RegisterComponent implements OnInit {
     {value:"ECE" },
   ];
 
-  constructor(private reoter:Router , private _alumniService:AlumniService) { }
+  constructor(private router:Router , private _alumniService:AlumniService) { }
 
   ngOnInit(): void {
   }
   register(){
     if(!this.registerForm.valid)
     console.log("Invalid Entry");
+    this.isLoading = true;
    this._alumniService.register(JSON.stringify(this.registerForm.value))
    .subscribe(
      data => {console.log(data)},

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import{ AlumniService} from '../services/alumni.service';
-import { HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-alumni-home',
   templateUrl: './alumni-home.component.html',
@@ -39,13 +38,7 @@ this.branch = data.branch;
 
   ngOnInit(): void {
   }
- logout(){
-   this._alumni.logout()
-   .subscribe(
-    data=>{console.log(data),this._router.navigate(['/login'])},
-    error=>console.error(error) 
-   )
- }
+
  post(){
   if(!this.BlogForm.valid)
   console.log("Invalid Entry");

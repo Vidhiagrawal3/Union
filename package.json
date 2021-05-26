@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "jsonwebtoken": "^8.5.1",
-    "mongoose-unique-validator": "^2.0.3"
+    "mongoose-unique-validator": "^2.0.3",
+    "sift": "^13.5.2"
   }
 }
