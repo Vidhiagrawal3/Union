@@ -25,7 +25,7 @@
           <a class="nav-link waves-light" routerLink = "/editprofile" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon> EDIT PROFILE</a>
         </li>
         <li class="nav-item" *ngIf="userIsAuthenticated">
-          <a class="nav-link waves-light"  mdbWavesEffect >LOGOUT</a>
+          <a class="nav-link waves-light" (click)="onLogout()" mdbWavesEffect >LOGOUT</a>
         </li>
         
       

@@ -3,7 +3,7 @@ var bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Alumni = require('../models/alumni');
 const checkAuth = require('../middleware/check-auth');
-
+const Blog = require('../models/blog');
 const router = express.Router();
 // var passport = require('passport');
 // /* GET users listing. */
@@ -152,16 +152,28 @@ router.get('/alumni',checkAuth, function(req,res,next)
    return res.status(200).json(userId);
 });
 
-// router.get('/logout',isValidAlumni , function(req,res,next){
-//   req.logOut();
-//   return res.status(200).json({message:'Logout Success'});
-// });
-// function isValidAlumni(req,res,next){
-//   if(req.isAuthenticated()){
-//     //req.isAuthenticated() will return true if user is logged in
-//     return next();
-// } else{
-//    return res.status(401).json({message:'Unauthorise request'});
-// }
-// }
+router.post('/blog' , function(req,res,next){
+  addpost(req,res)
+  })
+  
+  async function addpost(req,res){
+    const token = req.headers.authorization.split(" ")[1];
+  const decoded = jwt.verify(token, "secret_this_should_be_longer");
+  var blog = new Blog({
+  tblog:req.body.tblog,
+  blog:req.body.blog,
+  id:decoded.fetchedUser._id,
+  fname:decoded.fetchedUser.fname,
+  lname:decoded.fetchedUser.lname,
+  creationDate: Date.now()
+  });
+  try{
+    doc =await blog.save();
+    return res.status(201).json(doc);
+  }
+  catch(err)
+  {
+    return res.status(501).json(err);
+  }
+  }
 module.exports = router;

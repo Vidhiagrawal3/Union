@@ -46,10 +46,25 @@ constructor(private _http : HttpClient) { }
     headers: new HttpHeaders().append('Content-Type', 'application/json')
   });
   } 
+
   logout(){
-    return this._http.get('http://127.0.0.1:3000/user/logout',{
-    observe:'body',
-    withCredentials: true,
-    headers: new HttpHeaders().append('Content-Type', 'application/json')});
+   this.token = null;
+   this.authStatusListener.next(false);
+
+  }
+
+  // logout(){
+  //   return this._http.get('http://127.0.0.1:3000/user/logout',{
+  //   observe:'body',
+  //   withCredentials: true,
+  //   headers: new HttpHeaders().append('Content-Type', 'application/json')});
+  // } 
+
+  blog (body:any){
+    console.log(body)
+    return this._http.post('http://127.0.0.1:3000/user/blog',body , {
+      observe:'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
   }
 }

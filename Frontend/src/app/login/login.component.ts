@@ -10,6 +10,8 @@ import {AlumniService } from '../services/alumni.service';
 })
 export class LoginComponent implements OnInit {
 
+   isLoading = false;
+
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null,[Validators.email,Validators.required]),
     password: new FormControl(null, [Validators.required])
@@ -27,6 +29,8 @@ export class LoginComponent implements OnInit {
     }
 
     // console.log(JSON.stringify(this.loginForm.value));
+
+     this.isLoading = true;
      this._alumniService.login(JSON.stringify(this.loginForm.value))
      .subscribe(
        token=>{console.log(token) , this._router.navigate(['/alumni-home'])},

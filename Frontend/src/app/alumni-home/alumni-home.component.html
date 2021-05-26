@@ -11,23 +11,19 @@
       </div>
     </div>
   </mdb-card>
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="row">
+      <div class="col-8"></div>
+  <form action="" class="col-4" [formGroup]="BlogForm">
+    <div class="md-form">
+    <input mdbInput type="text" id="form1" formControlName="tblog" class="form-control">
+    <label for="form1" class="">title</label>
   </div>
-  <br>
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+  <div class="md-form">
+    <textarea type="text" id="form7" formControlName="blog" class="md-textarea md-textarea-auto form-control" mdbInput></textarea>
+    <label for="form7">Write Here</label>
   </div>
-  <br>
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+  <button type="submit" mdbBtn color="dark" (click)="post()" mdbWavesEffect>Post</button>
+  </form>
   </div>
-  <br>
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
-  <br>
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
-  </div>
-  <!-- <button type="button" mdbBtn color="primary" mdbWavesEffect (click)='logout()'>LOgout</button> -->
+
+  

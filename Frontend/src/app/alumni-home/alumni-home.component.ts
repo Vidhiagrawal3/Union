@@ -1,12 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import{ AlumniService} from '../services/alumni.service'
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import{ AlumniService} from '../services/alumni.service';
 @Component({
   selector: 'app-alumni-home',
   templateUrl: './alumni-home.component.html',
   styleUrls: ['./alumni-home.component.css']
 })
 export class AlumniHomeComponent implements OnInit {
+  BlogForm : FormGroup = new FormGroup({
+    tblog:new FormControl(null,[Validators.min(3),Validators.required]),
+   blog:new FormControl(null ,[Validators.min(3),Validators.required]),
+ })
+
+
+
 fname:String="";
 lname:String="";
 course:String="";
@@ -26,17 +34,18 @@ this.fname = data.fname;
 this.lname = data.lname;
 this.course = data.course;
 this.branch = data.branch;
-
 }
-
 
   ngOnInit(): void {
   }
-//  logout(){
-//    this._alumni.logout()
-//    .subscribe(
-//     data=>{console.log(data),this._router.navigate(['/login'])},
-//     error=>console.error(error) 
-//    )
-//  }
+
+ post(){
+  if(!this.BlogForm.valid)
+  console.log("Invalid Entry");
+ this._alumni.blog(JSON.stringify(this.BlogForm.value))
+ .subscribe(
+   data => {console.log(data)},
+   error => console.error(error)
+ )
+ }
 }
