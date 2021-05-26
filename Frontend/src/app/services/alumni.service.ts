@@ -44,4 +44,11 @@ getToken(){
     withCredentials: true,
     headers: new HttpHeaders().append('Content-Type', 'application/json')});
   }
+  blog (body:any){
+    console.log(body)
+    return this._http.post('http://127.0.0.1:3000/user/blog',body , {
+      observe:'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
+  }
 }
