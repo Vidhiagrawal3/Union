@@ -32,11 +32,11 @@ this.branch = data.branch;
 
   ngOnInit(): void {
   }
- logout(){
-   this._alumni.logout()
-   .subscribe(
-    data=>{console.log(data),this._router.navigate(['/login'])},
-    error=>console.error(error) 
-   )
- }
+//  logout(){
+//    this._alumni.logout()
+//    .subscribe(
+//     data=>{console.log(data),this._router.navigate(['/login'])},
+//     error=>console.error(error) 
+//    )
+//  }
 }
