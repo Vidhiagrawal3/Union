@@ -1,8 +1,8 @@
 <mdb-card style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/Others/gradient1.jpg')">
     <div class="text-white text-center py-5 px-4 my-5">
       <div>
-        <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong>Hello {{fname}} {{lname}} [{{course}} {{branch}}]</strong></h2>
-        <p class="mx-5 mb-5">yes it worked
+        <h2 class="card-title h1-responsive pt-3 mb-5 font-bold"><strong><mdb-icon fab icon="500px"></mdb-icon>Hello {{fname}} {{lname}}</strong></h2>
+        <p class="mx-5 mb-5">yes it worked {{course}} {{branch}}
           
         </p>
         <a mdbBtn color="white" outline="true" class="waves-light" mdbWavesEffect>
@@ -11,22 +11,19 @@
       </div>
     </div>
   </mdb-card>
-<br>
-<div class="col-12">
-  <div class="col-6"></div>
-  <form class="col-6" [formGroup]="BlogForm">
-  <div class="md-form col-6">
-    <input id="input_text" class="form-control" formControlName="btitle" type="text" length="10" mdbCharCounter mdbInput>
-    <label for="input_text">Title</label>
+  <div class="row">
+      <div class="col-8"></div>
+  <form action="" class="col-4" [formGroup]="BlogForm">
+    <div class="md-form">
+    <input mdbInput type="text" id="form1" formControlName="tblog" class="form-control">
+    <label for="form1" class="">title</label>
   </div>
-  <div class="md-form col-6">
-    <textarea formControlName="bblog" class="md-textarea form-control " rows="3" id="input_text" type="text" length="120" mdbCharCounter mdbInput></textarea>
-    <label for="input_text">Type your thoughts</label>
+  <div class="md-form">
+    <textarea type="text" id="form7" formControlName="blog" class="md-textarea md-textarea-auto form-control" mdbInput></textarea>
+    <label for="form7">Write Here</label>
   </div>
-  <button type="button" mdbBtn color="primary" mdbWavesEffect>Post</button>
+  <button type="submit" mdbBtn color="dark" (click)="post()" mdbWavesEffect>Post</button>
+  </form>
+  </div>
 
-</form>
-</div>
-
-
-  <button type="button" mdbBtn color="primary" mdbWavesEffect (click)='logout()'>LogOut</button>
+  

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import{ AlumniService} from '../services/alumni.service'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import{ AlumniService} from '../services/alumni.service';
 import { HttpHeaders } from '@angular/common/http';
 @Component({
   selector: 'app-alumni-home',
@@ -9,16 +9,17 @@ import { HttpHeaders } from '@angular/common/http';
   styleUrls: ['./alumni-home.component.css']
 })
 export class AlumniHomeComponent implements OnInit {
+  BlogForm : FormGroup = new FormGroup({
+    tblog:new FormControl(null,[Validators.min(3),Validators.required]),
+   blog:new FormControl(null ,[Validators.min(3),Validators.required]),
+ })
+
+
+
 fname:String="";
 lname:String="";
-gyear:BigInteger;
-id:String="";
-roll:BigInteger;
-pass:String="";
 course:String="";
 branch:String="";
-
-
   constructor(private _alumni :AlumniService, private _router:Router) {
     this._alumni.alumni()
     .subscribe(
@@ -34,20 +35,7 @@ this.fname = data.fname;
 this.lname = data.lname;
 this.course = data.course;
 this.branch = data.branch;
-this.roll = data.roll;
-this.pass = data.pass;
-this.gyear = data.gyear;
-this.id = data._id;
 }
- headers= new HttpHeaders() 
-.set('fname','fname')
-.set('lname','lname')
-.set('id','id')
-
-BlogForm : FormGroup = new FormGroup({
-  btitle:new FormControl(null,[Validators.min(3),Validators.required]),
-  bblog:new FormControl(null,[Validators.min(3),Validators.required]),
-})
 
   ngOnInit(): void {
   }
@@ -57,5 +45,14 @@ BlogForm : FormGroup = new FormGroup({
     data=>{console.log(data),this._router.navigate(['/login'])},
     error=>console.error(error) 
    )
+ }
+ post(){
+  if(!this.BlogForm.valid)
+  console.log("Invalid Entry");
+ this._alumni.blog(JSON.stringify(this.BlogForm.value))
+ .subscribe(
+   data => {console.log(data)},
+   error => console.error(error)
+ )
  }
 }

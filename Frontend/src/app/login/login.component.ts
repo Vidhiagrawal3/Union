@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null,[Validators.email,Validators.required]),
-    password: new FormControl(null, Validators.required)
+    password: new FormControl(null, [Validators.required])
   })
 
   constructor(private _router: Router, private _alumniService: AlumniService) { }
@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     // console.log(JSON.stringify(this.loginForm.value));
      this._alumniService.login(JSON.stringify(this.loginForm.value))
      .subscribe(
-       data=>{console.log(data);this._router.navigate(['/alumni-home']);},
+       token=>{console.log(token) , this._router.navigate(['/alumni-home'])},
        error=>console.log(error)
      )
   }
