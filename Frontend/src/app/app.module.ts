@@ -14,6 +14,7 @@ import { AlumniHomeComponent } from './alumni-home/alumni-home.component';
 import { HeaderComponent } from './header/header.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AuthInterceptor } from './services/auth-interceptor';
+import { BlogsComponent } from './blogs/blogs.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { AuthInterceptor } from './services/auth-interceptor';
     RegisterComponent,
     AlumniHomeComponent,
     HeaderComponent,
-    EditProfileComponent
+    EditProfileComponent,
+    BlogsComponent
   ],
   imports: [
     FormsModule,ReactiveFormsModule,
