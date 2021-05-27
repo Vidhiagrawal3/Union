@@ -52,7 +52,10 @@ constructor(private _http : HttpClient) { }
    this.authStatusListener.next(false);
 
   }
-
+  FetchBlog(){
+    const blog = this._http.get('http://127.0.0.1:3000/user/fetch')
+    return blog;
+  } 
   // logout(){
   //   return this._http.get('http://127.0.0.1:3000/user/logout',{
   //   observe:'body',

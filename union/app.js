@@ -17,7 +17,7 @@ app.use(cors({                       //it will allow cross sink btw backend and 
 
 var mongoose = require('mongoose');
 const uri = process.env.API_KEY;
-mongoose.connect(uri)
+mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true});
 //passport for login
 
 // var passport = require('passport');
@@ -38,7 +38,7 @@ mongoose.connect(uri)
 // app.use(passport.session());
 
 const alumni = require('./models/alumni');
-
+const blog = require('./models/blog')
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
