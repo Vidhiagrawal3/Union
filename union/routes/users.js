@@ -71,9 +71,11 @@ router.post("/login", (req,res,next) => {
       // var userId = decoded.fetchedUser._id  
       // console.log(userId)  
       res.status(200).json({
-        token: token
+        token: token,
+        expiresIn: 7200 
       });
   })
+  
   .catch((err)=>{
     console.log(err)
     return res.status(401).json({
