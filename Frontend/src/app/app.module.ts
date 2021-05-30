@@ -15,6 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AuthInterceptor } from './services/auth-interceptor';
 import { BlogsComponent } from './blogs/blogs.component';
+import { BlogService } from './services/blog.service';
 
 
 @NgModule({
@@ -36,7 +37,7 @@ import { BlogsComponent } from './blogs/blogs.component';
     MDBBootstrapModule.forRoot(),
 
   ],
-  providers: [AlumniService ,{provide:HTTP_INTERCEPTORS , useClass:AuthInterceptor , multi:true}],
+  providers: [AlumniService,BlogService ,{provide:HTTP_INTERCEPTORS , useClass:AuthInterceptor , multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

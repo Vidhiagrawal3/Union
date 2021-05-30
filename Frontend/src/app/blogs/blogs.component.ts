@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlumniService } from '../services/alumni.service';
+import { BlogService } from '../services/blog.service';
 
 @Component({
   selector: 'app-blogs',
@@ -8,13 +8,13 @@ import { AlumniService } from '../services/alumni.service';
 })
 export class BlogsComponent implements OnInit {
   allblogs: any =[] ;
-  constructor(private _alumni:AlumniService) { }
+  constructor(private _alumni:BlogService) { }
  
   ngOnInit(): void {
-     this.allblogss();
+     this.allblogscall();
      
   }
-  allblogss(){
+  allblogscall(){
     this._alumni.FetchBlog()
  .subscribe(
    data=>{this.allblogs = data},

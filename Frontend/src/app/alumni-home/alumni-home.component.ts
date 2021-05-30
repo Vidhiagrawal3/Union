@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import{ AlumniService} from '../services/alumni.service';
+import { BlogService } from '../services/blog.service';
 @Component({
   selector: 'app-alumni-home',
   templateUrl: './alumni-home.component.html',
@@ -19,7 +20,7 @@ fname:String="";
 lname:String="";
 course:String="";
 branch:String="";
-  constructor(private _alumni :AlumniService, private _router:Router) {
+  constructor(private _alumni :AlumniService, private _router:Router, private _blog :BlogService) {
     this._alumni.alumni()
     .subscribe(
       data=>this.addName(data),
@@ -42,7 +43,7 @@ this.branch = data.branch;
  post(){
   if(!this.BlogForm.valid)
   console.log("Invalid Entry");
- this._alumni.blog(JSON.stringify(this.BlogForm.value))
+ this._blog.blog(JSON.stringify(this.BlogForm.value))
  .subscribe(
    data => {console.log(data)},
    error => console.error(error)

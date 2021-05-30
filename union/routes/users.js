@@ -130,7 +130,6 @@ router.post('/blog' , function(req,res,next){
           message: 'User not present'
         });
       }
-     console.log(blog)
       return res.status(200).json(blog)
     })
    
