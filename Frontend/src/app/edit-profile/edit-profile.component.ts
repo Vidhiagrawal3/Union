@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AlumniService } from '../services/alumni.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+ 
+  constructor(private _alumni:AlumniService , private _router:Router) {
 
-  constructor() { }
+   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+   this.check();
   }
-
+  check(){
+     const UserData = this._alumni.getUserinfo()
+    console.log(UserData)
+  }
 }

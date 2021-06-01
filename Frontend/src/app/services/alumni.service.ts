@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Subject} from 'rxjs';
-
+import {Subject} from 'rxjs'; 
 @Injectable({
   providedIn: 'root'
 })
@@ -10,9 +9,9 @@ export class AlumniService {
 private token:string;
 private tokenTimer: any;
 private authStatusListener = new Subject<boolean>();
-
+ private UserData:any;
 constructor(private _http : HttpClient) { }
-
+ 
   getToken(){
   return this.token;
   }
@@ -24,7 +23,17 @@ constructor(private _http : HttpClient) { }
   getAuthStatusListener() {
     return this.authStatusListener.asObservable();
   }
-
+  // saving user details in local storage
+  saveUserInfo(Userdata:any){
+    Userdata.subscribe(
+      data=>{localStorage.setItem("UserData", JSON.stringify(data))}
+    )
+    
+  }
+  getUserinfo(){
+    this.UserData = localStorage.getItem("UserData")
+    return JSON.parse(this.UserData);
+  }
   register (body:any){
     return this._http.post('http://127.0.0.1:3000/user/register',body , {
       observe:'body',
@@ -55,11 +64,15 @@ constructor(private _http : HttpClient) { }
   }
 
   alumni(){
-    return this._http.get('http://127.0.0.1:3000/user/alumni',{
+   this.UserData=this._http.get<{data:any}>('http://127.0.0.1:3000/user/alumni',{
+     
     observe:'body',
     withCredentials: true,
     headers: new HttpHeaders().append('Content-Type', 'application/json')
-  });
+  })
+  
+    this.saveUserInfo(this.UserData); 
+    return this.UserData
   } 
 
   // User is logged in automatically even if app is reloaded as soon as expiry duration lasts
@@ -107,6 +120,7 @@ constructor(private _http : HttpClient) { }
   private clearAuthData(){
     localStorage.removeItem("token");
     localStorage.removeItem("expiration");
+    localStorage.removeItem("UserData");
   }
 
   //accessing the token and expiration dt from local storage
@@ -121,23 +135,4 @@ constructor(private _http : HttpClient) { }
       expirationDate: new Date(expirationDate)
     }
   }
-
-  // FetchBlog(){
-  //   const blog = this._http.get('http://127.0.0.1:3000/user/fetch')
-  //   return blog;
-  // } 
-  // logout(){
-  //   return this._http.get('http://127.0.0.1:3000/user/logout',{
-  //   observe:'body',
-  //   withCredentials: true,
-  //   headers: new HttpHeaders().append('Content-Type', 'application/json')});
-  // } 
-
-  // blog (body:any){
-  //   console.log(body)
-  //   return this._http.post('http://127.0.0.1:3000/user/blog',body , {
-  //     observe:'body',
-  //     headers: new HttpHeaders().append('Content-Type', 'application/json')
-  //   });
-  // }
 }

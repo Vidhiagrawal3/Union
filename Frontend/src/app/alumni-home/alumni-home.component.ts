@@ -21,14 +21,17 @@ lname:String="";
 course:String="";
 branch:String="";
   constructor(private _alumni :AlumniService, private _router:Router, private _blog :BlogService) {
-    this._alumni.alumni()
+    
+   }
+   GetDataFromAPI()
+   {
+     this._alumni.alumni()
     .subscribe(
       data=>this.addName(data),
       error=>{console.error(error), this._router.navigate(['/login'])}
       
     )
    }
-   
 addName(data)
 {
 this.fname = data.fname;
@@ -38,6 +41,7 @@ this.branch = data.branch;
 }
 
   ngOnInit(): void {
+    this.GetDataFromAPI();
   }
 
  post(){
