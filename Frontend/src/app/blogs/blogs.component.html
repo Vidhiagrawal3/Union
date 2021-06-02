@@ -1,17 +1,32 @@
-<section *ngFor="let blog of allblogs">
-	<div class="blog-card web">
-		<div class="content-mask">
-			<span class="category">{{blog.fname}}</span>
-			<h1>{{blog.tblog}}</h1>
-			<p>{{blog.blog}}</p>
-		</div>
+<div class="row">
+	<div class="col-8">
+		<section *ngFor="let blog of allblogs">
+			<div class="blog-card web">
+				<div class="content-mask">
+					<span class="category">{{blog.fname}}</span>
+					<h1>{{blog.tblog}}</h1>
+					<p>{{blog.blog}}</p>
+				</div>
+			</div>
+			<!-- <div class="blog-card python">
+				<div class="content-mask">
+					<span class="python category">Python</span>
+					<h1>Testing Python</h1>
+					<p>An example-based introduction to Python testing with pytest</p>
+			</div>
+				
+			</div> -->
+		</section>
 	</div>
-	<!-- <div class="blog-card python">
-		<div class="content-mask">
-			<span class="python category">Python</span>
-			<h1>Testing Python</h1>
-			<p>An example-based introduction to Python testing with pytest</p>
-	</div>
-		
-	</div> -->
-</section>
+ <form action="" class="col-4" *ngIf="userIsAuthenticated" [formGroup]="BlogForm">
+  <div class="md-form">
+  <input mdbInput type="text" id="form1" formControlName="tblog" class="form-control">
+  <label for="form1" class="">title</label>
+ </div>
+ <div class="md-form">
+  <textarea type="text" id="form7" formControlName="blog" class="md-textarea md-textarea-auto form-control" mdbInput></textarea>
+  <label for="form7">Write Here</label>
+ </div>
+ <button type="submit" mdbBtn color="dark" (click)="post()" mdbWavesEffect>Post</button>
+ </form>
+ </div>
