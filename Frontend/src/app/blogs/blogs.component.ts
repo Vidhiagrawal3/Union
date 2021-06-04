@@ -39,7 +39,6 @@ export class BlogsComponent implements OnInit {
      error => console.error(error)
    )
    }
-
   allblogscall(){
     this._blogging.FetchBlog()
  .subscribe(
