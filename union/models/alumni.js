@@ -11,6 +11,7 @@ gyear : {type:Number , require:true},
 email: {type:String , require:true , unique:true },
 course: {type:String , require:true},
 branch: {type:String},
+photo: {type: String},
 password: {type:String , require:true},
 creationDate:{type:Date}
 });

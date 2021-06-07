@@ -69,13 +69,17 @@
       Optional - for two-step authentication
     </small>
 
-    <!-- Newsletter -->
+    <!-- IMAGE UPLOAD -->
     <div class="row">
-      <div class="col-md-7 mx-auto d-flex justify-content-center">
+      <div class="col-6 mx-auto d-flex justify-content-center">
         <button type="button" size="lg" mdbBtn color="secondary" (click)="imgPicker.click()" mdbWavesEffect>Select Image</button>
-        <input type="file" #imgPicker>
+        <input type="file" #imgPicker (change) = "imagePicked($event)">
       </div>
+        <div class="col-6 img-preview" *ngIf="imgPreview !== '' && imgPreview &&  registerForm.get('photo').valid ">
+          <img [src]="imgPreview" [alt]="registerForm.value.fname">
+        </div>
     </div>
+<!-- IMAGE UPLOAD -->
 
     <!-- Sign up button -->
     <button mdbBtn color="info" block="true" class="my-4" 

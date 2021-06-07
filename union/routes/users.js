@@ -1,17 +1,40 @@
 const express = require('express');
+const multer = require("multer");
 var bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Alumni = require('../models/alumni');
 const checkAuth = require('../middleware/check-auth');
 const Blog = require('../models/blog');
 const router = express.Router();
-// var passport = require('passport');
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
 
-router.post('/register' , function(req,res,next){
+
+//image upload backend
+
+const MIME_TYPE_MAP = {
+   'image/png': 'png',
+   'image/jpeg': 'jpg',
+   'image/jpg': 'jpg'
+};
+
+const storage = multer.diskStorage({
+   destination: (req, file, cb) => {
+     const isValid = MIME_TYPE_MAP[file.mimetype];
+     let error =  new Error("Invalid mime type");
+     if(isValid) {
+       error = null;
+     }
+     cb(error, "union/images");
+   },
+   filename: (req, file, cb) => {
+     const name = file.originalname.toLowerCase().split(' ').join('-');
+     const ext = MIME_TYPE_MAP[file.mimetype];
+     cb(null, name + '-' +Date.now() + '.' + ext);
+   }
+
+});
+
+//image upload backend ends bas ek line h neeche ye "photo" wali
+router.post('/register' , multer({storage: storage}).single("photo"), function(req,res,next){
   addtodb(req,res)
   })
   
@@ -25,6 +48,7 @@ router.post('/register' , function(req,res,next){
   email: req.body.email,
   course: req.body.course,
   branch: req.body.branch,
+  photo: req.body.photo,
   password: Alumni.hash(req.body.password),
   creationDate: Date.now()
   });
