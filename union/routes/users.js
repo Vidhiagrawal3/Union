@@ -119,7 +119,7 @@ router.get('/alumni',checkAuth, function(req,res,next)
 
 
 
-router.post('/blog' , function(req,res,next){
+router.post('/blog' ,checkAuth, function(req,res,next){
   addpost(req,res)
   });
   

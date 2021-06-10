@@ -27,6 +27,8 @@
     "animate.css": "^4.1.1",
     "bootstrap": "^3.4.1",
     "chart.js": "^2.5.0",
+    "countries-state-city-dropdown": "^2.0.7",
+    "country-state-city": "^2.1.0",
     "hammerjs": "^2.0.8",
     "jquery": "^3.6.0",
     "rxjs": "~6.5.4",
