@@ -6,6 +6,7 @@ blog:{type:String , require:true},
 id:{type:String , require:true},
 fname:{type:String , require:true},
 lname:{type:String , require:true},
+imageURL:{type:String},
 creationDate:{type:Date}
 });
 

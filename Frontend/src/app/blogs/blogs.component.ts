@@ -12,10 +12,12 @@ export class BlogsComponent implements OnInit {
   BlogForm : FormGroup = new FormGroup({
     tblog:new FormControl(null,[Validators.min(3),Validators.required]),
    blog:new FormControl(null ,[Validators.min(3),Validators.required]),
+   image:new FormControl(null , [Validators.required])
  })
 
   allblogs: any =[] ;
   userIsAuthenticated = false;
+  ImageURL: string;
   private authListenerSubs: Subscription; 
   constructor(private _blogging:BlogService, private alumni: AlumniService) { }
  
@@ -29,15 +31,27 @@ export class BlogsComponent implements OnInit {
     });
   }
 
-
+  OnImagePick(event:Event)
+  {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.BlogForm.patchValue({image:file});
+    this.BlogForm.updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () =>{
+     this.ImageURL= reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
   post(){
     if(!this.BlogForm.valid)
     console.log("Invalid Entry");
-   this._blogging.blog(JSON.stringify(this.BlogForm.value))
+    console.log(this.BlogForm.value);
+   this._blogging.blog(this.BlogForm.value)
    .subscribe(
-     data => {console.log(data)},
+     data => {console.log(data),this.allblogscall(); },
      error => console.error(error)
    )
+   
    }
   allblogscall(){
     this._blogging.FetchBlog()

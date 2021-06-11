@@ -7,8 +7,9 @@ require('dotenv').config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var app = express();
-var multer  = require('multer')
-var upload = multer({ dest: './public/images' })
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 var cors=require('cors');
 app.use(cors({                       //it will allow cross sink btw backend and frontend 
   origin:['http://localhost:4200','http://127.0.0.1:4200'],
@@ -18,24 +19,9 @@ app.use(cors({                       //it will allow cross sink btw backend and 
 var mongoose = require('mongoose');
 const uri = process.env.API_KEY;
 mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true});
-//passport for login
+app.use("/public/images" , express.static(path.join(__dirname, 'public/images')))
 
-// var passport = require('passport');
-// var session = require('express-session');
-// app.use(session ({
-//   name: 'myname.sid',
-//   resave: false,
-//   saveUninitialized: false,
-//   secret: 'secret',
-//   cookie:{
-//     maxAge: 36000000,
-//     httpOnly: false,
-//     secure: false
-//   },
-// }));
-// require('./passport-config');
-// app.use(passport.initialize());
-// app.use(passport.session());
+
 
 const alumni = require('./models/alumni');
 const blog = require('./models/blog')
