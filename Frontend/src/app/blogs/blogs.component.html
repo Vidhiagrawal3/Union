@@ -1,11 +1,12 @@
 <div class="row">
 	<div class="col-8">
 		<section *ngFor="let blog of allblogs">
-			<div class="blog-card web">
+			<div class="blog-card web" style="background: url({{blog.imageURL}});">
 				<div class="content-mask">
 					<span class="category">{{blog.fname}}</span>
 					<h1>{{blog.tblog}}</h1>
 					<p>{{blog.blog}}</p>
+					<!-- <img [src]="blog.imageURL" alt=""> -->
 				</div>
 			</div>
 			<!-- <div class="blog-card python">
@@ -18,14 +19,21 @@
 			</div> -->
 		</section>
 	</div>
- <form action="" class="col-4" *ngIf="userIsAuthenticated" [formGroup]="BlogForm">
-  <div class="md-form">
+ <form action="" class="col-4 mt-5" *ngIf="userIsAuthenticated" [formGroup]="BlogForm">
+  <div class="md-form-lg mt-5">
   <input mdbInput type="text" id="form1" formControlName="tblog" class="form-control">
   <label for="form1" class="">title</label>
  </div>
- <div class="md-form">
+ <div class="md-form-lg">
   <textarea type="text" id="form7" formControlName="blog" class="md-textarea md-textarea-auto form-control" mdbInput></textarea>
   <label for="form7">Write Here</label>
+ </div>
+ <div class="imagePick">
+	 <button mdbBtn color="dark" type="button" (click) = "filepick.click()">Pick Images</button>
+	 <input type="file" #filepick (change)="OnImagePick($event)">
+ </div>
+ <div class="imagepre" *ngIf ="ImageURL !== '' && ImageURL">
+	 <img [src]="ImageURL" alt="">
  </div>
  <button type="submit" mdbBtn color="dark" (click)="post()" mdbWavesEffect>Post</button>
  </form>

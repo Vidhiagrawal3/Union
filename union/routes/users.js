@@ -5,6 +5,28 @@ const Alumni = require('../models/alumni');
 const checkAuth = require('../middleware/check-auth');
 const Blog = require('../models/blog');
 const router = express.Router();
+const multer = require("multer")
+
+const MINE_TYPE ={
+  'image/png':'png',
+  'image/jpeg':'jpg',
+  'image/jpg':'jpg'
+};
+const storage = multer.diskStorage({
+  destination: (req , file , cb) =>{
+    const isValid = MINE_TYPE[file.mimetype];
+    let error = new Error("Invalid File FOrmat");
+    if(isValid){
+      error = null;
+    }
+    cb(error , "public/images");
+  },
+  filename: (req , file , cb) =>{
+    const name = file.originalname.toLowerCase().split(' ').join('-');
+    const ext = MINE_TYPE[file.mimetype];
+    cb(null , name+'-'+Date.now()+'.'+ ext);
+  }
+})
 // var passport = require('passport');
 // /* GET users listing. */
 // router.get('/', function(req, res, next) {
@@ -95,16 +117,15 @@ router.get('/alumni',checkAuth, function(req,res,next)
 
 
 
-router.post('/blog' ,checkAuth, function(req,res,next){
-  addpost(req,res)
-  });
-  
-  async function addpost(req,res){
-    const token = req.headers.authorization.split(" ")[1];
+router.post('/blog' ,multer({storage:storage}).single('image') , async function(req,res,next){
+  // console.log(req.body);
+  const token = req.headers.authorization.split(" ")[1];
   const decoded = jwt.verify(token, "secret_this_should_be_longer");
+  const imgurl = req.protocol + '://' + req.get("host");
   var blog = new Blog({
   tblog:req.body.tblog,
   blog:req.body.blog,
+  imageURL: imgurl + "/public/images/" + req.file.filename,
   id:decoded.fetchedUser._id,
   fname:decoded.fetchedUser.fname,
   lname:decoded.fetchedUser.lname,
@@ -118,7 +139,8 @@ router.post('/blog' ,checkAuth, function(req,res,next){
   {
     return res.status(501).json(err);
   }
-  }
+  });
+  
 
   router.get('/fetch', function(req,res,next)
   {

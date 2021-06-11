@@ -56,6 +56,7 @@ html {
 }
 .blog-card.web {
   background: url("https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2016/12/improving-website-performance-using-a-content-delivery-network-cdn.jpg");
+  background-size: cover;
 }
 
 .content-container {
@@ -146,4 +147,15 @@ p {
   color: #FFF;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
   transition: all 350ms linear;
+}
+
+.imagePick>input[type = "file"]{
+  visibility: hidden;
+}
+.imagepre{
+ height: 5rem;
+ margin: 1rem 0;
+}
+.imagepre img{
+  height:100%;
 }
