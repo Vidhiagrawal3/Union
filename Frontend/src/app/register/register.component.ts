@@ -27,8 +27,12 @@ export class RegisterComponent implements OnInit {
     password: new FormControl(null , [Validators.min(3),Validators.required]),
     photo: new FormControl(null, {
       asyncValidators: [mimeType]
-    })
-
+    }),
+    // experienceList: {
+    //   company: new FormControl(null),
+    //   title: new FormControl(null),
+    //   emptype: new FormControl(null)
+    //   }
 
   })
   
@@ -84,15 +88,20 @@ export class RegisterComponent implements OnInit {
   }
 
   register(){
-    if(!this.registerForm.valid)
-    console.log("Invalid Entry");
-    this.isLoading = true;
-   this._alumniService.register(JSON.stringify(this.registerForm.value))
+    if(!this.registerForm.valid){
+      console.log("Invalid Entry");
+    }
+    else{
+       this.isLoading = true;
+    }
+     
+    this._alumniService.register(JSON.stringify(this.registerForm.value))
    .subscribe(
      data => {console.log(data)},
      error => console.error(error)
      
-   )
+     )
+    
     // console.log(JSON.stringify(  this.registerForm.value));
   }
 

@@ -6,13 +6,13 @@ const Alumni = require('../models/alumni');
 const checkAuth = require('../middleware/check-auth');
 const Blog = require('../models/blog');
 const router = express.Router();
-const multer = require("multer")
 
 const MINE_TYPE ={
   'image/png':'png',
   'image/jpeg':'jpg',
   'image/jpg':'jpg'
 };
+
 const storage = multer.diskStorage({
   destination: (req , file , cb) =>{
     const isValid = MINE_TYPE[file.mimetype];
@@ -28,39 +28,11 @@ const storage = multer.diskStorage({
     cb(null , name+'-'+Date.now()+'.'+ ext);
   }
 })
-// var passport = require('passport');
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
 
 
 //image upload backend
 
-const MIME_TYPE_MAP = {
-   'image/png': 'png',
-   'image/jpeg': 'jpg',
-   'image/jpg': 'jpg'
-};
 
-const storage = multer.diskStorage({
-   destination: (req, file, cb) => {
-     const isValid = MIME_TYPE_MAP[file.mimetype];
-     let error =  new Error("Invalid mime type");
-     if(isValid) {
-       error = null;
-     }
-     cb(error, "union/images");
-   },
-   filename: (req, file, cb) => {
-     const name = file.originalname.toLowerCase().split(' ').join('-');
-     const ext = MIME_TYPE_MAP[file.mimetype];
-     cb(null, name + '-' +Date.now() + '.' + ext);
-   }
-
-});
-
-//image upload backend ends bas ek line h neeche ye "photo" wali
 router.post('/register' , multer({storage: storage}).single("photo"), function(req,res,next){
   addtodb(req,res)
   })
@@ -144,7 +116,47 @@ router.get('/alumni',checkAuth, function(req,res,next)
    return res.status(200).json(userId);
 });
 
+//EDIT PROFILE
 
+//  router.get('/user/:id', function(req,res) {
+//   alumni.findById(req.params.id, (error, data)=>{
+//     if(error){
+//       return next(error)
+//     }
+//     else{
+//       res.json(data)
+//     }
+//   })
+//  })
+
+// router.put('/user/:id', (req,res) => {
+//   const id = req.params.id;
+//   console.log(id);
+
+  
+//Put req trial
+// })
+// router.put('/user/profile', function(req,res,next)
+// {
+//   console.log("working")
+//   console.log(req.body._id)
+//   console.log(id)
+//   alumni.findByIdAndUpdate(req.body._id, {
+//   $set: req.body
+//   }, (error, data) => {
+//   if (error) {
+//     console.log(error)
+//     return next(error);
+//   } else {
+//     res.json(data)
+//     console.log('Profile updated successfully!')
+//   }
+//  })
+// });
+
+
+
+//BLOG starts
 
 router.post('/blog' ,multer({storage:storage}).single('image') , async function(req,res,next){
   // console.log(req.body);

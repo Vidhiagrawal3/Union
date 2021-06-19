@@ -13,6 +13,7 @@ course: {type:String , require:true},
 branch: {type:String},
 photo: {type: String},
 password: {type:String , require:true},
+experienceList: [{company:String , title:String , emptype:String }],
 creationDate:{type:Date}
 });
 Schema.plugin(UniqueUser);

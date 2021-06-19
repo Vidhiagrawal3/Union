@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Subject} from 'rxjs'; 
+import {  HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
+import { catchError, map } from 'rxjs/operators';
+import {Subject,Observable, throwError} from 'rxjs'; 
 @Injectable({
   providedIn: 'root'
 })
@@ -10,6 +11,9 @@ private token:string;
 private tokenTimer: any;
 private authStatusListener = new Subject<boolean>();
  private UserData:any;
+
+//  REST_API: string = 'http://127.0.0.1:3000';
+
 constructor(private _http : HttpClient) { }
  
   getToken(){
@@ -40,6 +44,37 @@ constructor(private _http : HttpClient) { }
       observe:'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
+  }
+
+
+   //Edit profile
+  updateProfile(id: any,body: any){
+    console.log(body.experienceList);
+    console.log(id);
+    // return this._http.put('http://127.0.0.1:3000/user/profile',body,{
+    //   observe:'body',
+    //   headers: new HttpHeaders().append('Content-Type', 'application/json')
+    // });
+
+    // let API_URL = `${this.REST_API}/user/${id}`;
+    // return this._http.put(API_URL, body, { headers: this.httpHeaders })
+    //   .pipe(
+    //     catchError(this.handleError)
+    //   )
+
+  }
+
+  handleError(error: HttpErrorResponse) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Handle client error
+      errorMessage = error.error.message;
+    } else {
+      // Handle server error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
 
   login(body: any){

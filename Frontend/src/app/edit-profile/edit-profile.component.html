@@ -1,6 +1,6 @@
 
 <div class="h3 m-5 pl-4">
-    Persional details
+    Personal details
 </div>
 
 <div class="row m-5">
@@ -41,3 +41,100 @@
           </div>
     </div>
 </div>
+
+<!-- Experiences -->
+<div class="h3 m-5 pl-4">
+  Experience
+ </div>
+
+ 
+<a class="m-5" data-toggle="modal" data-target="#basicExample"
+(click)="addExp.show()"><b style="color: rgb(233, 30, 98)" >+ Add an Experience </b></a>
+   
+  <div class="row mx-5 mt-5" *ngIf="AtLeastOneExp">
+    <div class="col-6 col-md-4">
+      <h3>COMPANY</h3>
+    </div>
+    <div class="col-6 col-md-4">
+        <h3>TITLE</h3>
+    </div>
+    <div class="col-6 col-md-4">
+      <h3>EMPLOYMENT TYPE</h3>
+    </div>
+
+  </div>
+
+     <div class="row m-5" *ngFor="let xp of userData.experienceList">
+         <div class="col-6 col-md-4">
+           {{xp.title}}
+         </div>
+       <div class="col-6 col-md-4">
+        
+           {{xp.company}}
+       </div>
+       <div class="col-6 col-md-4">
+       
+         {{xp.emptype}}
+       </div>
+    </div>
+
+
+    <!-- <a class="m-auto" *ngIf="AtLeastOneExp" (click)="saveProfile()">
+        SAVE CHANGES
+    </a> -->
+    <div class="text-center">
+       <button *ngIf="AtLeastOneExp" (click)="saveProfile()" mdbBtn class="btn-lg btn-success waves-light"
+        mdbWavesEffect>SAVE CHANGES</button>
+     </div>
+<!-- Adding Experience Modal -->
+
+  <div mdbModal #addExp="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Add Experience</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="addExp.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form [formGroup]="experienceForm">   
+       <div class="modal-body mx-3">
+         <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+              <label for="comp" class="form-label">Company</label>
+              <input type="text" id="comp" class="form-control" formControlName="company"  placeholder="Enter the Company Name">
+              </div>
+           </div>
+           <div class="col-md-6">
+            <div class="mb-3 form-group">
+              <label for="position" class="form-label">Title</label>
+              <input type="text" class="form-control" id="position" formControlName="title" placeholder="Enter your title">
+            </div>
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+              <label for="form3" class="">Employment Type</label>
+              <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                  <select formControlName="emptype" class="form-control">
+                <option value="">Select Employment Type</option>
+                <option *ngFor="let emp of empList" [value]="emp.value"> {{ emp?.value }}</option>
+              </select>
+            </div>
+           </div>
+         </div>
+
+      </div>
+      </form>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="deep-orange" class="waves-light" (click)="addExperienceForm()" mdbWavesEffect>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Adding Experience Modal -->
