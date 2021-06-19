@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {  HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import {Subject,Observable, throwError} from 'rxjs'; 
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -40,7 +41,7 @@ constructor(private _http : HttpClient) { }
   }
   register (body:any){
     console.log(body);
-    return this._http.post('http://127.0.0.1:3000/user/register',body , {
+    return this._http.post(environment.BASE_URL + '/user/register',body , {
       observe:'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -48,13 +49,13 @@ constructor(private _http : HttpClient) { }
 
 
    //Edit profile
-  updateProfile(id: any,body: any){
+  updateProfile(body: any){
     console.log(body.experienceList);
-    console.log(id);
-    // return this._http.put('http://127.0.0.1:3000/user/profile',body,{
-    //   observe:'body',
-    //   headers: new HttpHeaders().append('Content-Type', 'application/json')
-    // });
+    // console.log(id);
+    return this._http.put('http://127.0.0.1:3000/user/user/profile',body,{
+      observe:'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    });
 
     // let API_URL = `${this.REST_API}/user/${id}`;
     // return this._http.put(API_URL, body, { headers: this.httpHeaders })

@@ -7,37 +7,37 @@
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="Name" class="form-label">Name</label>
-            <input type="text" class="form-control" id="Name" placeholder="{{fname}} {{lname}}" disabled>
+            <input type="text" class="form-control" id="Name" placeholder="{{userData?.fname}} {{userData?.lname}}" disabled>
           </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="{{email}}" disabled>
+            <input type="text" class="form-control" id="email" placeholder="{{userData?.email}}" disabled>
           </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="phone" class="form-label">Phone</label>
-            <input type="text" class="form-control" id="phone" placeholder="{{phone}}" disabled>
+            <input type="text" class="form-control" id="phone" placeholder="{{userData?.phone}}" disabled>
           </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="course" class="form-label">Course</label>
-            <input type="text" class="form-control" id="course" placeholder="{{course}} {{branch}}" disabled>
+            <input type="text" class="form-control" id="course" placeholder="{{userData?.course}} {{userData?.branch}}" disabled>
           </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="gyear" class="form-label">Graduation Year</label>
-            <input type="text" class="form-control" id="gyear" placeholder="{{gyear}}" disabled>
+            <input type="text" class="form-control" id="gyear" placeholder="{{userData?.gyear}}" disabled>
           </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="roll" class="form-label">Roll Number</label>
-            <input type="text" class="form-control" id="roll" placeholder="{{roll}}" disabled>
+            <input type="text" class="form-control" id="roll" placeholder="{{userData?.roll}}" disabled>
           </div>
     </div>
 </div>
@@ -121,8 +121,8 @@
               <label for="form3" class="">Employment Type</label>
               <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
                   <select formControlName="emptype" class="form-control">
-                <option value="">Select Employment Type</option>
-                <option *ngFor="let emp of empList" [value]="emp.value"> {{ emp?.value }}</option>
+                <option value="" selected>Select Employment Type</option>
+                <option *ngFor="let emp of empList" [value]="emp"> {{ emp }}</option>
               </select>
             </div>
            </div>

@@ -135,24 +135,27 @@ router.get('/alumni',checkAuth, function(req,res,next)
 
   
 //Put req trial
-// })
-// router.put('/user/profile', function(req,res,next)
-// {
-//   console.log("working")
-//   console.log(req.body._id)
-//   console.log(id)
-//   alumni.findByIdAndUpdate(req.body._id, {
-//   $set: req.body
-//   }, (error, data) => {
-//   if (error) {
-//     console.log(error)
-//     return next(error);
-//   } else {
-//     res.json(data)
-//     console.log('Profile updated successfully!')
-//   }
+router.put('/user/profile', function(req,res,next)
+{
+  console.log("working")
+  console.log(req.body._id)
+  // console.log(id)
+  Alumni.findByIdAndUpdate(req.body._id, {
+    experienceList: req.body.experienceList
+   }).then(alumni => {
+    res.json(alumni);
+   });
+   
+  //  , (error, data) => {
+  // if (error) {
+  //   console.log(error)
+  //   return next(error);
+  // } else {
+  //   res.json(data)
+  //   console.log('Profile updated successfully!')
+  // }
 //  })
-// });
+});
 
 
 
