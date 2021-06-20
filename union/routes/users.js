@@ -118,20 +118,6 @@ router.get('/alumni',checkAuth, function(req,res,next)
 
 //EDIT PROFILE
 
-//  router.get('/user/:id', function(req,res) {
-//   alumni.findById(req.params.id, (error, data)=>{
-//     if(error){
-//       return next(error)
-//     }
-//     else{
-//       res.json(data)
-//     }
-//   })
-//  })
-
-// router.put('/user/:id', (req,res) => {
-//   const id = req.params.id;
-//   console.log(id);
 
   
 //Put req trial

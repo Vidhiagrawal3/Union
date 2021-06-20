@@ -14,6 +14,7 @@ export class EditProfileComponent implements OnInit {
    public userData: any;
    alumniId: any;
    public AtLeastOneExp: boolean = false;
+   public editExp: boolean = false;
    experienceForm : FormGroup;
    empList = ["Internship",
      "Full-time",
@@ -42,16 +43,20 @@ export class EditProfileComponent implements OnInit {
    experienceList:any[] = [];
 
   ngOnInit() {
-    if(this.experienceList!=[]){
-      this.AtLeastOneExp = true
-    }
+    // if(this.experienceList!=[]){
+    //   this.AtLeastOneExp = true
+    // }
    this.getData();
    this.createExperienceForm();
+    
+   if(this.userData.experienceList.length !=0){
+    this.AtLeastOneExp=true
+    }
   }
 
 
   getData(){
-    this.userData = this.alumniService.getUserinfo()
+    this.userData = this.alumniService.getUserinfo();
     // this.fname =this.userData.fname;
     // this.lname = this.userData.lname;
     // this.email = this.userData.email;
@@ -74,6 +79,7 @@ export class EditProfileComponent implements OnInit {
 
   addExperienceForm(){
      this.AtLeastOneExp = true;
+     this.editExp = true;
     console.log(this.experienceForm);
     this.userData.experienceList.push(this.experienceForm.value);
     this.createExperienceForm();
@@ -89,16 +95,7 @@ export class EditProfileComponent implements OnInit {
       window.localStorage.setItem("UserData", JSON.stringify(data))},
       error => console.error(error)
       )
-    // .subscribe(() => {
-    //   console.log('Data updated successfully!')
-    //   // this.ngZone.run(() => this.router.navigateByUrl('/books-list'))
-    // }, (err) => {
-    //   console.log(err);
-    //  });
-        
-      
-    //   )
-    // this.getData();
+    
   }
 
 }
