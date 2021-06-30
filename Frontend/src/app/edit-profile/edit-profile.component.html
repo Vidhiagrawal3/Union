@@ -40,6 +40,59 @@
             <input type="text" class="form-control" id="roll" placeholder="{{userData?.roll}}" disabled>
           </div>
     </div>
+    <form [formGroup]="PersonalDetailsForm" *ngIf="!addressAdded">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="formCountry" class="">Country</label>
+        <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+            <select formControlName="country" class="form-control" #country (change)= "allStatesOfCountry(country.value)" id="formCountry">
+          <option value="" selected>Select</option>
+          <option *ngFor="let country of countryList" [value]="country.name"> {{ country?.name }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="formState" class="">State</label>
+        <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+            <select formControlName="state" class="form-control" #state (change)="allCitiesOfState(state.value)" id="formState">
+          <option value="" selected>Select State</option>
+          <option *ngFor="let state of stateList" [value]="state.name"> {{ state?.name }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label for="formCity" class="">City</label>
+        <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+            <select formControlName="city" class="form-control" (change)="addressEntered()" id="formCity" >
+          <option value="" selected>Select City</option>
+          <option *ngFor="let item of cityList" [value]="item.name"> {{ item?.name }}</option>
+        </select>
+      </div>
+    </div>
+  </form>
+  <div class="modal-footer d-flex justify-content-center" *ngIf="address">
+    <button mdbBtn class="btn-success waves-light" (click)="addPersonalForm()" mdbWavesEffect>Save</button>
+  </div>
+  <div class="row" *ngIf="addressAdded">
+    <div class="col-6 col-md-4" *ngIf="addressAdded">
+      <h3>Country</h3>
+      {{userData?.country}}
+    </div>
+     <div class="col-6 col-md-4" *ngIf="addressAdded">
+      <h3>State</h3>
+     {{userData?.state}}
+     </div>
+     <div class="col-6 col-md-4" *ngIf="addressAdded">
+      <h3>City</h3>
+     {{userData?.city}}
+      </div>
+
+      <a class="m-5" data-toggle="modal" data-target="#basicExample"
+      (click)="editLocation.show()"><b style="color: rgb(233, 30, 98)" > Edit Location </b></a>
+  </div>
+  
 </div>
 
 <!-- Experiences -->
@@ -86,6 +139,68 @@
        <button *ngIf="editExp" (click)="saveProfile()" mdbBtn class="btn-lg btn-success waves-light"
         mdbWavesEffect>SAVE CHANGES</button>
      </div>
+
+<!-- Personal Details Modal -->
+
+     <div mdbModal #editLocation="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Edit Location</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="editLocation.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <form [formGroup]="PersonalDetailsForm">   
+       <div class="modal-body mx-3">
+         <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+              <label for="formCountry" class="">Country</label>
+              <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                  <select formControlName="country" class="form-control" #country (change)= "allStatesOfCountry(country.value)" id="formCountry">
+                <option value="" selected>Select</option>
+                <option *ngFor="let country of countryList" [value]="country.name"> {{ country?.name }}</option>
+              </select>
+            </div>
+           </div>
+           <div class="col-md-6">
+            <div class="mb-3 form-group">
+                <label for="formState" class="">State</label>
+                <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                    <select formControlName="state" class="form-control" #state (change)="allCitiesOfState(state.value)" id="formState">
+                  <option value="" selected>Select State</option>
+                  <option *ngFor="let state of stateList" [value]="state.name"> {{ state?.name }}</option>
+                </select>
+            </div>
+           </div>
+         </div>
+         <div class="row">
+           <div class="col-md-6">
+            <div class="form-group">
+              <label for="formCity" class="">City</label>
+              <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                  <select formControlName="city" class="form-control" id="formCity" >
+                <option value="" selected>Select City</option>
+                <option *ngFor="let item of cityList" [value]="item.name"> {{ item?.name }}</option>
+              </select>
+            </div>
+           </div>
+         </div>
+
+      </div>
+      </form>
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="deep-orange" class="waves-light" (click)="editAddress()" mdbWavesEffect>Save</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Personal Details Modal -->
+
 <!-- Adding Experience Modal -->
 
   <div mdbModal #addExp="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"

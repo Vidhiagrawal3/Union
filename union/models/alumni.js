@@ -13,6 +13,9 @@ course: {type:String , require:true},
 branch: {type:String},
 photo: {type: String},
 password: {type:String , require:true},
+country: {type: String},
+state: {type: String},
+city: {type: String},
 experienceList: [{company:String , title:String , emptype:String }],
 creationDate:{type:Date}
 });

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlumniService } from '../services/alumni.service';
+import csc from 'country-state-city';
 // import csc from 'country-state-city';
 
 @Component({
@@ -12,9 +13,17 @@ import { AlumniService } from '../services/alumni.service';
 export class EditProfileComponent implements OnInit {
 
    public userData: any;
-   alumniId: any;
+   public countryList: any[];
+   public stateList: any[];
+   public cityList: any[];
+   public address: boolean = false;
+   public addressAdded: boolean = false;
+   public countryYes: boolean = false;
+   public stateYes: boolean = false;
+   public cityYes: boolean = false;
    public AtLeastOneExp: boolean = false;
    public editExp: boolean = false;
+   PersonalDetailsForm: FormGroup;
    experienceForm : FormGroup;
    empList = ["Internship",
      "Full-time",
@@ -43,14 +52,16 @@ export class EditProfileComponent implements OnInit {
    experienceList:any[] = [];
 
   ngOnInit() {
-    // if(this.experienceList!=[]){
-    //   this.AtLeastOneExp = true
-    // }
    this.getData();
+   this.createPersonalDetailsForm();
+   this.allCountries();
    this.createExperienceForm();
     
    if(this.userData.experienceList.length !=0){
     this.AtLeastOneExp=true
+    }
+    if(this.userData.city != null){
+      this.addressAdded = true;
     }
   }
 
@@ -68,6 +79,65 @@ export class EditProfileComponent implements OnInit {
     // this.id = this.userData._id;
     this.experienceList = this.userData.experienceList;
   }
+  
+   allCountries(){
+     this.countryList = csc.getAllCountries();
+   }
+
+   allStatesOfCountry(countryName: String){
+     let countryCode = this.countryList.filter(ele =>{
+       if(ele.name=== countryName){
+         return ele;
+       }
+     })[0].isoCode;
+    this.stateList = csc.getStatesOfCountry(countryCode);
+    
+   }
+
+   allCitiesOfState(stateName: string){
+     let stateCode = this.stateList.filter(ele => {
+       if(ele.name === stateName){
+         return ele;
+       }
+     })[0].isoCode;
+     let countryCode= this.stateList.filter(ele =>{
+       if(ele.name === stateName){
+         return ele;
+       }
+     })[0].countryCode;
+     this.cityList = csc.getCitiesOfState(countryCode,stateCode)
+   }
+    
+   addressEntered(){
+     this.address = true;
+   }
+
+   createPersonalDetailsForm(){
+     this.PersonalDetailsForm = new FormGroup({
+       country: new FormControl(''),
+       state: new FormControl(''),
+       city: new FormControl('')
+     })
+   }
+
+   addPersonalForm(){
+     this.userData.country = this.PersonalDetailsForm.value.country;
+     this.userData.state = this.PersonalDetailsForm.value.state;
+     this.userData.city = this.PersonalDetailsForm.value.city;
+     this.addressAdded = true;
+     this.address = false;
+    console.log(this.userData);
+     this.saveProfile();
+   }
+
+   editAddress(){
+    this.userData.country = this.PersonalDetailsForm.value.country;
+    this.userData.state = this.PersonalDetailsForm.value.state;
+    this.userData.city = this.PersonalDetailsForm.value.city;
+    this.addressAdded = true;
+    console.log(this.userData);
+     this.saveProfile();
+   }
 
   createExperienceForm() {
     this.experienceForm = new FormGroup({

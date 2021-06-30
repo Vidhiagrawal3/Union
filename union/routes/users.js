@@ -120,14 +120,17 @@ router.get('/alumni',checkAuth, function(req,res,next)
 
 
   
-//Put req trial
+//PUT request ( edit profile )
 router.put('/user/profile', function(req,res,next)
 {
   console.log("working")
   console.log(req.body._id)
   // console.log(id)
   Alumni.findByIdAndUpdate(req.body._id, {
-    experienceList: req.body.experienceList
+    experienceList: req.body.experienceList,
+    country: req.body.country,
+    state: req.body.state,
+    city: req.body.city
    }).then(alumni => {
     res.json(alumni);
    });

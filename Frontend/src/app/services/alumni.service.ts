@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {  HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/http';
-import { catchError, map } from 'rxjs/operators';
+// import { catchError, map } from 'rxjs/operators';
 import {Subject,Observable, throwError} from 'rxjs'; 
 import { environment } from 'src/environments/environment';
 @Injectable({
@@ -52,7 +52,7 @@ constructor(private _http : HttpClient) { }
   updateProfile(body: any){
     console.log(body.experienceList);
     // console.log(id);
-    return this._http.put('http://127.0.0.1:3000/user/user/profile',body,{
+    return this._http.put(environment.BASE_URL + '/user/user/profile',body,{
       observe:'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -80,7 +80,7 @@ constructor(private _http : HttpClient) { }
 
   login(body: any){
     console.log(body);
-    const res = this._http.post<{token:string, expiresIn : number}>('http://127.0.0.1:3000/user/login',body , {
+    const res = this._http.post<{token:string, expiresIn : number}>(environment.BASE_URL + '/user/login',body , {
       observe:'body',
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')
@@ -101,7 +101,7 @@ constructor(private _http : HttpClient) { }
   }
 
   alumni(){
-   this.UserData=this._http.get<{data:any}>('http://127.0.0.1:3000/user/alumni',{
+   this.UserData=this._http.get<{data:any}>(environment.BASE_URL + '/user/alumni',{
      
     observe:'body',
     withCredentials: true,
