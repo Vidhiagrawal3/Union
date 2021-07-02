@@ -1,17 +1,18 @@
 const express = require('express');
+const multer = require("multer");
 var bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const Alumni = require('../models/alumni');
 const checkAuth = require('../middleware/check-auth');
 const Blog = require('../models/blog');
 const router = express.Router();
-const multer = require("multer")
 
 const MINE_TYPE ={
   'image/png':'png',
   'image/jpeg':'jpg',
   'image/jpg':'jpg'
 };
+
 const storage = multer.diskStorage({
   destination: (req , file , cb) =>{
     const isValid = MINE_TYPE[file.mimetype];
@@ -27,13 +28,12 @@ const storage = multer.diskStorage({
     cb(null , name+'-'+Date.now()+'.'+ ext);
   }
 })
-// var passport = require('passport');
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
 
-router.post('/register' , function(req,res,next){
+
+//image upload backend
+
+
+router.post('/register' , multer({storage: storage}).single("photo"), function(req,res,next){
   addtodb(req,res)
   })
   
@@ -47,6 +47,7 @@ router.post('/register' , function(req,res,next){
   email: req.body.email,
   course: req.body.course,
   branch: req.body.branch,
+  photo: req.body.photo,
   password: Alumni.hash(req.body.password),
   creationDate: Date.now()
   });
@@ -115,7 +116,39 @@ router.get('/alumni',checkAuth, function(req,res,next)
    return res.status(200).json(userId);
 });
 
+//EDIT PROFILE
 
+
+  
+//PUT request ( edit profile )
+router.put('/user/profile', function(req,res,next)
+{
+  console.log("working")
+  console.log(req.body._id)
+  // console.log(id)
+  Alumni.findByIdAndUpdate(req.body._id, {
+    experienceList: req.body.experienceList,
+    country: req.body.country,
+    state: req.body.state,
+    city: req.body.city
+   }).then(alumni => {
+    res.json(alumni);
+   });
+   
+  //  , (error, data) => {
+  // if (error) {
+  //   console.log(error)
+  //   return next(error);
+  // } else {
+  //   res.json(data)
+  //   console.log('Profile updated successfully!')
+  // }
+//  })
+});
+
+
+
+//BLOG starts
 
 router.post('/blog' ,multer({storage:storage}).single('image') , async function(req,res,next){
   // console.log(req.body);
