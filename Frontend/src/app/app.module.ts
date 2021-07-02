@@ -16,6 +16,8 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AuthInterceptor } from './services/auth-interceptor';
 import { BlogsComponent } from './blogs/blogs.component';
 import { BlogService } from './services/blog.service';
+import { SearchAlumniComponent } from './search-alumni/search-alumni.component';
+import { AlumniSearchPipe } from './pipes/alumni-search.pipe';
 
 
 @NgModule({
@@ -26,7 +28,9 @@ import { BlogService } from './services/blog.service';
     AlumniHomeComponent,
     HeaderComponent,
     EditProfileComponent,
-    BlogsComponent
+    BlogsComponent,
+    SearchAlumniComponent,
+    AlumniSearchPipe
   ],
   imports: [
     FormsModule,ReactiveFormsModule,

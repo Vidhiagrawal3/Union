@@ -135,4 +135,8 @@ constructor(private _http : HttpClient) { }
       expirationDate: new Date(expirationDate)
     }
   }
+  FetchAlumni(){
+    const alumni = this._http.get('http://127.0.0.1:3000/user/search-alumni')
+    return alumni;
+  }
 }

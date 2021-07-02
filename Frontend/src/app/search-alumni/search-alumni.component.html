@@ -1,0 +1,22 @@
+
+  <div class="form-group px-5 m-5">
+    <!-- <label for="search">search</label> -->
+    <input type="text" [(ngModel)]="searchvalue1"  class="form-control" placeholder="name">
+  </div>
+  <div class="form-group px-5 m-5">
+    <!-- <label for="search">search</label> -->
+    <input type="text" [(ngModel)]="searchvalue2"  class="form-control" placeholder="course">
+  </div>
+<div class="row">
+  <div class="col-5" *ngFor = "let user of alluser |  alumniSearch:searchvalue1:searchvalue2 ">
+<div class="card m-5" style="width: 38rem;">
+    <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+    <div class="card-body">
+      <h5 class="card-title"> <b>Er. {{user.fname}} {{user.lname}}</b> </h5>
+      <p class="card-text">{{user.course}} {{user.branch}} {{user.gyear}} passout</p>
+      <a href="#" class="btn btn-primary">View</a>
+    </div>
+  </div> 
+  </div>
+   
+</div>

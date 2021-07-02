@@ -156,6 +156,20 @@ router.post('/blog' ,multer({storage:storage}).single('image') , async function(
     })
    
   });
+  router.get('/search-alumni', function(req,res,next)
+  {
+    Alumni.find()
+    .then(async alumni => {
+       
+      if(!alumni){ 
+        return res.status(401).json({
+          message: 'User not present'
+        });
+      }
+      return res.status(200).json(alumni)
+    })
+   
+  });
 
 
 module.exports = router;
