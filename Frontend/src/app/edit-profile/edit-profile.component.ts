@@ -18,9 +18,6 @@ export class EditProfileComponent implements OnInit {
    public cityList: any[];
    public address: boolean = false;
    public addressAdded: boolean = false;
-   public countryYes: boolean = false;
-   public stateYes: boolean = false;
-   public cityYes: boolean = false;
    public AtLeastOneExp: boolean = false;
    public editExp: boolean = false;
    PersonalDetailsForm: FormGroup;
@@ -86,7 +83,7 @@ export class EditProfileComponent implements OnInit {
 
    allStatesOfCountry(countryName: String){
      let countryCode = this.countryList.filter(ele =>{
-       if(ele.name=== countryName){
+       if(ele.name === countryName){
          return ele;
        }
      })[0].isoCode;
@@ -154,7 +151,7 @@ export class EditProfileComponent implements OnInit {
     this.userData.experienceList.push(this.experienceForm.value);
     this.createExperienceForm();
     console.log(this.userData.experienceList);
-
+   
   }
 
   saveProfile(){
