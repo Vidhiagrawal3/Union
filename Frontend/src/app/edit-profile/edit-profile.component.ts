@@ -11,7 +11,7 @@ import csc from 'country-state-city';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-
+   public currentid:any[];
    public userData: any;
    public countryList: any[];
    public stateList: any[];
@@ -20,6 +20,7 @@ export class EditProfileComponent implements OnInit {
    public addressAdded: boolean = false;
    public AtLeastOneExp: boolean = false;
    public editExp: boolean = false;
+   public index: number;
    PersonalDetailsForm: FormGroup;
    experienceForm : FormGroup;
    empList = ["Internship",
@@ -153,7 +154,22 @@ export class EditProfileComponent implements OnInit {
     console.log(this.userData.experienceList);
    
   }
-
+  findindex(currentexp:any){
+    this.currentid = currentexp;
+    this.index = this.userData.experienceList.indexOf(this.currentid)
+    
+  }
+  editsingleexp()
+  {
+    console.log(this.experienceForm.value);
+    this.userData.experienceList[this.index] = this.experienceForm.value;
+    this.saveProfile();
+  }
+  deleteexp()
+  {
+    this.userData.experienceList.splice(this.index ,1); 
+    this.saveProfile();
+  }
   saveProfile(){
     // console.log(this.id);
     this.alumniService.updateProfile(this.userData)

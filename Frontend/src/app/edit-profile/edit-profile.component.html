@@ -105,30 +105,35 @@
 (click)="addExp.show()"><b style="color: rgb(233, 30, 98)" >+ Add an Experience </b></a>
    
   <div class="row mx-5 mt-5" *ngIf="AtLeastOneExp">
-    <div class="col-6 col-md-4">
+    <div class="col-6 col-md-3">
       <h3>COMPANY</h3>
     </div>
-    <div class="col-6 col-md-4">
+    <div class="col-6 col-md-3">
         <h3>TITLE</h3>
     </div>
-    <div class="col-6 col-md-4">
+    <div class="col-6 col-md-3">
       <h3>EMPLOYMENT TYPE</h3>
     </div>
 
   </div>
-
+<!-- display experienceForm -->
      <div class="row m-5" *ngFor="let xp of userData.experienceList">
-         <div class="col-6 col-md-4">
+         <div class="col-6 col-md-3">
            {{xp.title}}
          </div>
-       <div class="col-6 col-md-4">
+       <div class="col-6 col-md-3">
         
            {{xp.company}}
        </div>
-       <div class="col-6 col-md-4">
+       <div class="col-6 col-md-3">
        
          {{xp.emptype}}
        </div>
+       <div class="col-6 col-md-3">
+       <a  (click) = "findindex(xp)" (click)="editExp.show()"><mdb-icon far icon="edit" ></mdb-icon> </a> 
+       &nbsp;
+       <a  (click) = "findindex(xp)" (click)="delExp.show()"><mdb-icon fas icon="ban"></mdb-icon> </a>
+      </div>
     </div>
 
 
@@ -220,7 +225,7 @@
            <div class="col-md-6">
             <div class="form-group">
               <label for="comp" class="form-label">Company</label>
-              <input type="text" id="comp" class="form-control" formControlName="company"  placeholder="Enter the Company Name">
+              <input type="text" id="comp" class="form-control" formControlName="company"  placeholder="">
               </div>
            </div>
            <div class="col-md-6">
@@ -253,3 +258,70 @@
 </div>
 
 <!-- Adding Experience Modal -->
+<!-- edit exp model -->
+<div mdbModal #editExp="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+ <div class="modal-header text-center">
+   <h4 class="modal-title w-100 font-weight-bold">Edit Experience</h4>
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="editExp.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+
+ <form [formGroup]="experienceForm">   
+  <div class="modal-body mx-3">
+    <div class="row">
+      <div class="col-md-6">
+       <div class="form-group">
+         <label for="comp" class="form-label">Company</label>
+         <input type="text" class="form-control" formControlName="company"  placeholder="{{currentid}}">
+         </div>
+      </div>
+      <div class="col-md-6">
+       <div class="mb-3 form-group">
+         <label for="position" class="form-label">Title</label>
+         <input type="text" class="form-control" formControlName="title" placeholder="Enter your title">
+       </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+       <div class="form-group">
+         <label for="form3" class="">Employment Type</label>
+         <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+             <select formControlName="emptype" class="form-control">
+           <option value="" selected>Select Employment Type</option>
+           <option *ngFor="let emp of empList" [value]="emp"> {{ emp }}</option>
+         </select>
+       </div>
+      </div>
+    </div>
+
+ </div>
+ </form>
+ <div class="modal-footer d-flex justify-content-center">
+   <button mdbBtn color="deep-orange" class="waves-light" (click)="editsingleexp()" (click) = "editExp.hide()" mdbWavesEffect>Save</button>
+ </div>
+</div>
+</div>
+</div>
+
+<!-- del -->
+<div mdbModal #delExp="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+ <div class="modal-header text-center">
+   <h4 class="modal-title w-100 font-weight-bold">Edit Experience</h4>
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="delExp.hide()">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-footer d-flex justify-content-center">
+   <button mdbBtn color="deep-orange" class="waves-light" (click)="deleteexp()" (click) = "editExp.hide()" mdbWavesEffect>Save</button>
+ </div>
+</div>
+</div>
+</div>
