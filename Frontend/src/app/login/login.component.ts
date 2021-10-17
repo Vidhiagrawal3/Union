@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
      this.isLoading = true;
      this._alumniService.login(JSON.stringify(this.loginForm.value))
      .subscribe(
-       token=>{console.log(token) , this._router.navigate(['/alumni-home'])},
+       token=>{console.log(token),this._router.navigate(['/alumni-home'])},
        error=>console.log(error)
      )
   }

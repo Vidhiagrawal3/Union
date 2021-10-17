@@ -74,18 +74,18 @@ export class RegisterComponent implements OnInit {
   // }
 
   
-  imagePicked(event :  Event){
-    const file = (event.target as HTMLInputElement).files[0];
-    this.registerForm.patchValue({photo: file});
-    this.registerForm.get('photo').updateValueAndValidity();
-    console.log(file);
-    console.log(this.registerForm);
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imgPreview = reader.result as string;
-    };
-    reader.readAsDataURL(file);
-  }
+  // imagePicked(event :  Event){
+  //   const file = (event.target as HTMLInputElement).files[0];
+  //   this.registerForm.patchValue({photo: file});
+  //   this.registerForm.get('photo').updateValueAndValidity();
+  //   console.log(file);
+  //   console.log(this.registerForm);
+  //   const reader = new FileReader();
+  //   reader.onload = () => {
+  //     this.imgPreview = reader.result as string;
+  //   };
+  //   reader.readAsDataURL(file);
+  // }
 
   register(){
     if(!this.registerForm.valid){
@@ -97,7 +97,7 @@ export class RegisterComponent implements OnInit {
      
     this._alumniService.register(JSON.stringify(this.registerForm.value))
    .subscribe(
-     data => {console.log(data)},
+     data => {this.router.navigate(['/login'])},
      error => console.error(error)
      
      )
