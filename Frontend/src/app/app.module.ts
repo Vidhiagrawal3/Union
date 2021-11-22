@@ -18,6 +18,8 @@ import { BlogsComponent } from './blogs/blogs.component';
 import { BlogService } from './services/blog.service';
 import { SearchAlumniComponent } from './search-alumni/search-alumni.component';
 import { AlumniSearchPipe } from './pipes/alumni-search.pipe';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { RequestsComponent } from './admin/requests/requests.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { AlumniSearchPipe } from './pipes/alumni-search.pipe';
     EditProfileComponent,
     BlogsComponent,
     SearchAlumniComponent,
-    AlumniSearchPipe
+    AlumniSearchPipe,
+    DashboardComponent,
+    RequestsComponent
   ],
   imports: [
     FormsModule,ReactiveFormsModule,

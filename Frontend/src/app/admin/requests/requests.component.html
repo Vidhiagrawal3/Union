@@ -1,0 +1,22 @@
+<div class="row mx-5">
+    <div class="col-6" *ngFor="let user of alluser">
+        <div class="card m-5" *ngIf="user.verified == false ">
+            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+
+            <div class="card-body">
+                <div class="row ">
+                    <div class="col-6">
+                        <h5 class="card-title"> <b>Er. {{user.fname}} {{user.lname}}</b> </h5>
+                        <p class="card-text">{{user.course}} {{user.branch}} {{user.gyear}} passout</p>
+                        <a href="#" class="btn btn-primary">View</a>
+                    </div>
+                    <div class="col-6">
+                        <a (click)="acceptVerify()" class="btn btn-success m-2">Accept</a>
+                        <a class="btn btn-danger m-2">Decline</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

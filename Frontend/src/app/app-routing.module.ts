@@ -6,6 +6,7 @@ import {AlumniHomeComponent} from './alumni-home/alumni-home.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { BlogsComponent } from './blogs/blogs.component';
 import { SearchAlumniComponent } from './search-alumni/search-alumni.component';
+import { RequestsComponent } from './admin/requests/requests.component';
 
 const routes : Routes = [
   {path:"login" , component: LoginComponent},
@@ -13,7 +14,8 @@ const routes : Routes = [
   {path:"alumni-home",component:AlumniHomeComponent},
   {path: "editprofile", component:EditProfileComponent},
   {path: "blogs", component:BlogsComponent},
-  {path:"search-alumni" , component:SearchAlumniComponent}
+  {path:"search-alumni" , component:SearchAlumniComponent},
+  {path: "admin/requests", component: RequestsComponent },
   
   ]
 

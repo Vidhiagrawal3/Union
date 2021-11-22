@@ -1,4 +1,3 @@
-
 <div class="h3 m-5 pl-4">
     Personal details
 </div>
@@ -8,320 +7,317 @@
         <div class="mb-3">
             <label for="Name" class="form-label">Name</label>
             <input type="text" class="form-control" id="Name" placeholder="{{userData?.fname}} {{userData?.lname}}" disabled>
-          </div>
+        </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="text" class="form-control" id="email" placeholder="{{userData?.email}}" disabled>
-          </div>
+        </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="phone" class="form-label">Phone</label>
             <input type="text" class="form-control" id="phone" placeholder="{{userData?.phone}}" disabled>
-          </div>
+        </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="course" class="form-label">Course</label>
             <input type="text" class="form-control" id="course" placeholder="{{userData?.course}} {{userData?.branch}}" disabled>
-          </div>
+        </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="gyear" class="form-label">Graduation Year</label>
             <input type="text" class="form-control" id="gyear" placeholder="{{userData?.gyear}}" disabled>
-          </div>
+        </div>
     </div>
     <div class="col-6 col-md-4">
         <div class="mb-3">
             <label for="roll" class="form-label">Roll Number</label>
             <input type="text" class="form-control" id="roll" placeholder="{{userData?.roll}}" disabled>
-          </div>
+        </div>
     </div>
     <form [formGroup]="PersonalDetailsForm" *ngIf="!addressAdded">
-    <div class="col-6">
-      <div class="form-group">
-        <label for="formCountry" class="">Country</label>
-        <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
-            <select formControlName="country" class="form-control" #country (change)= "allStatesOfCountry(country.value)" id="formCountry">
+        <div class="col-6">
+            <div class="form-group">
+                <label for="formCountry" class="">Country</label>
+                <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                <select formControlName="country" class="form-control" #country (change)="allStatesOfCountry(country.value)" id="formCountry">
           <option value="" selected>Select</option>
           <option *ngFor="let country of countryList" [value]="country.name"> {{ country?.name }}</option>
         </select>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="form-group">
-        <label for="formState" class="">State</label>
-        <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
-            <select formControlName="state" class="form-control" #state (change)="allCitiesOfState(state.value)" id="formState">
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="formState" class="">State</label>
+                <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                <select formControlName="state" class="form-control" #state (change)="allCitiesOfState(state.value)" id="formState">
           <option value="" selected>Select State</option>
           <option *ngFor="let state of stateList" [value]="state.name"> {{ state?.name }}</option>
         </select>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="form-group">
-        <label for="formCity" class="">City</label>
-        <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
-            <select formControlName="city" class="form-control" (change)="addressEntered()" id="formCity" >
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="formCity" class="">City</label>
+                <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                <select formControlName="city" class="form-control" (change)="addressEntered()" id="formCity">
           <option value="" selected>Select City</option>
           <option *ngFor="let item of cityList" [value]="item.name"> {{ item?.name }}</option>
         </select>
-      </div>
+            </div>
+        </div>
+    </form>
+    <div class="modal-footer d-flex justify-content-center" *ngIf="address">
+        <button mdbBtn class="btn-success waves-light" (click)="addPersonalForm()" mdbWavesEffect>Save</button>
     </div>
-  </form>
-  <div class="modal-footer d-flex justify-content-center" *ngIf="address">
-    <button mdbBtn class="btn-success waves-light" (click)="addPersonalForm()" mdbWavesEffect>Save</button>
-  </div>
-  <div class="row" *ngIf="addressAdded">
-    <div class="col-6 col-md-4" *ngIf="addressAdded">
-      <h3>Country</h3>
-      {{userData?.country}}
-    </div>
-     <div class="col-6 col-md-4" *ngIf="addressAdded">
-      <h3>State</h3>
-     {{userData?.state}}
-     </div>
-     <div class="col-6 col-md-4" *ngIf="addressAdded">
-      <h3>City</h3>
-     {{userData?.city}}
-      </div>
+    <div class="row" *ngIf="addressAdded">
+        <div class="col-6 col-md-4" *ngIf="addressAdded">
+            <h3>Country</h3>
+            {{userData?.country}}
+        </div>
+        <div class="col-6 col-md-4" *ngIf="addressAdded">
+            <h3>State</h3>
+            {{userData?.state}}
+        </div>
+        <div class="col-6 col-md-4" *ngIf="addressAdded">
+            <h3>City</h3>
+            {{userData?.city}}
+        </div>
 
-      <a class="m-5" data-toggle="modal" data-target="#basicExample"
-      (click)="editLocation.show()"><b style="color: rgb(233, 30, 98)" > Edit Location </b></a>
-  </div>
-  
+        <a class="m-5" data-toggle="modal" data-target="#basicExample" (click)="editLocation.show()"><b style="color: rgb(233, 30, 98)" > Edit Location </b></a>
+    </div>
+
 </div>
 
 <!-- Experiences -->
 <div class="h3 m-5 pl-4">
-  Experience
- </div>
+    Experience
+</div>
 
- 
-<a class="m-5" data-toggle="modal" data-target="#basicExample"
-(click)="addExp.show()"><b style="color: rgb(233, 30, 98)" >+ Add an Experience </b></a>
-   
-  <div class="row mx-5 mt-5" *ngIf="AtLeastOneExp">
+
+<a class="m-5" data-toggle="modal" data-target="#basicExample" (click)="addExp.show()"><b style="color: rgb(233, 30, 98)" >+ Add an Experience </b></a>
+
+<div class="row mx-5 mt-5" *ngIf="AtLeastOneExp">
     <div class="col-6 col-md-3">
-      <h3>COMPANY</h3>
+        <h3>COMPANY</h3>
     </div>
     <div class="col-6 col-md-3">
         <h3>TITLE</h3>
     </div>
     <div class="col-6 col-md-3">
-      <h3>EMPLOYMENT TYPE</h3>
+        <h3>EMPLOYMENT TYPE</h3>
     </div>
 
-  </div>
+</div>
 <!-- display experienceForm -->
-     <div class="row m-5" *ngFor="let xp of userData.experienceList">
-         <div class="col-6 col-md-3">
-           {{xp.title}}
-         </div>
-       <div class="col-6 col-md-3">
-        
-           {{xp.company}}
-       </div>
-       <div class="col-6 col-md-3">
-       
-         {{xp.emptype}}
-       </div>
-       <div class="col-6 col-md-3">
-       <a  (click) = "findindex(xp)" (click)="editExp.show()"><mdb-icon far icon="edit" ></mdb-icon> </a> 
-       &nbsp;
-       <a  (click) = "findindex(xp)" (click)="delExp.show()"><mdb-icon fas icon="ban"></mdb-icon> </a>
-      </div>
+<div class="row m-5" *ngFor="let xp of userData.experienceList">
+    <div class="col-6 col-md-3">
+        {{xp.company}}
     </div>
+    <div class="col-6 col-md-3">
+
+        {{xp.title}}
+    </div>
+    <div class="col-6 col-md-3">
+
+        {{xp.emptype}}
+    </div>
+    <div class="col-6 col-md-3">
+        <a (click)="findindex(xp)" (click)="editExp.show()">
+            <mdb-icon far icon="edit"></mdb-icon>
+        </a>
+        &nbsp;
+        <a (click)="findindex(xp)" (click)="delExp.show()">
+            <mdb-icon fas icon="ban"></mdb-icon>
+        </a>
+    </div>
+</div>
 
 
-    <!-- <a class="m-auto" *ngIf="AtLeastOneExp" (click)="saveProfile()">
+<!-- <a class="m-auto" *ngIf="AtLeastOneExp" (click)="saveProfile()">
         SAVE CHANGES
     </a> -->
-    <div class="text-center">
-       <button *ngIf="editExp" (click)="saveProfile()" mdbBtn class="btn-lg btn-success waves-light"
-        mdbWavesEffect>SAVE CHANGES</button>
-     </div>
+<div class="text-center">
+    <button *ngIf="editExp" (click)="saveProfile()" mdbBtn class="btn-lg btn-success waves-light" mdbWavesEffect>SAVE CHANGES</button>
+</div>
 
 <!-- Personal Details Modal -->
 
-     <div mdbModal #editLocation="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Edit Location</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="editLocation.hide()">
+<div mdbModal #editLocation="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Location</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="editLocation.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
+            </div>
 
-      <form [formGroup]="PersonalDetailsForm">   
-       <div class="modal-body mx-3">
-         <div class="row">
-           <div class="col-md-6">
-            <div class="form-group">
-              <label for="formCountry" class="">Country</label>
-              <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
-                  <select formControlName="country" class="form-control" #country (change)= "allStatesOfCountry(country.value)" id="formCountry">
+            <form [formGroup]="PersonalDetailsForm">
+                <div class="modal-body mx-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="formCountry" class="">Country</label>
+                                <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                                <select formControlName="country" class="form-control" #country (change)="allStatesOfCountry(country.value)" id="formCountry">
                 <option value="" selected>Select</option>
                 <option *ngFor="let country of countryList" [value]="country.name"> {{ country?.name }}</option>
               </select>
-            </div>
-           </div>
-           <div class="col-md-6">
-            <div class="mb-3 form-group">
-                <label for="formState" class="">State</label>
-                <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
-                    <select formControlName="state" class="form-control" #state (change)="allCitiesOfState(state.value)" id="formState">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3 form-group">
+                                <label for="formState" class="">State</label>
+                                <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                                <select formControlName="state" class="form-control" #state (change)="allCitiesOfState(state.value)" id="formState">
                   <option value="" selected>Select State</option>
                   <option *ngFor="let state of stateList" [value]="state.name"> {{ state?.name }}</option>
                 </select>
-            </div>
-           </div>
-         </div>
-         <div class="row">
-           <div class="col-md-6">
-            <div class="form-group">
-              <label for="formCity" class="">City</label>
-              <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
-                  <select formControlName="city" class="form-control" id="formCity" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="formCity" class="">City</label>
+                                <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                                <select formControlName="city" class="form-control" id="formCity">
                 <option value="" selected>Select City</option>
                 <option *ngFor="let item of cityList" [value]="item.name"> {{ item?.name }}</option>
               </select>
-            </div>
-           </div>
-         </div>
+                            </div>
+                        </div>
+                    </div>
 
-      </div>
-      </form>
-      <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="deep-orange" class="waves-light" (click)="editAddress()" mdbWavesEffect>Save</button>
-      </div>
+                </div>
+            </form>
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="deep-orange" class="waves-light" (click)="editAddress()" mdbWavesEffect>Save</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Personal Details Modal -->
 
 <!-- Adding Experience Modal -->
 
-  <div mdbModal #addExp="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
-   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">Add Experience</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="addExp.hide()">
+<div mdbModal #addExp="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Add Experience</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="addExp.hide()">
           <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-
-      <form [formGroup]="experienceForm">   
-       <div class="modal-body mx-3">
-         <div class="row">
-           <div class="col-md-6">
-            <div class="form-group">
-              <label for="comp" class="form-label">Company</label>
-              <input type="text" id="comp" class="form-control" formControlName="company"  placeholder="">
-              </div>
-           </div>
-           <div class="col-md-6">
-            <div class="mb-3 form-group">
-              <label for="position" class="form-label">Title</label>
-              <input type="text" class="form-control" id="position" formControlName="title" placeholder="Enter your title">
             </div>
-           </div>
-         </div>
-         <div class="row">
-           <div class="col-md-6">
-            <div class="form-group">
-              <label for="form3" class="">Employment Type</label>
-              <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
-                  <select formControlName="emptype" class="form-control">
+
+            <form [formGroup]="experienceForm">
+                <div class="modal-body mx-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="comp" class="form-label">Company</label>
+                                <input type="text" id="comp" class="form-control" formControlName="company" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3 form-group">
+                                <label for="position" class="form-label">Title</label>
+                                <input type="text" class="form-control" id="position" formControlName="title" placeholder="Enter your title">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form3" class="">Employment Type</label>
+                                <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                                <select formControlName="emptype" class="form-control">
                 <option value="" selected>Select Employment Type</option>
                 <option *ngFor="let emp of empList" [value]="emp"> {{ emp }}</option>
               </select>
-            </div>
-           </div>
-         </div>
+                            </div>
+                        </div>
+                    </div>
 
-      </div>
-      </form>
-      <div class="modal-footer d-flex justify-content-center">
-        <button mdbBtn color="deep-orange" class="waves-light" (click)="addExperienceForm()" mdbWavesEffect>Save</button>
-      </div>
+                </div>
+            </form>
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="deep-orange" class="waves-light" (click)="addExperienceForm()" mdbWavesEffect>Save</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <!-- Adding Experience Modal -->
 <!-- edit exp model -->
-<div mdbModal #editExp="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
-aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
- <div class="modal-header text-center">
-   <h4 class="modal-title w-100 font-weight-bold">Edit Experience</h4>
-   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="editExp.hide()">
+<div mdbModal #editExp="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Experience</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="editExp.hide()">
      <span aria-hidden="true">&times;</span>
    </button>
- </div>
+            </div>
 
- <form [formGroup]="experienceForm">   
-  <div class="modal-body mx-3">
-    <div class="row">
-      <div class="col-md-6">
-       <div class="form-group">
-         <label for="comp" class="form-label">Company</label>
-         <input type="text" class="form-control" formControlName="company"  placeholder="{{currentid}}">
-         </div>
-      </div>
-      <div class="col-md-6">
-       <div class="mb-3 form-group">
-         <label for="position" class="form-label">Title</label>
-         <input type="text" class="form-control" formControlName="title" placeholder="Enter your title">
-       </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-       <div class="form-group">
-         <label for="form3" class="">Employment Type</label>
-         <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
-             <select formControlName="emptype" class="form-control">
+            <form [formGroup]="experienceForm">
+                <div class="modal-body mx-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="comp" class="form-label">Company</label>
+                                <input type="text" class="form-control" formControlName="company" placeholder="{{currentid}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3 form-group">
+                                <label for="position" class="form-label">Title</label>
+                                <input type="text" class="form-control" formControlName="title" placeholder="Enter your title">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="form3" class="">Employment Type</label>
+                                <!-- <select formControlName="Employmenttype" class="form-control" [(ngModel)] = "EmpTypeSelected"> -->
+                                <select formControlName="emptype" class="form-control">
            <option value="" selected>Select Employment Type</option>
            <option *ngFor="let emp of empList" [value]="emp"> {{ emp }}</option>
          </select>
-       </div>
-      </div>
-    </div>
+                            </div>
+                        </div>
+                    </div>
 
- </div>
- </form>
- <div class="modal-footer d-flex justify-content-center">
-   <button mdbBtn color="deep-orange" class="waves-light" (click)="editsingleexp()" (click) = "editExp.hide()" mdbWavesEffect>Save</button>
- </div>
-</div>
-</div>
+                </div>
+            </form>
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="deep-orange" class="waves-light" (click)="editsingleexp()" (click)="editExp.hide()" mdbWavesEffect>Save</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- del -->
-<div mdbModal #delExp="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
-aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
- <div class="modal-header text-center">
-   <h4 class="modal-title w-100 font-weight-bold">Edit Experience</h4>
-   <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="delExp.hide()">
+<div mdbModal #delExp="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Edit Experience</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="delExp.hide()">
      <span aria-hidden="true">&times;</span>
    </button>
- </div>
- <div class="modal-footer d-flex justify-content-center">
-   <button mdbBtn color="deep-orange" class="waves-light" (click)="deleteexp()" (click) = "editExp.hide()" mdbWavesEffect>Save</button>
- </div>
-</div>
-</div>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="deep-orange" class="waves-light" (click)="deleteexp()" (click)="editExp.hide()" mdbWavesEffect>Save</button>
+            </div>
+        </div>
+    </div>
 </div>
