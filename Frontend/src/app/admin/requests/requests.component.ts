@@ -27,15 +27,21 @@ export class RequestsComponent implements OnInit {
      )
     }
 
-   acceptVerify(){
-    // this.userData = this._alumni;
-    //  console.log(this.userData)
-    // this._alumni.verify(this.userData)
-    // .subscribe(
-    //   data => {
-    //     window.localStorage.setItem("UserData", JSON.stringify(data))
-    //   },
-    //   error => console.error(error)
-    // )
+   acceptVerify(user:any){
+    console.log(user)
+    this._alumni.SetVerified(user)
+    .subscribe(
+      data => {console.log(data) , this.All_AlumniData()
+      window.localStorage.setItem("UserData", JSON.stringify(data))},
+      error => console.error(error)
+      );
+   }
+   deleteUser(user:any){
+    console.log(user)
+    this._alumni.deleteUser(user)
+    .subscribe(
+      data => {console.log(data) , this.All_AlumniData()},
+      error => console.error(error)
+      );
    }
 }

@@ -64,6 +64,21 @@ constructor(private _http : HttpClient) { }
     //   )
 
   }
+  SetVerified(user:any)
+  {
+    console.log("HUIHI")
+    return this._http.put('http://127.0.0.1:3000/user/verified',user,{
+      observe:'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    })
+  }
+  deleteUser(user:any)
+  {
+    return this._http.put('http://127.0.0.1:3000/user/DeleteProfle',user,{
+      observe:'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    })
+  }
 
   handleError(error: HttpErrorResponse) {
     let errorMessage = '';
