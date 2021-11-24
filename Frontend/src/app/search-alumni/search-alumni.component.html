@@ -29,9 +29,10 @@
         </div>
         <input type="text" [(ngModel)]="searchYear" class="form-control" placeholder="Passout">
     </div>
+
     <div class="row col-10">
         <div class="col-5" *ngFor="let user of alluser |  alumniSearch:searchName:searchCourse:searchStream:searchYear ">
-            <div class="card m-5" *ngIf="user.verified == false " style="width: 38rem;">
+            <div class="card m-5" *ngIf="user.verified == true " style="width: 38rem;">
                 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                 <div class="card-body">
                     <h5 class="card-title"> <b>Er. {{user.fname}} {{user.lname}}</b> </h5>

@@ -20,6 +20,8 @@ import { SearchAlumniComponent } from './search-alumni/search-alumni.component';
 import { AlumniSearchPipe } from './pipes/alumni-search.pipe';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { RequestsComponent } from './admin/requests/requests.component';
+import { AdminService } from './services/admin.service';
+import { AdminSigninComponent } from './admin/admin-signin/admin-signin.component';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { RequestsComponent } from './admin/requests/requests.component';
     SearchAlumniComponent,
     AlumniSearchPipe,
     DashboardComponent,
-    RequestsComponent
+    RequestsComponent,
+    AdminSigninComponent
   ],
   imports: [
     FormsModule,ReactiveFormsModule,
@@ -45,7 +48,9 @@ import { RequestsComponent } from './admin/requests/requests.component';
     MDBBootstrapModule.forRoot(),
 
   ],
-  providers: [AlumniService,BlogService ,{provide:HTTP_INTERCEPTORS , useClass:AuthInterceptor , multi:true}],
+  providers: [AlumniService, BlogService , AdminService,
+    {provide:HTTP_INTERCEPTORS , useClass:AuthInterceptor , multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -112,9 +112,6 @@ router.get('/alumni', checkAuth, function(req, res, next) {
     return res.status(200).json(userId);
 });
 
-//EDIT PROFILE
-
-
 
 //PUT requests
 //( edit profile )
@@ -193,25 +190,4 @@ router.get('/search-alumni', function(req, res, next) {
         })
 
 });
-router.put('/verified', function(req, res, next) {
-    console.log("working")
-    console.log(req.body._id)
-        
-    Alumni.findByIdAndUpdate(req.body._id, {
-        verified: true,
-    }).then(alumni => {
-        return res.status(200).json(alumni);
-    });
-});
-router.put('/DeleteProfle', async (req, res , next) => {
-    const _id = req.body._id;
-    console.log(_id)
-    try {
-     const cinema = await Alumni.findByIdAndRemove(_id);
-     if (!cinema) return res.sendStatus(404);
-     return res.send(cinema);
-    } catch (e) {
-     return res.sendStatus(400);
-    }
-   })
 module.exports = router;

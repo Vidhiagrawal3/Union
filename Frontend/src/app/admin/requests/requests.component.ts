@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AdminService } from 'src/app/services/admin.service';
 import { AlumniService } from '../../services/alumni.service';
 
 @Component({
@@ -9,27 +10,23 @@ import { AlumniService } from '../../services/alumni.service';
 export class RequestsComponent implements OnInit {
    alluser: any=[];
    userData: any;
-    constructor(private _alumni: AlumniService) {
-
-    }
+    constructor(private _alumni: AlumniService, private admin: AdminService) {}
 
     ngOnInit(){
     this.All_AlumniData();
     }
-    
- 
+  
     All_AlumniData(){
     this._alumni.FetchAlumni()
     .subscribe(
       data=>{this.alluser = data},
       error=>{console.error(console.error()
-      )}
-     )
-    }
+        )}
+     )}
 
    acceptVerify(user:any){
     console.log(user)
-    this._alumni.SetVerified(user)
+    this.admin.SetVerified(user)
     .subscribe(
       data => {console.log(data) , this.All_AlumniData()
       window.localStorage.setItem("UserData", JSON.stringify(data))},
@@ -38,10 +35,10 @@ export class RequestsComponent implements OnInit {
    }
    deleteUser(user:any){
     console.log(user)
-    this._alumni.deleteUser(user)
+    this.admin.deleteUser(user)
     .subscribe(
       data => {console.log(data) , this.All_AlumniData()},
       error => console.error(error)
-      );
-   }
+      )
+    }
 }
