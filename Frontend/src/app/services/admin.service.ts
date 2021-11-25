@@ -9,7 +9,6 @@ export class AdminService {
   constructor(private _http: HttpClient) { }
 
   login(body: any){
-    console.log(body)
     const res = this._http.post<{token: string}>(environment.BASE_URL + '/admin/login',body , {
       observe:'body',
       withCredentials: true,

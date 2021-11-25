@@ -24,6 +24,7 @@ import { AdminService } from './services/admin.service';
 import { AdminSigninComponent } from './admin/admin-signin/admin-signin.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +38,7 @@ import { AdminSigninComponent } from './admin/admin-signin/admin-signin.componen
     AlumniSearchPipe,
     DashboardComponent,
     RequestsComponent,
-    AdminSigninComponent
+    AdminSigninComponent,
   ],
   imports: [
     FormsModule,ReactiveFormsModule,

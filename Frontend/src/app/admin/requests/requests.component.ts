@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from 'src/app/services/admin.service';
 import { AlumniService } from '../../services/alumni.service';
 
@@ -10,12 +11,22 @@ import { AlumniService } from '../../services/alumni.service';
 export class RequestsComponent implements OnInit {
    alluser: any=[];
    userData: any;
-    constructor(private _alumni: AlumniService, private admin: AdminService) {}
+    constructor(private _alumni: AlumniService, private _router:Router, private admin: AdminService) {}
 
     ngOnInit(){
+    this.checkToken();
     this.All_AlumniData();
     }
-  
+    checkToken()
+    {
+      const token =localStorage.getItem("token");
+      if( token != "secret_this_should_be_longer")
+      {
+         alert("Please Enter The Key") 
+         this._router.navigate(['/admin/signin'])
+      }
+     
+    }
     All_AlumniData(){
     this._alumni.FetchAlumni()
     .subscribe(

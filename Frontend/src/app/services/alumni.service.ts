@@ -20,7 +20,10 @@ constructor(private _http : HttpClient) { }
   getToken(){
   return this.token;
   }
-
+  settoken(token:any)
+  {
+    this.token = token
+  }
   getIsAuth(){
     return this.isAuthenticated;
   }

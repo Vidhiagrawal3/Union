@@ -4,17 +4,14 @@ const jwt = require('jsonwebtoken');
 const Alumni = require('../models/alumni');
 const checkAuth = require('../middleware/check-auth');
 const router = express.Router();
-
+const checkAdmin = require('../middleware/check-admin')
 router.post("/login", (req, res, next) => {
-    console.log(req.body.passcode);
     let passcode = '123123'
-    console.log(passcode)
-    const com = bcrypt.compareSync(req.body.passcode, passcode)
+    const com = req.body.passcode === passcode
     try {
-
         console.log(com)
         if (com) {
-            const token = jwt.sign("I can be anything", "secret_this_should_be_longer", );
+            const token =("hi", "secret_this_should_be_longer");
             res.status(200).json({
                 message: 'Congrats!',
                 token: token
@@ -38,7 +35,7 @@ router.post("/login", (req, res, next) => {
     // })
 });
 
-router.put('/verified', function(req, res, next) {
+router.put('/verified', checkAdmin, function(req, res, next) {
     console.log("working")
     console.log(req.body._id)
 
@@ -48,7 +45,7 @@ router.put('/verified', function(req, res, next) {
         return res.status(200).json(alumni);
     });
 });
-router.put('/DeleteProfle', async(req, res, next) => {
+router.put('/DeleteProfle',checkAdmin, async(req, res, next) => {
     const _id = req.body._id;
     console.log(_id)
     try {
