@@ -14,13 +14,6 @@ export class AdminService {
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     })
-    // res.subscribe(res=>{
-
-    //   this.token=res.token;
-    //   this.isAuthenticated = true;
-    //   this.authStatusListener.next(true);
-    //   this.saveAuthData(this.token);
-     //})
     return res
   }
 

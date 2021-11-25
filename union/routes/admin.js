@@ -11,7 +11,7 @@ router.post("/login", (req, res, next) => {
     try {
         console.log(com)
         if (com) {
-            const token =("hi", "secret_this_should_be_longer");
+            const token = ("hi", "secret_this_should_be_longer");
             res.status(200).json({
                 message: 'Congrats!',
                 token: token
@@ -26,13 +26,6 @@ router.post("/login", (req, res, next) => {
             message: "Auth Failed3"
         })
     }
-
-    // .catch((err) => {
-    //     console.log(err)
-    //     return res.status(401).json({
-    //         message: "Auth Failed3"
-    //     })
-    // })
 });
 
 router.put('/verified', checkAdmin, function(req, res, next) {
@@ -45,7 +38,7 @@ router.put('/verified', checkAdmin, function(req, res, next) {
         return res.status(200).json(alumni);
     });
 });
-router.put('/DeleteProfle',checkAdmin, async(req, res, next) => {
+router.put('/DeleteProfle', checkAdmin, async(req, res, next) => {
     const _id = req.body._id;
     console.log(_id)
     try {
