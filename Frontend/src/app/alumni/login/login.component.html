@@ -23,22 +23,15 @@
         <div>New to Union?<a routerLink="/register"> Sign up here!</a></div>
 
         <!-- Sign up button -->
-        <button mdbBtn color="info" size="lg" block="true" class="my-4" type="submit" (click)="login()" *ngIf="!isLoading">Sign in
+        <button mdbBtn color="info" size="lg" block="true" class="my-4" type="submit" (click)="login()">Sign in
      </button>
 
         <!-- Loader -->
-        <div class="spinner-border" role="status" *ngIf="isLoading">
+        <!-- <div class="spinner-border" role="status" *ngIf="isLoading">
             <span class="sr-only">Loading...</span>
-        </div>
-
-
-
-
-
-
-
+        </div> -->
     </form>
-    <!-- Default form login -->
+
 </div>
 
 <div class="col-md-3">

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AlumniService } from '../services/alumni.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AlumniService } from '../../services/alumni.service';
+
 @Component({
   selector: 'app-search-alumni',
   templateUrl: './search-alumni.component.html',

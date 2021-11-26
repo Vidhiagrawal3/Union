@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AlumniService } from '../services/alumni.service';
+import { AlumniService } from '../../services/alumni.service';
 import csc from 'country-state-city';
-// import csc from 'country-state-city';
 
 @Component({
   selector: 'app-edit-profile',

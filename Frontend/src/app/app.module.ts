@@ -1,44 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-// MDB Angular Free
 import { IconsModule } from 'angular-bootstrap-md'
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import{AlumniService} from './services/alumni.service'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AlumniHomeComponent } from './alumni-home/alumni-home.component';
 import { HeaderComponent } from './header/header.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { AuthInterceptor } from './services/auth-interceptor';
-import { BlogsComponent } from './blogs/blogs.component';
+import { AlumniService } from './services/alumni.service'
 import { BlogService } from './services/blog.service';
-import { SearchAlumniComponent } from './search-alumni/search-alumni.component';
-import { AlumniSearchPipe } from './pipes/alumni-search.pipe';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { RequestsComponent } from './admin/requests/requests.component';
 import { AdminService } from './services/admin.service';
-import { AdminSigninComponent } from './admin/admin-signin/admin-signin.component';
-
-
+import { AlumniModule } from './alumni/alumni.module';
+import { AdminModule } from './admin/admin.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    AlumniHomeComponent,
     HeaderComponent,
-    EditProfileComponent,
-    BlogsComponent,
-    SearchAlumniComponent,
-    AlumniSearchPipe,
-    DashboardComponent,
-    RequestsComponent,
-    AdminSigninComponent,
   ],
   imports: [
     FormsModule,ReactiveFormsModule,
@@ -46,8 +26,10 @@ import { AdminSigninComponent } from './admin/admin-signin/admin-signin.componen
     BrowserModule,
     AppRoutingModule,
     IconsModule,
-    MDBBootstrapModule.forRoot(),
-
+    MDBBootstrapModule,
+    AlumniModule,
+    AdminModule,
+    SharedModule
   ],
   providers: [AlumniService, BlogService , AdminService,
     {provide:HTTP_INTERCEPTORS , useClass:AuthInterceptor , multi:true}

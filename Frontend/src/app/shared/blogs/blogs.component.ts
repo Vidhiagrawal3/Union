@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AlumniService } from '../services/alumni.service';
+import { AlumniService } from '../../services/alumni.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BlogService } from '../services/blog.service';
+import { BlogService } from '../../services/blog.service';
 import {Subscription} from 'rxjs';
 @Component({
   selector: 'app-blogs',

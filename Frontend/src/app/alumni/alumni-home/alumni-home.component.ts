@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import{ AlumniService} from '../services/alumni.service';
-import { BlogService } from '../services/blog.service';
+import{ AlumniService} from '../../services/alumni.service';
+import { BlogService } from '../../services/blog.service';
 @Component({
   selector: 'app-alumni-home',
   templateUrl: './alumni-home.component.html',

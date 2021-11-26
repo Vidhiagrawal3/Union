@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import {Router} from '@angular/router';
-import {AlumniService } from '../services/alumni.service';
+import {AlumniService } from '../../services/alumni.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +10,7 @@ import {AlumniService } from '../services/alumni.service';
 })
 export class LoginComponent implements OnInit {
 
-   isLoading = false;
+  //  isLoading = false;
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null,[Validators.email,Validators.required]),
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
 
     // console.log(JSON.stringify(this.loginForm.value));
 
-     this.isLoading = true;
+    //  this.isLoading = true;
      this._alumniService.login(JSON.stringify(this.loginForm.value))
      .subscribe(
        token=>{console.log(token),this._router.navigate(['/alumni-home'])},

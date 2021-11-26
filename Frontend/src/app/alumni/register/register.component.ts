@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlumniService } from 'src/app/services/alumni.service';
-import { mimeType } from '../validators/mime-type.validator';
+import { mimeType } from '../../validators/mime-type.validator';
 
 @Component({
   selector: 'app-register',
