@@ -6,26 +6,43 @@ import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { AdminSigninComponent } from "./admin-signin/admin-signin.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { RequestsComponent } from "./requests/requests.component";
+import { AdminHomeComponent } from './admin-home/admin-home.component';
+import { SharedModule } from "../shared/shared.module";
+import { SearchAlumniComponent } from "../shared/search-alumni/search-alumni.component";
+import { AdminService } from "./services/admin.service";
 
 const routes: Routes = [
-    {path: "admin/requests", component: RequestsComponent },
-    {path: "admin/signin" , component: AdminSigninComponent}
+    {path: "adminsignin" , component: AdminSigninComponent},
+    {path: 'admin' , component: AdminHomeComponent, children: [
+      {
+        path: '', redirectTo: 'requests', pathMatch: 'full'
+      },
+      {
+        path: 'requests' , component: RequestsComponent 
+      },
+      {
+        path: 'search' , component: SearchAlumniComponent
+      }
+    ]}
 ]
 
 @NgModule({
     declarations: [
       AdminSigninComponent,
       DashboardComponent,
-      RequestsComponent
+      RequestsComponent,
+      AdminHomeComponent
     ],
     imports: [
        CommonModule,
        ReactiveFormsModule,
        FormsModule,
+       SharedModule,
        MDBBootstrapModule.forRoot(),
        RouterModule.forChild(routes)
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
+    providers: [AdminService]
 })
 
 export class AdminModule {}
