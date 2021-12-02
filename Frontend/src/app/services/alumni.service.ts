@@ -3,9 +3,11 @@ import {  HttpClient, HttpHeaders, HttpErrorResponse  } from '@angular/common/ht
 // import { catchError, map } from 'rxjs/operators';
 import {Subject,Observable, throwError} from 'rxjs'; 
 import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class AlumniService {
   private isAuthenticated = false;
 private token:string;

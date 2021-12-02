@@ -3,35 +3,37 @@
 
     <!-- Navbar brand -->
     <mdb-navbar-brand><a class="navbar-brand" href="#">UNION</a></mdb-navbar-brand>
-  
+
     <!-- Collapsible content -->
     <links>
-  
-      <!-- Links -->
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> Contact<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item" *ngIf="!userIsAuthenticated">
-          <a class="nav-link waves-light" routerLink = "/login" mdbWavesEffect> LOGIN</a>
-        </li>
-        <li class="nav-item" *ngIf="!userIsAuthenticated">
-          <a class="nav-link waves-light" routerLink = "/register" mdbWavesEffect> REGISTER</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" routerLink = "/alumni-home" mdbWavesEffect> HOME</a>
-        </li>
-        <li class="nav-item" *ngIf="userIsAuthenticated">
-          <a class="nav-link waves-light" routerLink = "/editprofile" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon> EDIT PROFILE</a>
-        </li>
-        <li class="nav-item" *ngIf="userIsAuthenticated">
-          <a class="nav-link waves-light" (click)="onLogout()" mdbWavesEffect >LOGOUT</a>
-        </li>
-        
-      
-        
-        <!-- Dropdown -->
-        <!-- <li class="nav-item dropdown" dropdown>
+
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link waves-light" mdbWavesEffect>
+                    <mdb-icon fas icon="envelope"></mdb-icon> Contact<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item" *ngIf="!userIsAuthenticated">
+                <a class="nav-link waves-light" routerLink="/login" mdbWavesEffect> LOGIN</a>
+            </li>
+            <li class="nav-item" *ngIf="!userIsAuthenticated">
+                <a class="nav-link waves-light" routerLink="/register" mdbWavesEffect> REGISTER</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-light" routerLink="/home" mdbWavesEffect> HOME</a>
+            </li>
+            <li class="nav-item" *ngIf="userIsAuthenticated">
+                <a class="nav-link waves-light" routerLink="/editprofile" mdbWavesEffect>
+                    <mdb-icon fas icon="cog"></mdb-icon> EDIT PROFILE</a>
+            </li>
+            <li class="nav-item" *ngIf="userIsAuthenticated">
+                <a class="nav-link waves-light" (click)="onLogout()" mdbWavesEffect>LOGOUT</a>
+            </li>
+
+
+
+            <!-- Dropdown -->
+            <!-- <li class="nav-item dropdown" dropdown>
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             <mdb-icon fas icon="user"></mdb-icon> Profile<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
@@ -39,11 +41,11 @@
             <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
           </div>
         </li> -->
-  
-      </ul>
-      <!-- Links -->
+
+        </ul>
+        <!-- Links -->
     </links>
     <!-- Collapsible content -->
-  
-  </mdb-navbar>
-  <!--/.Navbar-->
+
+</mdb-navbar>
+<!--/.Navbar-->
