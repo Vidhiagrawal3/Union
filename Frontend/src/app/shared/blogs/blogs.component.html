@@ -6,8 +6,10 @@
 					<span class="category">{{blog.fname}}</span>
 					<h1>{{blog.tblog}}</h1>
 					<p>{{blog.blog}}</p>
+					<a *ngIf="getrole()" (click)="deleteBlog(blog)" class="btn btn-danger m-2">Remove</a>
 					<!-- <img [src]="blog.imageURL" alt=""> -->
 				</div>
+				
 			</div>
 			<!-- <div class="blog-card python">
 				<div class="content-mask">

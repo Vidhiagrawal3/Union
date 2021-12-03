@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {Subscription} from 'rxjs';
-import { AlumniService } from '../services/alumni.service';
+import { AlumniService } from '../../services/alumni.service';
 
 @Component({
   selector: 'app-header',

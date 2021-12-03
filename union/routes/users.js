@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const Alumni = require('../models/alumni');
 const checkAuth = require('../middleware/check-auth');
 const Blog = require('../models/blog');
+const checkAdmin = require('../middleware/check-admin');
 const router = express.Router();
 
 const MINE_TYPE = {
@@ -163,7 +164,7 @@ router.post('/blog', multer({ storage: storage }).single('image'), async functio
     }
 });
 
-
+// blogs
 router.get('/fetch', function(req, res, next) {
     Blog.find()
         .then(async blog => {
@@ -177,6 +178,17 @@ router.get('/fetch', function(req, res, next) {
         })
 
 });
+router.put('/DeleteBlog', checkAdmin, async(req, res, next) => {
+    const _id = req.body._id;
+    console.log(_id)
+    try {
+        const notAlumni = await Blog.findByIdAndRemove(_id);
+        if (!notAlumni) return res.sendStatus(404);
+        return res.send(notAlumni);
+    } catch (e) {
+        return res.sendStatus(400);
+    }
+})
 router.get('/search-alumni', function(req, res, next) {
     Alumni.find()
         .then(async alumni => {

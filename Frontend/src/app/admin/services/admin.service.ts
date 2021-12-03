@@ -11,7 +11,9 @@ export class AdminService {
   constructor(private _http: HttpClient) { }
 
   adminLoginStatus(){
+    console.log("hehe its" + this.adminLoggedin);
     return this.adminLoggedin;
+    
   }
 
   login(body: any){
@@ -22,6 +24,7 @@ export class AdminService {
     })
     
     res.subscribe(res=>{
+      localStorage.setItem("Role", "Admin");
       this.adminLoggedin = true;
     })
 
