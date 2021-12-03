@@ -102,6 +102,7 @@ constructor(private _http : HttpClient) { }
       const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
       console.log(expirationDate);
       this.saveAuthData(this.token ,expirationDate);
+      this.alumni();
     })
     return res
   }
