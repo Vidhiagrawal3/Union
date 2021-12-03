@@ -65,6 +65,7 @@ export class EditProfileComponent implements OnInit {
 
   getData(){
     this.userData = this.alumniService.getUserinfo();
+    console.log(this.userData)
     // this.fname =this.userData.fname;
     // this.lname = this.userData.lname;
     // this.email = this.userData.email;

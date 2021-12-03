@@ -30,7 +30,14 @@ export class BlogsComponent implements OnInit {
       this.userIsAuthenticated = isAuthenticated;
     });
   }
-
+  getrole()
+  {
+     
+    if(localStorage.getItem("Role") == "Admin")
+    return true
+    else
+    return false;
+  }
   OnImagePick(event:Event)
   {
     const file = (event.target as HTMLInputElement).files[0];
@@ -61,4 +68,11 @@ export class BlogsComponent implements OnInit {
    
  )
   }
+  deleteBlog(blog:any){
+    this._blogging.deleteBlog(blog)
+    .subscribe(
+      data => {console.log(data) , this.allblogscall()},
+      error => console.error(error)
+      )
+    }
 }

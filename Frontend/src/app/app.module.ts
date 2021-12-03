@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HeaderComponent } from './header/header.component';
+import { HeaderComponent } from './shared/header/header.component';
 import { AuthInterceptor } from './services/auth-interceptor';
 import { AlumniService } from './services/alumni.service'
 import { BlogService } from './services/blog.service';
@@ -39,6 +39,7 @@ const routes : Routes = [
     AdminModule,
     SharedModule
   ],
+  
   providers: [AlumniService, BlogService ,
     {provide:HTTP_INTERCEPTORS , useClass:AuthInterceptor , multi:true}
   ],
