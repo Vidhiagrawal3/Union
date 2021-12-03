@@ -10,10 +10,18 @@ import { HeaderComponent } from './header/header.component';
 import { AuthInterceptor } from './services/auth-interceptor';
 import { AlumniService } from './services/alumni.service'
 import { BlogService } from './services/blog.service';
-import { AdminService } from './services/admin.service';
 import { AlumniModule } from './alumni/alumni.module';
 import { AdminModule } from './admin/admin.module';
 import { SharedModule } from './shared/shared.module';
+import { Routes } from '@angular/router';
+
+const routes : Routes = [
+  {path:'', redirectTo:'/home', pathMatch: 'full'},
+
+  {path: 'home', 
+    loadChildren: () => import('./shared/shared.module').then(module => module.SharedModule)
+  }
+]
 
 @NgModule({
   declarations: [
@@ -31,7 +39,7 @@ import { SharedModule } from './shared/shared.module';
     AdminModule,
     SharedModule
   ],
-  providers: [AlumniService, BlogService , AdminService,
+  providers: [AlumniService, BlogService ,
     {provide:HTTP_INTERCEPTORS , useClass:AuthInterceptor , multi:true}
   ],
   bootstrap: [AppComponent]

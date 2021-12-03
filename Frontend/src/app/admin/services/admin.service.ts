@@ -6,7 +6,13 @@ import { environment } from 'src/environments/environment';
 })
 export class AdminService {
 
+  private adminLoggedin = false;
+
   constructor(private _http: HttpClient) { }
+
+  adminLoginStatus(){
+    return this.adminLoggedin;
+  }
 
   login(body: any){
     const res = this._http.post<{token: string}>(environment.BASE_URL + '/admin/login',body , {
@@ -14,6 +20,11 @@ export class AdminService {
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     })
+    
+    res.subscribe(res=>{
+      this.adminLoggedin = true;
+    })
+
     return res
   }
 

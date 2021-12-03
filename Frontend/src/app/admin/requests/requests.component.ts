@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AdminService } from 'src/app/services/admin.service';
 import { AlumniService } from '../../services/alumni.service';
+import { AdminService } from '../services/admin.service';
 
 @Component({
   selector: 'app-requests',
@@ -23,7 +23,7 @@ export class RequestsComponent implements OnInit {
       if( token != "secret_this_should_be_longer")
       {
          alert("Please Enter The Key") 
-         this._router.navigate(['/admin/signin'])
+         this._router.navigate(['adminsignin'])
       }
      
     }
