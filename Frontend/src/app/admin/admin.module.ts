@@ -10,6 +10,7 @@ import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { SharedModule } from "../shared/shared.module";
 import { SearchAlumniComponent } from "../shared/search-alumni/search-alumni.component";
 import { AdminService } from "./services/admin.service";
+import { AlumniProfileComponent } from "../shared/alumni-profile/alumni-profile.component";
 
 const routes: Routes = [
     {path: "adminsignin" , component: AdminSigninComponent},
@@ -22,7 +23,7 @@ const routes: Routes = [
       },
       {
         path: 'search' , component: SearchAlumniComponent
-      }
+      },
     ]}
 ]
 
