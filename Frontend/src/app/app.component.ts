@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AdminService } from './admin/services/admin.service';
 import { AlumniService } from './services/alumni.service';
 
@@ -9,12 +10,19 @@ import { AlumniService } from './services/alumni.service';
 })
 export class AppComponent implements OnInit{
 
-  adminStatus = false;
-  constructor(private alumniService: AlumniService, private admin: AdminService ){}
+  adminStatus = "aaa";
+  constructor(public router: Router,private alumniService: AlumniService, private admin: AdminService ){}
 
   title = 'union';
+  getrole()
+  {
+    this.adminStatus = localStorage.getItem("Role");
+    if(this.adminStatus == "Admin")
+    return false
+    else
+    return true;
+  }
   ngOnInit(){
     this.alumniService.autoAuthUser();
-    this.adminStatus = this.admin.adminLoginStatus();
   }
 }

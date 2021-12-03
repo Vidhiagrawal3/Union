@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Subject} from 'rxjs';
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
@@ -19,4 +20,12 @@ export class BlogService {
     console.log(PostData);
     return this._http.post('http://127.0.0.1:3000/user/blog',PostData);
   }
+  deleteBlog(blog:any)
+  {
+    return this._http.put(environment.BASE_URL + '/user/DeleteBlog',blog,{
+      observe:'body',
+      headers: new HttpHeaders().append('Content-Type', 'application/json')
+    })
+  }
 }
+
