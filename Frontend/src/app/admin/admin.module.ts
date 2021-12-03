@@ -9,7 +9,8 @@ import { RequestsComponent } from "./requests/requests.component";
 
 const routes: Routes = [
     {path: "admin/requests", component: RequestsComponent },
-    {path: "admin/signin" , component: AdminSigninComponent}
+    {path: "admin/signin" , component: AdminSigninComponent},
+    {path: "admin/" , component:DashboardComponent}
 ]
 
 @NgModule({
