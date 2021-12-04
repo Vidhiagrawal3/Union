@@ -39,15 +39,13 @@ export class SearchAlumniComponent implements OnInit {
    
   }
 
-
-
   allalumnicall(){
     this._alumni.FetchAlumni()
- .subscribe(
+     .subscribe(
    data=>{this.alluser = data},
    error=>{console.error(error)}
    
- )
-  }
+     )
+    }
   
 }

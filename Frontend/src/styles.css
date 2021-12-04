@@ -5,3 +5,13 @@
 .dgreen {
     background-color: #005D63;
 }
+
+.lgreen {
+    background-color: rgba(220, 253, 255, 1);
+}
+
+body {
+    height: 100%;
+    min-height: 85vh;
+    overflow-x: hidden;
+}

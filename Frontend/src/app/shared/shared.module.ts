@@ -14,7 +14,7 @@ const routes: Routes = [
     {path: 'home', component: HomeComponent},
     {path: "blogs", component:BlogsComponent},
     {path:"search" , component:SearchAlumniComponent},
-    {path: 'profile', component: AlumniProfileComponent },
+    {path: 'profile/:id', component: AlumniProfileComponent },
 ]
 
 @NgModule({

@@ -140,6 +140,7 @@ router.put('/user/profile', function(req, res, next) {
     //  })
 });
 
+
 //BLOG starts
 
 router.post('/blog', multer({ storage: storage }).single('image'), async function(req, res, next) {
