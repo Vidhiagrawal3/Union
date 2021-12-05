@@ -17,7 +17,8 @@ export class AlumniProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.alumniId = this.route.snapshot.params.id;
-
+    //this.resAlumni= this.alumni.getAlumniById(this.alumniId);
+    console.log(this.resAlumni)
     // if(this.alumniId){
 
     //  this.alumni.FetchAlumni()
