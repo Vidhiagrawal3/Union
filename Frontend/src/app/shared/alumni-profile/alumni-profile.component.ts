@@ -1,6 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlumniService } from 'src/app/services/alumni.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-alumni-profile',
@@ -11,28 +13,19 @@ export class AlumniProfileComponent implements OnInit {
 
   public alumniId: any;
 
-  constructor(private route: ActivatedRoute, private alumni: AlumniService) { }
-  resAlumni: any;
-   allAlumni: any=[];
-
-  ngOnInit(): void {
+  constructor(private route: ActivatedRoute, private alumni: AlumniService,private _http : HttpClient) { }
+  public resAlumni: any;
+  async getdata()
+  {
     this.alumniId = this.route.snapshot.params.id;
-    //this.resAlumni= this.alumni.getAlumniById(this.alumniId);
-    console.log(this.resAlumni)
-    // if(this.alumniId){
-
-    //  this.alumni.FetchAlumni()
-    //  .subscribe(
-    //    data=>{this.allAlumni = data},
-    //    error=>{console.error(error)}
-    //     )
-    
-    //  this.resAlumni = this.allAlumni.find(obj => {
-    //   return obj._id === this.alumniId 
-    // })
-
-    // console.log(this.resAlumni._id)
-    // }
+      const res = this._http.get<{data:any}>(environment.BASE_URL + '/user/AlumniById/'+ this.alumniId)
+      res.subscribe(res=>{
+        console.log(res)
+        this.resAlumni = res;
+      });
+  }
+  ngOnInit(): void {
+    this.getdata();
   }
 
   

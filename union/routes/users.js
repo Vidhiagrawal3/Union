@@ -62,7 +62,20 @@ async function addtodb(req, res) {
 }
 //login route using JWT authentication
 
+router.get('/AlumniById/:id',(req, res) =>{
+    console.log(req.params.id)
+    Alumni.findById(req.params.id)
+    .then(async alumni => {
 
+        if (!alumni) {
+            return res.status(401).json({
+                message: 'User not present'
+            });
+        }
+        return res.status(200).json(alumni)
+    })
+        
+  });
 router.post("/login", (req, res, next) => {
     // console.log(req.body);
     let fetchedUser
@@ -203,18 +216,5 @@ router.get('/search-alumni', function(req, res, next) {
         })
 
 });
-// router.put('/AlumniById', (req, res, next) => {
-//     console.log(req.body)
-//     Alumni.find()
-//         .then(async alumni => {
 
-//             if (!alumni) {
-//                 return res.status(401).json({
-//                     message: 'User not present'
-//                 });
-//             }
-//             return res.status(200).json(alumni)
-//         })
-
-// });
 module.exports = router;

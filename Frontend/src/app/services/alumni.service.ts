@@ -183,17 +183,16 @@ constructor(private _http : HttpClient) { }
     const alumni = this._http.get(environment.BASE_URL + '/user/search-alumni')
     return alumni;
   }
-// getAlumniById(uid:any){
-// {
-//   const res = this._http.put(environment.BASE_URL + '/user/AlumniById',uid, {
-     
-//     observe:'body',
-//     withCredentials: true,
-//     headers: new HttpHeaders().append('Content-Type', 'application/json')
-//   })
-//   return JSON.stringify(res);
-// }
-// }
+ getAlumniById(uid:any){
+{
+  const res = this._http.get<{data:any}>(environment.BASE_URL + '/user/AlumniById/'+ uid)
+  res.subscribe(res=>{
+    console.log(res)
+    return JSON.stringify(res);
+  });
+  return JSON.stringify(res);
+}
+}
 
 
 }

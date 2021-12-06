@@ -38,7 +38,14 @@ export class SearchAlumniComponent implements OnInit {
     this.allalumnicall();
    
   }
-
+  getrole()
+  {
+     
+    if(localStorage.getItem("Role") == "Admin")
+    return true
+    else
+    return false;
+  }
   allalumnicall(){
     this._alumni.FetchAlumni()
      .subscribe(

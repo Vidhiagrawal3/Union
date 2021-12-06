@@ -11,6 +11,7 @@ import { SharedModule } from "../shared/shared.module";
 import { SearchAlumniComponent } from "../shared/search-alumni/search-alumni.component";
 import { AdminService } from "./services/admin.service";
 import { BlogsComponent } from "../shared/blogs/blogs.component";
+import { AlumniProfileComponent } from "../shared/alumni-profile/alumni-profile.component";
 
 const routes: Routes = [
     {path: "adminsignin" , component: AdminSigninComponent},
@@ -26,6 +27,9 @@ const routes: Routes = [
       },
 {
   path:'blogs' , component: BlogsComponent
+},
+{
+  path:':id' , component: AlumniProfileComponent
 }
     ]}
 ]
