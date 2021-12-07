@@ -12,6 +12,7 @@ import { SearchAlumniComponent } from "../shared/search-alumni/search-alumni.com
 import { AdminService } from "./services/admin.service";
 import { BlogsComponent } from "../shared/blogs/blogs.component";
 import { AlumniProfileComponent } from "../shared/alumni-profile/alumni-profile.component";
+import { VerifiedPipe } from "../shared/pipes/verified.pipe";
 
 const routes: Routes = [
     {path: "adminsignin" , component: AdminSigninComponent},

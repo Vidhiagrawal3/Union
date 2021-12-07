@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AlumniSearchPipe implements PipeTransform {
 
   transform(value: any[] , name:string , course:string , stream:string , gyear:string) {
-    console.log(course,name);
    if(!value || (!name && !course))
    {
      return value;

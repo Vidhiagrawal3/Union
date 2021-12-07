@@ -35,7 +35,7 @@
     </div>
 
     <div class="row col-10">
-        <div class="col-5" *ngFor="let user of alluser |  alumniSearch:searchName:searchCourse:searchStream:searchYear ">
+        <div class="col-5" *ngFor="let user of alluser |verified:true |  alumniSearch:searchName:searchCourse:searchStream:searchYear ">
             <div class="card m-5" *ngIf="user.verified == true " style="width: 38rem;">
                 <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                 <div class="card-body">

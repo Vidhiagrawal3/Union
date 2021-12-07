@@ -1,6 +1,6 @@
 <div class="row mx-5">
-    <div class="col-6" *ngFor="let user of alluser">
-        <div class="card m-5" *ngIf="user.verified == false">
+    <div class="col-6" *ngFor="let user of alluser |verified:false">
+        <div class="card m-5">
             <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
             <div class="card-body">
                 <div class="row ">

@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlumniService } from '../../services/alumni.service';
 import { AdminService } from '../services/admin.service';
-
 @Component({
   selector: 'app-requests',
   templateUrl: './requests.component.html',

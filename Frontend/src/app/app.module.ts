@@ -37,7 +37,7 @@ const routes : Routes = [
     MDBBootstrapModule,
     AlumniModule,
     AdminModule,
-    SharedModule
+    SharedModule,
   ],
   
   providers: [AlumniService, BlogService ,
