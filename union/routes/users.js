@@ -54,12 +54,13 @@ async function addtodb(req, res) {
         verified: false,
         password: Alumni.hash(req.body.password),
         creationDate: Date.now(),
-        bio:""
+        bio: ""
     });
     try {
         doc = await alumni.save();
         return res.status(201).json(doc);
     } catch (err) {
+        console.log(res.json(err));
         return res.status(501).json(err);
     }
 }
@@ -187,8 +188,8 @@ router.get('/search-alumni', function(req, res, next) {
 
 });
 //events
-router.post('/EventPost',checkAdmin, async function(req, res, next) {
-     console.log(req.body);
+router.post('/EventPost', checkAdmin, async function(req, res, next) {
+    console.log(req.body);
     var event = new events({
         etitle: req.body.etitle,
         eDiscription: req.body.eDiscription,
