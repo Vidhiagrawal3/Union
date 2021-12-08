@@ -45,7 +45,7 @@ constructor(private _http : HttpClient) { }
     return JSON.parse(this.UserData);
   }
   register (body:any){
-    console.log(body);
+    // console.log(body);
     return this._http.post(environment.BASE_URL + '/user/register',body , {
       observe:'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
@@ -85,7 +85,7 @@ constructor(private _http : HttpClient) { }
   }
 
   login(body: any){
-    console.log(body);
+    // console.log(body);
     const res = this._http.post<{token:string, expiresIn : number}>(environment.BASE_URL + '/user/login',body , {
       observe:'body',
       withCredentials: true,

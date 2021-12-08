@@ -75,7 +75,7 @@ export class EditProfileComponent implements OnInit {
 
   createBioForm(){
     this.BioForm = new FormGroup({
-      bio: new FormControl('')
+      bio: new FormControl(this.userData.bio)
     })
   }
 

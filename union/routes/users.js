@@ -51,7 +51,8 @@ async function addtodb(req, res) {
         photo: req.body.photo,
         verified: false,
         password: Alumni.hash(req.body.password),
-        creationDate: Date.now()
+        creationDate: Date.now(),
+        bio:""
     });
     try {
         doc = await alumni.save();

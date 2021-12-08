@@ -24,10 +24,7 @@ export class RegisterComponent implements OnInit {
     branch: new FormControl(null),
     gyear: new FormControl(null, [Validators.required]),
     phone: new FormControl(null , [Validators.required]),
-    password: new FormControl(null , [Validators.min(3),Validators.required]),
-    photo: new FormControl(null, {
-      asyncValidators: [mimeType]
-    }),
+    password: new FormControl(null , [Validators.min(3),Validators.required])
     // experienceList: {
     //   company: new FormControl(null),
     //   title: new FormControl(null),
