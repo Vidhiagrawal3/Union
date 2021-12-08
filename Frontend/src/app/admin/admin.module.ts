@@ -13,6 +13,7 @@ import { AdminService } from "./services/admin.service";
 import { BlogsComponent } from "../shared/blogs/blogs.component";
 import { AlumniProfileComponent } from "../shared/alumni-profile/alumni-profile.component";
 import { VerifiedPipe } from "../shared/pipes/verified.pipe";
+import { EventsComponent } from "../shared/events/events.component";
 
 const routes: Routes = [
     {path: "adminsignin" , component: AdminSigninComponent},
@@ -26,6 +27,8 @@ const routes: Routes = [
       {
         path: 'search' , component: SearchAlumniComponent
       },
+    {path:"events",component:EventsComponent},
+
 {
   path:'blogs' , component: BlogsComponent
 },

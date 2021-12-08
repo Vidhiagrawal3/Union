@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 const Alumni = require('../models/alumni');
 const checkAuth = require('../middleware/check-auth');
 const Blog = require('../models/blog');
+const events = require('../models/events');
+const checkAdmin = require('../middleware/check-admin');
 // const checkAdmin = require('../middleware/check-admin');
 const router = express.Router();
 
@@ -184,5 +186,33 @@ router.get('/search-alumni', function(req, res, next) {
         })
 
 });
+//events
+router.post('/EventPost',checkAdmin, async function(req, res, next) {
+     console.log(req.body);
+    var event = new events({
+        etitle: req.body.etitle,
+        eDiscription: req.body.eDiscription,
+        edate: req.body.date,
+        creationDate: Date.now()
+    });
+    try {
+        doc = await event.save();
+        return res.status(201).json(doc);
+    } catch (err) {
+        return res.status(501).json(err);
+    }
+});
+router.get('/AllEvents', function(req, res, next) {
+    events.find()
+        .then(async event => {
 
+            if (!event) {
+                return res.status(401).json({
+                    message: 'User not present'
+                });
+            }
+            return res.status(200).json(event)
+        })
+
+});
 module.exports = router;

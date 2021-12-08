@@ -9,6 +9,7 @@ import { SearchAlumniComponent } from "./search-alumni/search-alumni.component";
 import { HomeComponent } from './home/home.component';
 import { AlumniProfileComponent } from './alumni-profile/alumni-profile.component';
 import { VerifiedPipe } from "./pipes/verified.pipe";
+import { EventsComponent } from './events/events.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -16,6 +17,7 @@ const routes: Routes = [
     {path: "blogs", component:BlogsComponent},
     {path:"search" , component:SearchAlumniComponent},
     {path: 'profile/:id', component: AlumniProfileComponent },
+    {path:'events' , component:EventsComponent}
 ]
 
 @NgModule({
@@ -26,6 +28,7 @@ const routes: Routes = [
         HomeComponent,
         AlumniProfileComponent,
         VerifiedPipe,
+        EventsComponent,
     ],
     imports: [
       CommonModule,

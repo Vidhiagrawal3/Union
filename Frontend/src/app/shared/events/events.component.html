@@ -1,0 +1,38 @@
+
+  <div class="row">
+      <div *ngFor="let event of allevents" class="col-4">
+        <mdb-card>
+            <!--Card content-->
+            <mdb-card-body>
+          
+              <!--Title-->
+              <mdb-card-title>
+                <h4>{{event.etitle}}</h4>
+                <h5>{{event.edate.split('T')[0]}}</h5>
+              </mdb-card-title>
+          
+              <!--Text-->
+              <mdb-card-text> {{event.eDiscription}}
+              </mdb-card-text>
+            </mdb-card-body>
+          </mdb-card>
+          <br><br>
+      </div>
+  </div>
+  
+<form *ngIf="getrole()" action="" class="col-4 mt-5"  [formGroup]="EventForm">
+    <h1>Post a event</h1>
+    <div class="md-form-lg mt-5">
+    <input mdbInput type="text" id="form1" formControlName="etitle" class="form-control">
+    <label for="form1" class="">title</label>
+   </div>
+   <div class="md-form-lg mt-5">
+    <input mdbInput type="date" id="form1" formControlName="date" class="form-control">
+    <label for="form1" class="">Date</label>
+   </div>
+   <div class="md-form-lg">
+    <textarea type="text" id="form7" formControlName="eDiscription" class="md-textarea md-textarea-auto form-control" mdbInput></textarea>
+    <label for="form7">Write Here</label>
+   </div>
+   <button type="submit" mdbBtn color="dark" (click)="post()" mdbWavesEffect>Post</button>
+   </form>
