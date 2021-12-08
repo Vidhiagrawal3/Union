@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const Alumni = require('../models/alumni');
 const checkAuth = require('../middleware/check-auth');
 const Blog = require('../models/blog');
-const checkAdmin = require('../middleware/check-admin');
+// const checkAdmin = require('../middleware/check-admin');
 const router = express.Router();
 
 const MINE_TYPE = {
@@ -62,20 +62,21 @@ async function addtodb(req, res) {
 }
 //login route using JWT authentication
 
-router.get('/AlumniById/:id',(req, res) =>{
+router.get('/AlumniById/:id', (req, res) => {
     console.log(req.params.id)
     Alumni.findById(req.params.id)
-    .then(async alumni => {
+        .then(async alumni => {
 
-        if (!alumni) {
-            return res.status(401).json({
-                message: 'User not present'
-            });
-        }
-        return res.status(200).json(alumni)
-    })
-        
-  });
+            if (!alumni) {
+                return res.status(401).json({
+                    message: 'User not present'
+                });
+            }
+            return res.status(200).json(alumni)
+        })
+
+});
+
 router.post("/login", (req, res, next) => {
     // console.log(req.body);
     let fetchedUser
@@ -89,9 +90,7 @@ router.post("/login", (req, res, next) => {
                 });
             }
             fetchedUser = alumni;
-
             const result = await bcrypt.compareSync(req.body.password, alumni.password)
-
             return result
         })
         .then(result => {
@@ -132,25 +131,16 @@ router.get('/alumni', checkAuth, function(req, res, next) {
 router.put('/user/profile', function(req, res, next) {
     console.log("working")
     console.log(req.body._id)
-        // console.log(id)
     Alumni.findByIdAndUpdate(req.body._id, {
         experienceList: req.body.experienceList,
         country: req.body.country,
         state: req.body.state,
-        city: req.body.city
+        city: req.body.city,
+        bio: req.body.bio
     }).then(alumni => {
         res.json(alumni);
     });
 
-    //  , (error, data) => {
-    // if (error) {
-    //   console.log(error)
-    //   return next(error);
-    // } else {
-    //   res.json(data)
-    //   console.log('Profile updated successfully!')
-    // }
-    //  })
 });
 
 
@@ -179,30 +169,7 @@ router.post('/blog', multer({ storage: storage }).single('image'), async functio
 });
 
 // blogs
-router.get('/fetch', function(req, res, next) {
-    Blog.find()
-        .then(async blog => {
 
-            if (!blog) {
-                return res.status(401).json({
-                    message: 'User not present'
-                });
-            }
-            return res.status(200).json(blog)
-        })
-
-});
-router.put('/DeleteBlog', checkAdmin, async(req, res, next) => {
-    const _id = req.body._id;
-    console.log(_id)
-    try {
-        const notAlumni = await Blog.findByIdAndRemove(_id);
-        if (!notAlumni) return res.sendStatus(404);
-        return res.send(notAlumni);
-    } catch (e) {
-        return res.sendStatus(400);
-    }
-})
 router.get('/search-alumni', function(req, res, next) {
     Alumni.find()
         .then(async alumni => {

@@ -7,11 +7,13 @@ require('dotenv').config();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var adminRouter = require('./routes/admin');
+var blogsRouter = require('./routes/blog-route');
 var app = express();
 var bodyParser = require('body-parser');
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true, parameterLimit: 50000 }));
 var cors = require('cors');
+
 app.use(cors({ //it will allow cross sink btw backend and frontend 
     origin: ['http://localhost:4200', 'http://127.0.0.1:4200'],
     credentials: true
@@ -38,6 +40,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/admin', adminRouter);
+app.use('/blogs', blogsRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     next(createError(404));

@@ -20,8 +20,11 @@ export class EditProfileComponent implements OnInit {
    public AtLeastOneExp: boolean = false;
    public editExp: boolean = false;
    public index: number;
+   public bioIsThere: boolean = false;
+
    PersonalDetailsForm: FormGroup;
    experienceForm : FormGroup;
+   BioForm: FormGroup;
    empList = ["Internship",
      "Full-time",
      "Part-time",
@@ -32,8 +35,6 @@ export class EditProfileComponent implements OnInit {
  
   constructor(private alumniService:AlumniService , private _router:Router,
     private activatedRoute: ActivatedRoute) {
-
-      // this.alumniId = this.activatedRoute.snapshot.paramMap.get('id');
 
    }
   //  userDetails: any;
@@ -53,7 +54,9 @@ export class EditProfileComponent implements OnInit {
    this.createPersonalDetailsForm();
    this.allCountries();
    this.createExperienceForm();
-    
+    if(!this.bioIsThere){
+      this.createBioForm();
+    }
    if(this.userData.experienceList.length !=0){
     this.AtLeastOneExp=true
     }
@@ -62,20 +65,31 @@ export class EditProfileComponent implements OnInit {
     }
   }
 
-
   getData(){
     this.userData = this.alumniService.getUserinfo();
     console.log(this.userData)
     // this.fname =this.userData.fname;
     // this.lname = this.userData.lname;
-    // this.email = this.userData.email;
-    // this.course = this.userData.course;
-    // this.branch = this.userData.branch;
-    // this.gyear = this.userData.gyear;
-    // this.phone = this.userData.phone;
-    // this.roll = this.userData.roll;
-    // this.id = this.userData._id;
     this.experienceList = this.userData.experienceList;
+  }
+
+  createBioForm(){
+    this.BioForm = new FormGroup({
+      bio: new FormControl('')
+    })
+  }
+
+
+  addBio(){
+    if(!this.BioForm.value){
+      alert('Please Enter Bio')
+    }
+    else{
+    this.userData.bio = this.BioForm.value.bio;
+    this.bioIsThere = true;
+    this.saveProfile();
+    }
+  
   }
   
    allCountries(){
@@ -148,10 +162,9 @@ export class EditProfileComponent implements OnInit {
   addExperienceForm(){
      this.AtLeastOneExp = true;
      this.editExp = true;
-    console.log(this.experienceForm);
+    // console.log(this.experienceForm);
     this.userData.experienceList.push(this.experienceForm.value);
     this.createExperienceForm();
-    console.log(this.userData.experienceList);
    
   }
   findindex(currentexp:any){

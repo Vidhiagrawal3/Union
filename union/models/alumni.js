@@ -17,6 +17,7 @@ var Schema = new schema({
     state: { type: String },
     city: { type: String },
     verified: { type: Boolean },
+    bio: { type: String },
     experienceList: [{ company: String, title: String, emptype: String }],
     creationDate: { type: Date }
 });
