@@ -23,6 +23,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
+  getrole() {    
+    if(localStorage.getItem("Role") == "Admin")
+    return true
+    else
+    return false;
+  }
+
+  adminLogout()
+  {
+    localStorage.clear();
+    this.router.navigate(['home'])
+  }
+
   onLogout(){
     this._alumni.logout();
   

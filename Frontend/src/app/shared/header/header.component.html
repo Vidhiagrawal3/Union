@@ -13,15 +13,26 @@
                 <a class="nav-link waves-light" mdbWavesEffect>
                     <mdb-icon fas icon="envelope"></mdb-icon> Contact<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item" *ngIf="!userIsAuthenticated">
-                <a class="nav-link waves-light" routerLink="/login" mdbWavesEffect> LOGIN</a>
-            </li>
-            <li class="nav-item" *ngIf="!userIsAuthenticated">
-                <a class="nav-link waves-light" routerLink="/register" mdbWavesEffect> REGISTER</a>
-            </li>
             <li class="nav-item">
                 <a class="nav-link waves-light" routerLink="/home" mdbWavesEffect> HOME</a>
             </li>
+            <li class="nav-item" *ngIf="!userIsAuthenticated && !getrole()">
+                <a class="nav-link waves-light" routerLink="/login" mdbWavesEffect> LOGIN</a>
+            </li>
+            <li class="nav-item" *ngIf="!userIsAuthenticated && !getrole()">
+                <a class="nav-link waves-light" routerLink="/register" mdbWavesEffect> REGISTER</a>
+            </li>
+
+            <!-- <li class="nav-item" *ngIf="getrole()">
+                <a class="nav-link waves-light" routerLink="/login" mdbWavesEffect> DASHBOARD</a>
+            </li> -->
+            <li class="nav-item" *ngIf="getrole()">
+                <a class="nav-link waves-light" routerLink="/admin" routerLinkActive="router-link-active" mdbWavesEffect> DASHBOARD</a>
+            </li>
+            <li class="nav-item" *ngIf="getrole()">
+                <a class="nav-link waves-light" (click)="adminLogout()" mdbWavesEffect> LOGOUT</a>
+            </li>
+
             <li class="nav-item" *ngIf="userIsAuthenticated">
                 <a class="nav-link waves-light" routerLink="/editprofile" mdbWavesEffect>
                     <mdb-icon fas icon="cog"></mdb-icon> EDIT PROFILE</a>

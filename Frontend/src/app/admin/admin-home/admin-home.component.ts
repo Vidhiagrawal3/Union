@@ -9,11 +9,11 @@ import { Router } from '@angular/router';
 export class AdminHomeComponent implements OnInit {
 
   constructor(private _router: Router) { }
-  logout()
-  {
-    localStorage.clear();
-    this._router.navigate(['adminsignin'])
-  }
+  // logout()
+  // {
+  //   localStorage.clear();
+  //   this._router.navigate(['adminsignin'])
+  // }
   ngOnInit(): void {
   }
 

@@ -14,14 +14,14 @@ export class AppComponent implements OnInit{
   constructor(public router: Router,private alumniService: AlumniService, private admin: AdminService ){}
 
   title = 'union';
-  getrole()
-  {
-    this.adminStatus = localStorage.getItem("Role");
-    if(this.adminStatus == "Admin")
-    return false
-    else
-    return true;
-  }
+  // getrole()
+  // {
+  //   this.adminStatus = localStorage.getItem("Role");
+  //   if(this.adminStatus == "Admin")
+  //   return false
+  //   else
+  //   return true;
+  // }
   ngOnInit(){
     this.alumniService.autoAuthUser();
   }
