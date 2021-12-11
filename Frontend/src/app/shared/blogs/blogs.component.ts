@@ -12,7 +12,7 @@ export class BlogsComponent implements OnInit {
   BlogForm : FormGroup = new FormGroup({
     tblog:new FormControl(null,[Validators.min(3),Validators.required]),
    blog:new FormControl(null ,[Validators.min(3),Validators.required]),
-   image:new FormControl(null , [Validators.required])
+   image:new FormControl(null)
  })
 
   allblogs: any =[] ;

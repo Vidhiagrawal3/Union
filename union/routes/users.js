@@ -94,6 +94,11 @@ router.post("/login", (req, res, next) => {
                 });
             }
             fetchedUser = alumni;
+            if (!fetchedUser.verified) {
+                return res.status(401).json({
+                    message: 'Not Yet Verified By Admin'
+                });
+            }
             const result = await bcrypt.compareSync(req.body.password, alumni.password)
             return result
         })
@@ -103,6 +108,7 @@ router.post("/login", (req, res, next) => {
                     message: 'Wrong Password'
                 });
             }
+            
             const token = jwt.sign({ fetchedUser }, "secret_this_should_be_longer", { expiresIn: "2h" });
             // const decoded = jwt.verify(token, "secret_this_should_be_longer");  
             // var userId = decoded.fetchedUser._id  
@@ -155,7 +161,9 @@ router.post('/blog', multer({ storage: storage }).single('image'), async functio
     const token = req.headers.authorization.split(" ")[1];
     const decoded = jwt.verify(token, "secret_this_should_be_longer");
     const imgurl = req.protocol + '://' + req.get("host");
-    var blog = new Blog({
+    if(req.body.filename)
+    {
+       var blog = new Blog({
         tblog: req.body.tblog,
         blog: req.body.blog,
         imageURL: imgurl + "/public/images/" + req.file.filename,
@@ -163,7 +171,18 @@ router.post('/blog', multer({ storage: storage }).single('image'), async functio
         fname: decoded.fetchedUser.fname,
         lname: decoded.fetchedUser.lname,
         creationDate: Date.now()
-    });
+    }); 
+    }
+    else{
+        var blog = new Blog({
+            tblog: req.body.tblog,
+            blog: req.body.blog,
+            id: decoded.fetchedUser._id,
+            fname: decoded.fetchedUser.fname,
+            lname: decoded.fetchedUser.lname,
+            creationDate: Date.now()
+        }); 
+    }
     try {
         doc = await blog.save();
         return res.status(201).json(doc);

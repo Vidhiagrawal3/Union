@@ -155,6 +155,7 @@ constructor(private _http : HttpClient) { }
   // Saving token and expiration date and time in local storage of Browser, 
   // So that user doesn't get logged out on reload
   private saveAuthData(token: string, expirationDate: Date){
+    localStorage.clear();
     localStorage.setItem("token", token);
     localStorage.setItem("expiration", expirationDate.toISOString());
   }

@@ -16,6 +16,7 @@ export class BlogService {
     const PostData = new FormData();
     PostData.append("tblog" , body.tblog);
     PostData.append("blog" , body.blog);
+    if(body.image)
     PostData.append("image" , body.image , body.tblog);
     console.log(PostData);
     return this._http.post('http://127.0.0.1:3000/user/blog',PostData);

@@ -24,6 +24,7 @@ export class AdminService {
     })
     
     res.subscribe(res=>{
+      localStorage.clear();
       localStorage.setItem("Role", "Admin");
       this.adminLoggedin = true;
     })
