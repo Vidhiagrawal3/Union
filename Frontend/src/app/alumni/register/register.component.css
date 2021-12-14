@@ -1,4 +1,4 @@
-input[type="file"]{
+/* input[type="file"]{
     visibility: hidden;
 }
 
@@ -9,4 +9,12 @@ input[type="file"]{
 
 .img-preview img {
     height: 100%;
+} */
+
+.card-sh {
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, .1);
+}
+
+.btncolor {
+    color: #005D63;
 }

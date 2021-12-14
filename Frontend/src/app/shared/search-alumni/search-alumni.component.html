@@ -1,52 +1,60 @@
-<!-- here -->
-<!--  -->
-<div class="form-group px-5 m-5">
-    <!-- <label for="search">search</label> -->
-    <input type="text" [(ngModel)]="searchName" class="form-control" placeholder="Search an Alumni">
-</div>
-<!-- <div class="form-group px-5 m-5">
+<div class="m-5 ">
+
+    <!-- <div class="form-group px-5 m-5">
     <label for="search">search</label>
     <input type="text" [(ngModel)]="searchCourse"  class="form-control" placeholder="course">
   </div> -->
-<div class="row">
-    <div class="col-2">
-        <h3 class="text-center">Filters</h3>
-        <div class="form-group">
-            <label for="form3" class="">Course</label>
-            <select class="form-control" [(ngModel)]="searchCourse">
+    <div class="row mx-5">
+        <div class="col-2">
+            <h3 class="text-center">Filters</h3>
+            <div class="form-group">
+                <label for="form3" class="">Course</label>
+                <select class="form-control" [(ngModel)]="searchCourse">
           <option value="">Select Course</option>
           <option *ngFor="let item of courseList" [value]="item.value"> {{ item?.value }}</option>
   
         </select>
-        </div>
-        <div class="form-group" *ngIf="searchCourse == 'B-Tech' ">
-            <label for="form3" class="">Stream</label>
-            <select class="form-control" [(ngModel)]="searchStream">
+            </div>
+            <div class="form-group" *ngIf="searchCourse == 'B-Tech' ">
+                <label for="form3" class="">Stream</label>
+                <select class="form-control" [(ngModel)]="searchStream">
           <option value="">Select Stream</option>
           <option *ngFor="let item of streamList" [value]="item.value"> {{ item?.value }}</option>
   
         </select>
-        </div>
-        <div class="form-group">
-            <label for="form1" class="">Batch (Year)</label>
-            <input type="text" [(ngModel)]="searchYear" class="form-control" placeholder="Passout">
+            </div>
+            <div class="form-group">
+                <label for="form1" class="">Batch (Year)</label>
+                <input type="text" [(ngModel)]="searchYear" class="form-control" placeholder="Passout">
+            </div>
+
         </div>
 
-    </div>
+        <div class="col-10 my-3">
+            <div class="form-group ml-3 row">
 
-    <div class="row col-10">
-        <div class="col-5" *ngFor="let user of alluser |verified:true |  alumniSearch:searchName:searchCourse:searchStream:searchYear ">
-            <div class="card m-5" *ngIf="user.verified == true " style="width: 38rem;">
-                <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
-                <div class="card-body">
-                    <h5 class="card-title"> <b>Er. {{user.fname}} {{user.lname}}</b> </h5>
-                    <p class="card-text">{{user.course}} {{user.branch}} {{user.gyear}} passout</p>
-                    <a *ngIf="getrole()" [routerLink]="['/admin', user._id]" class="btn btn-primary">View</a>
-                    <a *ngIf="!getrole()" [routerLink]="['/profile', user._id]" class="btn btn-primary">View</a>
+                <!-- <div class="col-1"></div> -->
+                <div class="col-7">
+                    <input type="text" [(ngModel)]="searchName" class="form-control" placeholder="Search an Alumni">
+
                 </div>
             </div>
+            <div class="row my-5 ml-3">
+                <div class="col-4 my-3" *ngFor="let user of alluser |verified:true |  alumniSearch:searchName:searchCourse:searchStream:searchYear ">
+                    <div class="card" *ngIf="user.verified == true ">
+                        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                        <div class="card-body">
+                            <h5 class="card-title"> <b>Er. {{user.fname}} {{user.lname}}</b> </h5>
+                            <p class="card-text">{{user.course}} {{user.branch}} {{user.gyear}} passout</p>
+                            <a *ngIf="getrole()" [routerLink]="['/admin', user._id]" class="btn btn-primary">View</a>
+                            <a *ngIf="!getrole()" [routerLink]="['/profile', user._id]" class="btn btn-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+
     </div>
-
-
 </div>

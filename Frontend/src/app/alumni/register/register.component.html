@@ -3,97 +3,100 @@
 </div>
 <div class="col-12 col-md-6 mx-auto my-5 d-flex justify-content-center">
     <!-- Default form register -->
-    <form class="text-center border border-light p-5" [formGroup]="registerForm">
 
-        <p class="h4 mb-4">Sign up</p>
+    <div class="dgreen white-text br-5 card-sh px-1">
+        <form class="text-center p-5" [formGroup]="registerForm">
 
-        <div class="form-row mb-4">
-            <div class="col">
-                <!-- First name -->
-                <input formControlName="fname" type="text" id="form1" class="form-control" placeholder="First name">
+            <p class="h4 mb-4">Sign up</p>
+
+            <div class="form-row mb-4">
+                <div class="col">
+                    <!-- First name -->
+                    <input formControlName="fname" type="text" id="form1" class="form-control" placeholder="First name">
+                </div>
+                <div class="col">
+                    <!-- Last name -->
+                    <input formControlName="lname" type="text" id="form2" class="form-control" placeholder="Last name">
+                </div>
             </div>
-            <div class="col">
-                <!-- Last name -->
-                <input formControlName="lname" type="text" id="form2" class="form-control" placeholder="Last name">
+
+            <div class="form-row mb-4">
+                <div class="col">
+                    <label for="form3" class="">Course</label>
+                    <select formControlName="course" class="form-control" [(ngModel)]="courseSelected">
+    
+              <option value="">Select Course</option>
+              <option *ngFor="let item of courseList" [value]="item.value"> {{ item?.value }}</option>
+    
+    
+            </select>
+                </div>
+                <!-- Stearm -->
+                <div class="col" *ngIf="courseSelected == 'B-Tech' ">
+                    <label for="form3" class="">Stream</label>
+                    <select formControlName="branch" class="form-control">
+    
+              <option value="">Select Stream</option>
+              <option *ngFor="let item of StreamList" [value]="item.value"> {{ item?.value }}</option>
+    
+    
+            </select>
+                </div>
+                <div class="col">
+                    <label for="form3" class="">Graduation Year</label>
+                    <input formControlName="gyear" type="text" id="form5" class="form-control" placeholder="">
+                </div>
             </div>
-        </div>
 
-        <div class="form-row mb-4">
-            <div class="col">
-                <label for="form3" class="">Course</label>
-                <select formControlName="course" class="form-control" [(ngModel)]="courseSelected">
-
-          <option value="">Select Course</option>
-          <option *ngFor="let item of courseList" [value]="item.value"> {{ item?.value }}</option>
-
-
-        </select>
+            <div class="form-row mb-4">
+                <div class="col">
+                    <input formControlName="roll" type="text" id="form55" class="form-control" placeholder="Roll Number">
+                </div>
             </div>
-            <!-- Stearm -->
-            <div class="col" *ngIf="courseSelected == 'B-Tech' ">
-                <label for="form3" class="">Stream</label>
-                <select formControlName="branch" class="form-control">
 
-          <option value="">Select Stream</option>
-          <option *ngFor="let item of StreamList" [value]="item.value"> {{ item?.value }}</option>
+            <!-- E-mail -->
+            <input formControlName="email" type="email" id="form6" class="form-control mb-4" placeholder="E-mail">
+
+            <!-- Password -->
+            <input formControlName="password" type="password" id="form7" class="form-control mb-4" placeholder="Set Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+            <!-- <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+          At least 8 characters and 1 digit
+        </small> -->
+
+            <!-- Phone number -->
+            <input formControlName="phone" type="text" id="form8" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
 
 
-        </select>
+            <!-- IMAGE UPLOAD -->
+            <!-- <div class="row">
+          <div class="col-6 mx-auto d-flex justify-content-center">
+            <button type="button" size="lg" mdbBtn color="secondary" (click)="imgPicker.click()" mdbWavesEffect>Select Image</button>
+            <input type="file" #imgPicker (change) = "imagePicked($event)">
+          </div>
+            <div class="col-6 img-preview" *ngIf="imgPreview !== '' && imgPreview &&  registerForm.get('photo').valid ">
+              <img [src]="imgPreview" [alt]="registerForm.value.fname">
             </div>
-            <div class="col">
-                <label for="form3" class="">Graduation Year</label>
-                <input formControlName="gyear" type="text" id="form5" class="form-control" placeholder="">
+        </div> -->
+            <!-- IMAGE UPLOAD -->
+
+            <!-- Sign up button -->
+            <button mdbBtn block="true" class="my-5 basicbtn white btncolor" type="submit" (click)="register()" *ngIf="!isLoading">Sign up
+      </button>
+
+            <!-- loader -->
+            <div class="spinner-border" role="status" *ngIf="isLoading">
+                <span class="sr-only">Loading...</span>
             </div>
-        </div>
 
-        <div class="form-row mb-4">
-            <div class="col">
-                <input formControlName="roll" type="text" id="form55" class="form-control" placeholder="Roll Number">
-            </div>
-        </div>
+            <hr>
 
-        <!-- E-mail -->
-        <input formControlName="email" type="email" id="form6" class="form-control mb-4" placeholder="E-mail">
-
-        <!-- Password -->
-        <input formControlName="password" type="password" id="form7" class="form-control" placeholder="Set Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-        <!-- <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-      At least 8 characters and 1 digit
-    </small> -->
-
-        <!-- Phone number -->
-        <input formControlName="phone" type="text" id="form8" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
-
-
-        <!-- IMAGE UPLOAD -->
-        <!-- <div class="row">
-      <div class="col-6 mx-auto d-flex justify-content-center">
-        <button type="button" size="lg" mdbBtn color="secondary" (click)="imgPicker.click()" mdbWavesEffect>Select Image</button>
-        <input type="file" #imgPicker (change) = "imagePicked($event)">
-      </div>
-        <div class="col-6 img-preview" *ngIf="imgPreview !== '' && imgPreview &&  registerForm.get('photo').valid ">
-          <img [src]="imgPreview" [alt]="registerForm.value.fname">
-        </div>
-    </div> -->
-        <!-- IMAGE UPLOAD -->
-
-        <!-- Sign up button -->
-        <button mdbBtn color="info" block="true" class="my-4" type="submit" (click)="register()" *ngIf="!isLoading">Sign up
-  </button>
-
-        <!-- loader -->
-        <div class="spinner-border" role="status" *ngIf="isLoading">
-            <span class="sr-only">Loading...</span>
-        </div>
-
-        <hr>
-
-        <!-- Terms of service -->
-        <p>By clicking
-            <em>Sign up</em> you agree to our
-            <a href="" target="_blank">terms of service</a></p>
-        <div>Already registered?<a routerLink="/login"> Login now!</a></div>
-    </form>
+            <!-- Terms of service -->
+            <p>By clicking
+                <em>Sign up</em> you agree to our
+                <a href="" target="_blank" class="yellow-text my-link">terms of service</a></p>
+            <div>Already registered? <a routerLink="/login" class="yellow-text my-link">Login now!</a></div>
+        </form>
+    </div>
     <!-- Default form register -->
 </div>
 
