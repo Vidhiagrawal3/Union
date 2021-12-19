@@ -9,4 +9,49 @@ Welcome!
       </div>
     </div>
   </mdb-card> -->
-<app-blogs></app-blogs>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <h1>Blogs</h1>
+            <div><a routerLink='/blogs' routerLinkActive="router-link-active">View All</a></div>
+            <section *ngFor="let blog of allblogs | slice:0:3; let i=index">
+                <div class="mini br-5  row m-4">
+
+                    <div class="col-3">
+                        <img class="my-4 b-pic" src="{{blog.imageURL}}" alt="">
+
+                    </div>
+                    <div class="col-9">
+                        <h4 class="mb-1 dgreen-text">{{blog.tblog}}</h4>
+                        <div>By {{blog.fname}}</div>
+                        <div class="blog-starts my-3">
+                            {{blog.blog}}
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </section>
+        </div>
+        <div class="col-12 col-md-6">
+            <h1>Events</h1>
+            <div><a routerLink='/events' routerLinkActive="router-link-active">View All</a></div>
+            <section *ngFor="let event of allevents | slice:0:3; let i=index">
+                <div class="mini br-5 row m-4">
+                    <h4 class="mb-1 dgreen-text">{{event.etitle}}</h4>
+                    <div>On {{event.edate.split('T')[0]}}</div>
+                    <div class="blog-starts my-3">
+                        {{event.eDiscription}}
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- <app-blogs></app-blogs> -->

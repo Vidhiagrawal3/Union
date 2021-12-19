@@ -2,6 +2,16 @@
 @import '~mdbootstrap/css/mdb.min.css'; */
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
+* {
+    /* font-family: Georgia, 'Times New Roman', Times, serif;
+   
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px; */
+}
+
+
+/* define font family for headings, blog texts and more special texts */
+
 .dgreen {
     background-color: #005D63;
 }
@@ -22,14 +32,17 @@
     color: rgb(255, 255, 110);
 }
 
-.basicbtn {
+.l-btn {
     font-size: 1.1em !important;
+}
+
+.basicbtn {
     font-weight: bold !important;
     border-radius: 5px !important;
 }
 
 .br-5 {
-    border-radius: 5px;
+    border-radius: 5px !important;
 }
 
 .my-link,

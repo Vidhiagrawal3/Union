@@ -40,14 +40,14 @@
                 </div>
             </div>
             <div class="row my-5 ml-3">
-                <div class="col-4 my-3" *ngFor="let user of alluser |verified:true |  alumniSearch:searchName:searchCourse:searchStream:searchYear ">
-                    <div class="card" *ngIf="user.verified == true ">
+                <div class="col-3 my-3" *ngFor="let user of alluser |verified:true |  alumniSearch:searchName:searchCourse:searchStream:searchYear ">
+                    <div class="card text-center" *ngIf="user.verified == true ">
                         <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                         <div class="card-body">
                             <h5 class="card-title"> <b>Er. {{user.fname}} {{user.lname}}</b> </h5>
                             <p class="card-text">{{user.course}} {{user.branch}} {{user.gyear}} passout</p>
                             <a *ngIf="getrole()" [routerLink]="['/admin', user._id]" class="btn btn-primary">View</a>
-                            <a *ngIf="!getrole()" [routerLink]="['/profile', user._id]" class="btn btn-primary">View</a>
+                            <button mdbBtn size="sm" *ngIf="!getrole()" [routerLink]="['/profile', user._id]" class="btn-primary br-5 m-btn">View Profile</button>
                         </div>
                     </div>
                 </div>
