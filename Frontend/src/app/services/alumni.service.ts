@@ -46,7 +46,7 @@ constructor(private _http : HttpClient) { }
   }
   register (body:any){
     // console.log(body);
-    return this._http.post(environment.BASE_URL + '/user/register',body , {
+    return this._http.post('/user/register',body , {
       observe:'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -57,7 +57,7 @@ constructor(private _http : HttpClient) { }
   updateProfile(body: any){
     console.log(body.experienceList);
     // console.log(id);
-    return this._http.put(environment.BASE_URL + '/user/user/profile',body,{
+    return this._http.put('/user/user/profile',body,{
       observe:'body',
       headers: new HttpHeaders().append('Content-Type', 'application/json')
     });
@@ -86,7 +86,7 @@ constructor(private _http : HttpClient) { }
 
   login(body: any){
     // console.log(body);
-    const res = this._http.post<{token:string, expiresIn : number}>(environment.BASE_URL + '/user/login',body , {
+    const res = this._http.post<{token:string, expiresIn : number}>('/user/login',body , {
       observe:'body',
       withCredentials: true,
       headers: new HttpHeaders().append('Content-Type', 'application/json')
@@ -108,7 +108,7 @@ constructor(private _http : HttpClient) { }
   }
 
   alumni(){
-   this.UserData=this._http.get<{data:any}>(environment.BASE_URL + '/user/alumni',{
+   this.UserData=this._http.get<{data:any}>('/user/alumni',{
      
     observe:'body',
     withCredentials: true,
@@ -181,12 +181,12 @@ constructor(private _http : HttpClient) { }
     }
   }
   FetchAlumni(){
-    const alumni = this._http.get(environment.BASE_URL + '/user/search-alumni')
+    const alumni = this._http.get('/user/search-alumni')
     return alumni;
   }
  getAlumniById(uid:any){
 {
-  const res = this._http.get<{data:any}>(environment.BASE_URL + '/user/AlumniById/'+ uid)
+  const res = this._http.get<{data:any}>('/user/AlumniById/'+ uid)
   res.subscribe(res=>{
     console.log(res)
     return JSON.stringify(res);

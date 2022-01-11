@@ -45,7 +45,7 @@ app.use('/blogs', blogsRouter);
 app.use(function(req, res, next) {
     next(createError(404));
 });
-
+const port = process.env.PORT || 8080;
 // error handler
 app.use(function(err, req, res, next) {
     // set locals, only providing error in development
