@@ -4,14 +4,14 @@
             <div class="col-3">
                 <!-- <img [src]="guide?.picUrl ? guide?.picUrl : 'https://voilabucket2020.s3.ap-south-1.amazonaws.com/Assets/grayman.png'" 
                             class="img-fluid rounded-circle z-depth-0" style="height:80px; width:80px;"> -->
-                <img src="https://vegnews.com/media/W1siZiIsIjY0MDQvVmVnTmV3cy5MaXNhU2ltcHNvbi5qcGciXSxbInAiLCJ0aHVtYiIsIjEzNjB4ODA0IyIseyJmb3JtYXQiOiJqcGcifV0sWyJwIiwib3B0aW1pemUiXV0/VegNews.LisaSimpson.jpg?sha=6e3bddfa0602bd55" class="img-fluid rounded-circle " style="height:200px; width:200px;">
+                <img src="../../../assets/blank-profile-picture-973460__480.png" class="img-fluid rounded-circle " style="height:200px; width:200px;">
             </div>
             <div class="col-9">
                 <h2>{{resAlumni.fname}} {{resAlumni.lname}}</h2>
-                <h4>{{resAlumni.course}} {{resAlumni.branch}}</h4>
-                <h4>{{resAlumni.gyear}}</h4>
+                <h4>{{resAlumni.course}} {{resAlumni.branch}} {{resAlumni.gyear}}</h4>
+
                 <h4>Works at Experian Tech</h4>
-                <h4>Lives in Pune, Maharashtra, India</h4>
+                <h4>Lives in {{resAlumni.city}}, {{resAlumni.state}}, {{resAlumni.country}}</h4>
             </div>
 
         </div>
