@@ -27,11 +27,12 @@ const routes: Routes = [
       {
         path: 'search' , component: SearchAlumniComponent
       },
-    {path:"events",component:EventsComponent},
-
-{
-  path:'blogs' , component: BlogsComponent
-},
+       {
+         path:"events",component:EventsComponent
+        },
+        {
+        path:'blogs' , component: BlogsComponent
+       },
 {
   path:':id' , component: AlumniProfileComponent
 }

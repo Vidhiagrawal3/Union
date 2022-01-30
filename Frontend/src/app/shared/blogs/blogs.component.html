@@ -1,42 +1,49 @@
-<div class="row">
-	<div class="col-8">
-		<section *ngFor="let blog of allblogs">
-			<div class="blog-card web" style="background: url({{blog.imageURL}});">
-				<div class="content-mask">
-					<span class="category">{{blog.fname}}</span>
-					<h1>{{blog.tblog}}</h1>
-					<p>{{blog.blog}}</p>
-					<a *ngIf="getrole()" (click)="deleteBlog(blog)" class="btn btn-danger m-2">Remove</a>
-					<!-- <img [src]="blog.imageURL" alt=""> -->
-				</div>
-				
-			</div>
-			<!-- <div class="blog-card python">
-				<div class="content-mask">
-					<span class="python category">Python</span>
-					<h1>Testing Python</h1>
-					<p>An example-based introduction to Python testing with pytest</p>
-			</div>
-				
-			</div> -->
-		</section>
-	</div>
- <form action="" class="col-4 mt-5" *ngIf="userIsAuthenticated" [formGroup]="BlogForm">
-  <div class="md-form-lg mt-5">
-  <input mdbInput type="text" id="form1" formControlName="tblog" class="form-control">
-  <label for="form1" class="">title</label>
- </div>
- <div class="md-form-lg">
-  <textarea type="text" id="form7" formControlName="blog" class="md-textarea md-textarea-auto form-control" mdbInput></textarea>
-  <label for="form7">Write Here</label>
- </div>
- <div class="imagePick">
-	 <button mdbBtn color="dark" type="button" (click) = "filepick.click()">Pick Images</button>
-	 <input type="file" #filepick (change)="OnImagePick($event)">
- </div>
- <div class="imagepre" *ngIf ="ImageURL !== '' && ImageURL">
-	 <img [src]="ImageURL" alt="">
- </div>
- <button type="submit" mdbBtn color="dark" (click)="post()" mdbWavesEffect>Post</button>
- </form>
- </div>
+<div class="row m-5">
+    <div class="col-8">
+        <section *ngFor="let blog of allblogs">
+            <div class="mini br-5 p-4 m-4">
+
+
+                <div class="d-flex">
+                    <div>
+                        <h2 class="mb-1 mx-2 dgreen-text">{{blog.tblog}}</h2>
+
+                        <div class="mx-2">By {{blog.fname}}</div>
+                    </div>
+
+                    <button mdbBtn size="md" *ngIf="getrole()" (click)="deleteBlog(blog)" class="ml-auto btn-danger align-self-center my-4 white-text btncolor m-btn">Remove Blog
+                    </button>
+                </div>
+
+                <div class="blog-starts my-3">
+                    {{blog.blog}}
+                </div>
+                <img class="my-4 b-pic mx-auto" src="{{blog.imageURL}}" alt="">
+
+                <!-- <a *ngIf="getrole()" (click)="deleteBlog(blog)" class="btn white-text btn-danger m-2">Remove</a> -->
+            </div>
+        </section>
+    </div>
+
+    <form action="" class="col-4 mt-5" *ngIf="userIsAuthenticated" [formGroup]="BlogForm">
+        <div class="md-form-lg">
+            <label for="form1" class="">Blog Title</label>
+            <input mdbInput type="text" id="form1" formControlName="tblog" class="form-control">
+
+        </div>
+        <div class="md-form-lg  mt-5">
+            <label for="form7">Write Here</label>
+            <textarea type="text" id="form7" formControlName="blog" class="md-textarea md-textarea-auto form-control" mdbInput></textarea>
+
+        </div>
+        <div class="imagePick">
+            <label for="form7">Upload image</label>
+            <button mdbBtn color="dark" type="button" (click)="filepick.click()">Pick Images</button>
+            <input type="file" #filepick (change)="OnImagePick($event)">
+        </div>
+        <div class="imagepre" *ngIf="ImageURL !== '' && ImageURL">
+            <img [src]="ImageURL" alt="">
+        </div>
+        <button type="submit" mdbBtn color="dark" (click)="post()" mdbWavesEffect>Post</button>
+    </form>
+</div>

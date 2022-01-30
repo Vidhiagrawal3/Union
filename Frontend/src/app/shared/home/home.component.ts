@@ -19,6 +19,15 @@ export class HomeComponent implements OnInit {
     this.fetchevents();
   }
 
+  getrole()
+  {
+     
+    if(localStorage.getItem("Role") == "Admin")
+    return true
+    else
+    return false;
+  }
+
   allblogscall(){
     this._blogging.FetchBlog()
  .subscribe(

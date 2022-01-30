@@ -1,29 +1,37 @@
-<div class="col-md-3">
+<div class="container my-5">
+    <div class="row my-5">
 
-</div>
-<div class="col-12 col-md-6 mx-auto my-5 d-flex justify-content-center">
-    <!-- Default form register -->
-    <form class="text-center border border-light p-5" [formGroup]="loginForm">
 
-        <p class="h2 mb-4">Welcome Admin!</p>
-        <div class="form-row mb-4">
-            <div>ENTER THE SECURITY CODE HERE</div>
-            <!-- Security code -->
-            <input formControlName="passcode" type="password" id="form7" class="form-control" placeholder="Security Code" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+        <div class="col-md-3">
+
         </div>
+        <div class="col-12 col-md-6 mx-auto my-5 d-flex justify-content-center ">
+            <!-- Default form register -->
+            <form class="text-center lgreen-text p-5 shade br-5" style="background-color:#7c7e7e;" [formGroup]="loginForm">
 
-        <!-- Sign up button -->
-        <button mdbBtn color="info" size="lg" block="true" class="my-4" type="submit" (click)="login()">Sign in
-     </button>
+                <p class="h2 mb-4 ">Welcome Admin!</p>
+                <div class="form-row mx-0 mb-4">
+                    <div class="my-2 white-text">ENTER THE SECURITY CODE HERE</div>
+                    <!-- Security code -->
+                    <input formControlName="passcode" type="password" id="form7" class="form-control" placeholder="Security Code" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+                </div>
 
-        <!-- Loader -->
-        <!-- <div class="spinner-border" role="status" *ngIf="isLoading">
+                <!-- Sign up button -->
+                <!-- <button mdbBtn color="info" size="lg" block="true" class="my-4" type="submit" (click)="login()">Sign in
+     </button> -->
+                <button mdbBtn size="lg" block="true" class="my-4 lgreen dgreen-text basicbtn l-btn" type="submit" (click)="login()">Sign in
+    </button>
+
+                <!-- Loader -->
+                <!-- <div class="spinner-border" role="status" *ngIf="isLoading">
             <span class="sr-only">Loading...</span>
         </div> -->
 
-    </form>
-</div>
+            </form>
+        </div>
 
-<div class="col-md-3">
+        <div class="col-md-3">
 
+        </div>
+    </div>
 </div>

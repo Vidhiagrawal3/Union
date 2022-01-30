@@ -1,42 +1,44 @@
-<div class="container my-5">
-    <div class="col-md-3">
+<div class="container-fluid bg">
+    <div class="container my-5">
+        <div class="col-md-3">
 
-    </div>
-    <div class="col-12 col-md-6 mx-auto my-5 d-flex justify-content-center ">
-        <!-- Default form register -->
-        <div class="dgreen white-text br-5 my-5 card-shadow">
-            <form class="text-center p-5" [formGroup]="loginForm">
+        </div>
+        <div class="col-12 col-md-6 mx-auto my-5 d-flex justify-content-center ">
+            <!-- Default form register -->
+            <div class="dgreen white-text br-5 my-5 card-shadow">
+                <form class="text-center p-5" [formGroup]="loginForm">
 
-                <p class="h4 mb-4">Login</p>
+                    <p class="h4 mb-4">Login</p>
 
-                <div class="form-row mb-4 white-text mx-1">
+                    <div class="form-row mb-4 white-text mx-1">
 
-                    <!-- E-mail -->
-                    <input formControlName="email" type="email" id="form6" class="form-control mb-4" placeholder="E-mail">
+                        <!-- E-mail -->
+                        <input formControlName="email" type="email" id="form6" class="form-control mb-4" placeholder="E-mail">
 
-                    <!-- Password -->
-                    <input formControlName="password" type="password" id="form7" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
-                    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                        <!-- Password -->
+                        <input formControlName="password" type="password" id="form7" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+                        <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
           <!-- At least 8 characters and 1 digit -->
         </small>
 
 
-                </div>
-                <div>New to Union? <a routerLink="/register" class="lgreen-text my-link yellow-text">Sign up here!</a></div>
+                    </div>
+                    <div>New to Union? <a routerLink="/register" class="lgreen-text my-link yellow-text">Sign up here!</a></div>
 
-                <!-- Sign up button -->
-                <button mdbBtn size="lg" block="true" class="my-4 basicbtn white btncolor l-btn" type="submit" (click)="login()">Sign in
+                    <!-- Sign up button -->
+                    <button mdbBtn size="lg" block="true" class="my-4 basicbtn white btncolor l-btn" type="submit" (click)="login()">Sign in
          </button>
 
-                <!-- Loader -->
-                <!-- <div class="spinner-border" role="status" *ngIf="isLoading">
+                    <!-- Loader -->
+                    <!-- <div class="spinner-border" role="status" *ngIf="isLoading">
                 <span class="sr-only">Loading...</span>
             </div> -->
-            </form>
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div class="col-md-3">
+        <div class="col-md-3">
 
+        </div>
     </div>
 </div>

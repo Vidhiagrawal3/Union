@@ -45,7 +45,7 @@
                         <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
                         <div class="card-body">
                             <h5 class="card-title dgreen-text"> <b>{{user.fname}} {{user.lname}}</b> </h5>
-                            <p class="card-text">{{user.course}} {{user.branch}} {{user.gyear}} passout</p>
+                            <p class="card-text">{{user.course}} {{user.branch}} {{user.gyear}}</p>
                             <!-- <a *ngIf="getrole()" [routerLink]="['/admin', user._id]" class="btn btn-primary">View</a> -->
                             <button mdbBtn size="sm" *ngIf="getrole()" [routerLink]="['/admin', user._id]" class="dgreen white-text br-5 m-btn">View Profile</button>
                             <button mdbBtn size="sm" *ngIf="!getrole()" [routerLink]="['/profile', user._id]" class="dgreen white-text br-5 m-btn">View Profile</button>

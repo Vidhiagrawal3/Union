@@ -2,11 +2,13 @@
 @import '~mdbootstrap/css/mdb.min.css'; */
 
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
 * {
-    /* font-family: Georgia, 'Times New Roman', Times, serif;
-   
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 16px; */
+    /* font-family: 'Lora', serif;
+     */
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-family: 'Open Sans', sans-serif;
+    /* font-size: 16px; */
 }
 
 
@@ -17,7 +19,7 @@
 }
 
 .dgreen-text {
-    color: #005D63;
+    color: #005D63 !important;
 }
 
 .lgreen {
@@ -36,12 +38,21 @@
     font-size: 1.1em !important;
 }
 
+.m-btn {
+    font-size: 0.9em !important;
+    text-transform: initial !important;
+}
+
 .basicbtn {
     font-weight: bold !important;
-    border-radius: 5px !important;
+    /* border-radius: 5px !important; */
 }
 
 .br-5 {
+    border-radius: 5px !important;
+}
+
+button {
     border-radius: 5px !important;
 }
 

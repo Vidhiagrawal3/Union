@@ -11,7 +11,25 @@
     max-height: 100px; */
 }
 
-.blog-starts {
+.blog-size {
+    max-height: 150px;
+}
+
+.blog-size p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    /* white-space: nowrap; */
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.blog-starts {
+    font-size: 1.15em;
+    font-weight: 400;
+}
+
+.eventd {
+    font-size: 1.15em;
+    font-weight: 500;
 }

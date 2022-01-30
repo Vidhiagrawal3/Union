@@ -1,28 +1,65 @@
 <div class="container-fluid bg m-0 p-0">
     <div class="container ">
-        <div class="row m-5">
-            <div class="col-3">
-                <!-- <img [src]="guide?.picUrl ? guide?.picUrl : 'https://voilabucket2020.s3.ap-south-1.amazonaws.com/Assets/grayman.png'" 
-                            class="img-fluid rounded-circle z-depth-0" style="height:80px; width:80px;"> -->
+        <div class="row my-5">
+            <!-- <div class="col-3">
+                <img [src]="guide?.picUrl ? guide?.picUrl : 'https://voilabucket2020.s3.ap-south-1.amazonaws.com/Assets/grayman.png'" 
+                            class="img-fluid rounded-circle z-depth-0" style="height:80px; width:80px;"> 
                 <img src="../../../assets/blank-profile-picture-973460__480.png" class="img-fluid rounded-circle " style="height:200px; width:200px;">
-            </div>
-            <div class="col-9">
-                <h2>{{resAlumni.fname}} {{resAlumni.lname}}</h2>
-                <h4>{{resAlumni.course}} {{resAlumni.branch}} {{resAlumni.gyear}}</h4>
+            </div> -->
+            <div class="col-6">
+                <h1 class="mx-1 my-5">{{resAlumni.fname}} {{resAlumni.lname}}</h1>
 
-                <h4>Works at Experian Tech</h4>
-                <h4>Lives in {{resAlumni.city}}, {{resAlumni.state}}, {{resAlumni.country}}</h4>
+
+                <div class="my-4">
+                    <h2>Alumni Details</h2>
+                    <p> Roll no: {{resAlumni.roll}}</p>
+                    <p>Batch: {{resAlumni.course}} {{resAlumni.branch}} {{resAlumni.gyear}}</p>
+                </div>
+                <div *ngIf="resAlumni.bio" class="my-4">
+                    <h2>About</h2>
+
+                    <p>{{resAlumni.bio}}</p>
+                </div>
+
+
+
+            </div>
+
+
+            <div class="col-1"></div>
+
+            <div class="col-5">
+                <div class="mt-md-5 mb-4">
+                    <h2 class="mt-5 mb-3">Contact</h2>
+                    <p><i class="dgreen-text pr-2 fas fa-phone"></i> {{resAlumni.phone}}</p>
+                    <p><i class="dgreen-text pr-3 fas fa-envelope"></i> <a style="text-decoration: underline; color: initial;" href="mailto:{{resAlumni.email}}">{{resAlumni.email}}</a> </p>
+                    <p *ngIf="resAlumni.city"> <i class="dgreen-text pr-3 fas fa-map-marker-alt"></i> Lives in {{resAlumni.city}}, {{resAlumni.state}}, {{resAlumni.country}}</p>
+                </div>
+                <div class="my-4">
+                    <h2>Experience</h2>
+                    <p *ngIf="!resAlumni.experienceList[0]">
+                        No Data Found!
+                    </p>
+                    <div *ngFor="let e of resAlumni.experienceList.slice().reverse()">
+                        <div class="exp pl-3 my-4 mx-2">
+                            <div class="dgreen-text">{{e.title}}</div>
+                            <div>At {{e.company}} &#183; {{e.emptype}}</div>
+                        </div>
+                    </div>
+                </div>
+
+
             </div>
 
         </div>
 
-        <div class="info-card m-5">
+        <!-- <div class="info-card m-5">
             <div class="p-3 white-text dgreen">
                 Experience
             </div>
-            <div class="p-4">gutuy</div>
+            <div class="p-4">something</div>
 
-        </div>
+        </div> -->
 
     </div>
 

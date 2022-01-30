@@ -1,4 +1,12 @@
-/* .sidebar {
-    position: fixed;
-    
-} */
+.sidebar {
+    font-size: 1.3em;
+}
+
+.nav-link {
+    color: #005D63;
+}
+
+.nav-link:visited,
+:focus {
+    background-color: #005D63 !important;
+}

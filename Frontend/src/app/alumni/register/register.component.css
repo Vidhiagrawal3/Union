@@ -11,6 +11,13 @@
     height: 100%;
 } */
 
+.bg {
+    min-height: 100vh;
+    overflow-x: auto !important;
+    background: white;
+    background: linear-gradient(180deg, white 0%, rgba(220, 253, 255, 1) 100%);
+}
+
 .card-sh {
     box-shadow: 5px 5px 5px rgba(0, 0, 0, .1);
 }
